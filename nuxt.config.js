@@ -24,12 +24,21 @@ export default {
         content: process.env.npm_package_description || ""
       }
     ],
-    script: [],
+    script: [
+      {
+        src: "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"
+      }
+    ],
     link: [
       {
         rel: "stylesheet",
         href:
-          "https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          "https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
+      },
+      {
+        rel: "stylesheet",
+        href:
+          "https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
       }
     ]
   },

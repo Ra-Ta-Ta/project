@@ -1,18 +1,22 @@
 <template>
-  <div></div>
+  <div class="custom-top ">
+    <div v-for="(item, index) in items" :key="index">{item}</div>
+  </div>
 </template>
 
 <script>
 export default {
   layouts: "default",
-  head: {
-    script: [
-      {
-        src: "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"
-      }
-    ]
+  data() {
+    return {
+      items: 100
+    };
   }
 };
 </script>
 
-<style></style>
+<style>
+.custom-top {
+  top: 72px;
+}
+</style>
