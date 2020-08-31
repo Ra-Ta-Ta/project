@@ -1,16 +1,12 @@
 <template>
   <div class="custom-top ">
-    <BrandType></BrandType>
+    <div v-for="(item, index) in items" :key="index">{item}</div>
   </div>
 </template>
 
 <script>
-import BrandType from "../components/card/brandType";
 export default {
   layouts: "default",
-  components: {
-    BrandType: BrandType
-  },
   data() {
     return {
       items: 100

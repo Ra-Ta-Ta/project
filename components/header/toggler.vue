@@ -1,5 +1,5 @@
 <template>
-  <div class="w-9 h-9 custom-left z-10 cursor-pointer " :style="active">
+  <div class="z-20 w-9 h-9 custom-left cursor-pointer " :style="active">
     <div
       v-for="(item, index) in toggler"
       :key="item"
@@ -38,7 +38,7 @@ export default {
 
 <style scoped>
 .custom-left {
-  left: 30px;
+  left: 15px;
 }
 .toggler-h {
   height: 6px;

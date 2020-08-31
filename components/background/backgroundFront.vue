@@ -5,14 +5,11 @@
     @scroll.passive="getScrollTop"
   >
     <div
-      class="relative z-20  bgimg bg-center bg-repeat  pointer-events-auto"
+      class="relative z-20 bgimg bg-center bg-repeat h-200 pt-17 pointer-events-auto"
       ref="bgFront"
     >
-      <Toggler
-        @click.native="toggleMenu"
-        ref="toggler"
-        :active="active"
-      ></Toggler>
+      <Toggler @click.native="toggleMenu" :active="active"></Toggler>
+      <Logo :active="active"></Logo>
       <slot name="nuxt"></slot>
     </div>
   </div>
@@ -20,10 +17,12 @@
 
 <script>
 import Toggler from "../header/toggler.vue";
+import Logo from "../header/logo.vue";
 import { mapActions } from "vuex";
 export default {
   components: {
-    Toggler: Toggler
+    Toggler: Toggler,
+    Logo: Logo
   },
   data() {
     return {
@@ -31,7 +30,7 @@ export default {
       bgScrollTop: 0,
       bgFrontHeight: 0,
       offset: 0,
-      active: { position: "fixed", top: "30px" }
+      active: { position: "fixed", top: "15px" }
     };
   },
   mounted() {
@@ -62,6 +61,7 @@ export default {
     openMenu() {
       const vm = this;
       const { bgFront, bgWindow } = vm.$refs;
+      const bgScrollTop = bgWindow.scrollTop + 15 + "px";
       const tl = gsap.timeline({});
 
       tl.to(bgFront, {
@@ -77,7 +77,7 @@ export default {
         },
         "<"
       );
-      vm.active = { position: "absolute", top: bgWindow.scrollTop + 30 + "px" };
+      vm.active = { position: "absolute", top: bgScrollTop };
     },
     closeMenu() {
       const vm = this;
@@ -100,7 +100,7 @@ export default {
         "<"
       );
       setTimeout(() => {
-        vm.active = { position: "fixed", top: "30px" };
+        vm.active = { position: "fixed", top: "15px" };
       }, 700);
     },
     toggleMenu() {
@@ -123,5 +123,8 @@ export default {
   background-size: 250px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
   /* transform-origin: center 70%; */
+}
+.h-200 {
+  height: 200%;
 }
 </style>
