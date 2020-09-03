@@ -1,16 +1,24 @@
 <template>
   <div class="fixed w-full h-screen bgImg bg-center bg-repeat overflow-hidden">
     <div
-      class="fixed w-9 h-9 custom-top-left  cursor-pointer"
+      class="fixed w-9 h-9 custom-top-left  cursor-pointer "
       @click="getMenuStatus"
     >
       <div
-        class="absolute toggler-w-h rounded-lg toggler-bgImg bg-cover transform -translate-x-1 translate-y-4"
+        class="absolute toggler-w-h rounded-lg  bg-cover transform -translate-x-1 translate-y-4 "
         :class="stroke"
         v-for="(stroke, index) in strokes"
         :key="stroke"
         :ref="`stroke${index}`"
-      ></div>
+      >
+        <div
+          v-for="(dot, index) in dots"
+          :key="dot"
+          class="absolute w-2 h-2 toggler-bgImg rounded-full"
+          :style="{ left: `${index * 9.25}px`, top: `-1px` }"
+          :ref="`dot${index}`"
+        ></div>
+      </div>
     </div>
 
     <nav class="absolute top-0 left-0 nav-top-left " ref="menu">
@@ -36,7 +44,8 @@ export default {
         { title: "常見問題", link: "./question" },
         { title: "訂單查詢", link: "./query" }
       ],
-      strokes: ["rotate-45 ", "-rotate-45 "]
+      strokes: ["rotate-45 ", "-rotate-45 "],
+      dots: 5
     };
   },
   mounted() {

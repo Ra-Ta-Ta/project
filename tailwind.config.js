@@ -20,6 +20,7 @@ module.exports = {
       bgOrange: "rgba(226, 125, 89, 0.9)",
       bgYellow: "rgba(243, 203, 76, 0.6)",
       bgLightYellow: "rgba(252, 240, 203, 0.76)",
+      bgPink: "rgba(255, 192, 203, 1)",
 
       fontWhite: "rgba(250, 245, 232, 0.9)",
       fontGreen: "rgba(64, 145, 119, 0.8)",

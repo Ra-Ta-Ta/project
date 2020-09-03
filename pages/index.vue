@@ -1,15 +1,15 @@
 <template>
   <div class="custom-top ">
-    <BrandType></BrandType>
+    <Card></Card>
   </div>
 </template>
 
 <script>
-import BrandType from "../components/card/brandType";
+import Card from "../components/card/card";
 export default {
   layouts: "default",
   components: {
-    BrandType: BrandType
+    Card: Card
   },
   data() {
     return {
