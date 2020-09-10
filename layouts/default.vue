@@ -41,11 +41,7 @@
 </template>
 
 <script>
-import BgFront from "../components/layout/bgFront";
 export default {
-  components: {
-    BgFront: BgFront
-  },
   data() {
     return {
       menuItem: [

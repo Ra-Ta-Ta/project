@@ -3,20 +3,24 @@
     class="w-full custom-style overflow-x-hidden overflow-y-scroll"
     :class="menuIsOpen ? 'absolute' : 'fixed'"
   >
-    <!-- <Card></Card> -->
-    <div v-for="item in items" :key="item">
-      {{ "item" + item }}
-    </div>
+    <Card>
+      <template v-slot:title>
+        <div></div>
+      </template>
+      <template v-slot:subTitle>
+        <div></div>
+      </template>
+      <template v-slot:content>
+        <div></div>
+      </template>
+    </Card>
   </main>
 </template>
 
 <script>
-import Card from "../components/card/card";
 export default {
   layouts: "default",
-  components: {
-    Card: Card
-  },
+
   data() {
     return {
       items: 100

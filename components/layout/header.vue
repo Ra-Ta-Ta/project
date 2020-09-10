@@ -4,6 +4,7 @@
     :class="menuIsOpen ? 'absolute' : 'fixed'"
   >
     <Toggler v-on="$listeners"></Toggler>
+    <ShoppingBag></ShoppingBag>
   </header>
 </template>
 <script>

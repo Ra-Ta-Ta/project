@@ -1,23 +1,25 @@
 <template>
-  <div
-    class="absolute custom-style w-9 h-9 cursor-pointer overflow-hidden "
-    ref="toggler"
-    @click="$emit('toggle-menu')"
-  >
+  <div>
     <div
-      v-for="(marquee, i) in marquees"
-      :key="`marquee${i}`"
-      class="absolute w-9 h-2"
-      :style="marquee"
-      :ref="`marquee${i}`"
+      class="absolute custom-style w-9 h-9 cursor-pointer overflow-hidden "
+      ref="toggler"
+      @click="$emit('toggle-menu')"
     >
       <div
-        v-for="(dot, i) in dots"
-        :key="`dot${i}`"
-        class="absolute w-2 h-2 bg-oldLace rounded-full transform"
-        :style="dot"
-        :ref="`dot${i}`"
-      ></div>
+        v-for="(marquee, i) in marquees"
+        :key="`marquee${i}`"
+        class="absolute w-9 h-2"
+        :style="marquee"
+        :ref="`marquee${i}`"
+      >
+        <div
+          v-for="(dot, i) in dots"
+          :key="`dot${i}`"
+          class="absolute w-2 h-2 bg-oldLace rounded-full transform"
+          :style="dot"
+          :ref="`dot${i}`"
+        ></div>
+      </div>
     </div>
   </div>
 </template>

@@ -11,11 +11,7 @@
 </template>
 
 <script>
-import Header from "./header.vue";
 export default {
-  components: {
-    Header: Header
-  },
   data() {
     return {
       offset: 0
