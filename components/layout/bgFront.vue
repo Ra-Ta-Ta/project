@@ -1,7 +1,7 @@
 <template>
   <div class="relative z-10 w-full h-full overflow-hidden pointer-events-none">
     <div
-      class="relative z-20 bgImg bg-center bg-repeat h-full  pointer-events-auto overflow-hidden"
+      class="relative z-20 h-full bgImg bg-center bg-repeat  pointer-events-auto overflow-x-hidden overflow-y-scroll custom-style"
       ref="bgFront"
     >
       <Header @toggle-menu="toggleMenu"> </Header>
@@ -50,7 +50,10 @@ export default {
 <style scoped>
 .bgImg {
   background-image: url("https://uploads-ssl.webflow.com/57516ebd5650b01552cd9f03/5d30079985ef6117dc5b983d_Paper02.jpg");
-  background-size: 250px;
+  background-size: contain;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+.custom-style {
+  padding-top: 66px;
 }
 </style>

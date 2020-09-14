@@ -1,8 +1,5 @@
 <template>
-  <main
-    class="w-full custom-style overflow-x-hidden overflow-y-scroll"
-    :class="menuIsOpen ? 'absolute' : 'fixed'"
-  >
+  <main class="w-full p-4 grid grid-cols-1 gap-4">
     <Card>
       <template v-slot:title>
         <div></div>
@@ -14,6 +11,8 @@
         <div></div>
       </template>
     </Card>
+
+    <Footer></Footer>
   </main>
 </template>
 
@@ -22,22 +21,9 @@ export default {
   layouts: "default",
 
   data() {
-    return {
-      items: 100
-    };
-  },
-  computed: {
-    menuIsOpen() {
-      const vm = this;
-      return vm.$store.state.toggleMenu.menuIsOpen;
-    }
+    return {};
   }
 };
 </script>
 
-<style scoped>
-.custom-style {
-  top: 66px;
-  height: calc(100vh - 66px);
-}
-</style>
+<style scoped></style>

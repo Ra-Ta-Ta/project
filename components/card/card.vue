@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full p-4 ">
+  <div class="w-full p-4 rounded-xl">
     <slot name="title"></slot>
     <slot name="subtitle"></slot>
     <slot name="content"></slot>

@@ -28,6 +28,7 @@ module.exports = {
       aquaMarine: "rgba(105,178,167,0.7)",
       seaGreen: "rgba(64,145,119,0.8)",
       oliveGreen: "rgba(65,87,45,0.7)",
+      Peach: "rgba(254, 240, 189, 0.6)",
       sienna: "rgba(226,125,89,0.9)",
       brick: "rgba(201,101,44,0.88)",
 
@@ -182,7 +183,9 @@ module.exports = {
       "44": "11rem",
       "46": "11.5rem",
       "48": "12rem",
+      "52": "13rem",
       "56": "14rem",
+      "60": "15rem",
       "64": "16rem"
     },
     backgroundColor: theme => theme("colors"),
@@ -215,6 +218,7 @@ module.exports = {
       default: "0.25rem",
       md: "0.375rem",
       lg: "0.5rem",
+      xl: "1.25rem",
       full: "9999px",
       half: "50%"
     },
@@ -254,9 +258,10 @@ module.exports = {
     divideColor: theme => theme("borderColor"),
     divideOpacity: theme => theme("borderOpacity"),
     divideWidth: theme => theme("borderWidth"),
-    fill: {
-      current: "currentColor"
-    },
+    // fill: {
+    //   current: "currentColor"
+    // },
+    fill: theme => theme("colors"),
     flex: {
       "1": "1 1 0%",
       auto: "1 1 auto",

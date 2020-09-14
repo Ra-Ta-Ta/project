@@ -1,11 +1,13 @@
 <template>
-  <div class="fixed w-full h-screen bgImg bg-center bg-repeat overflow-hidden">
+  <div
+    class="fixed w-full h-full bgImg bg-contain bg-center bg-repeat overflow-hidden"
+  >
     <div
-      class="fixed w-9 h-9 custom-top-left  cursor-pointer "
+      class="fixed w-9 h-9 custom-style  cursor-pointer "
       @click="toggleMenu"
     >
       <div
-        class="absolute toggler-w-h rounded-lg  bg-cover transform -translate-x-1 translate-y-4 "
+        class="absolute stroke-style rounded-xl transform -translate-x-1 translate-y-4 "
         :class="stroke"
         v-for="(stroke, index) in strokes"
         :key="stroke"
@@ -14,17 +16,17 @@
         <div
           v-for="(dot, index) in dots"
           :key="dot"
-          class="absolute w-2 h-2 toggler-bgImg rounded-full"
+          class="absolute w-2 h-2 toggler-bgImg bg-cover rounded-full"
           :style="{ left: `${index * 9.25}px`, top: `-1px` }"
           :ref="`dot${index}`"
         ></div>
       </div>
     </div>
 
-    <nav class="absolute top-0 left-0 nav-top-left " ref="menu">
+    <nav class="absolute top-0 left-0 nav-style " ref="menu">
       <nuxt-link
         :to="item.link"
-        class="block mb-4 text-oldLace  text-2xl text-left "
+        class="block mb-4 text-oldLace text-2xl font-bold text-left "
         v-for="item in menuItem"
         :key="item.title"
         @click.native="toggleMenu"
@@ -94,24 +96,21 @@ export default {
 <style scoped>
 .bgImg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://uploads-ssl.webflow.com/57516ebd5650b01552cd9f03/5d30079985ef6117dc5b983d_Paper02.jpg");
-
-  background-size: 250px;
+    url("../assets/images/bg/bg.jpg");
 }
 .toggler-bgImg {
-  background-image: url("https://uploads-ssl.webflow.com/57516ebd5650b01552cd9f03/5d30079985ef6117dc5b983d_Paper02.jpg");
-  background-size: 250px;
+  background-image: url("../assets/images/bg/bg.jpg");
 }
-.custom-top-left {
+.custom-style {
   top: 15px;
   left: 15px;
 }
-.nav-top-left {
+.nav-style {
   top: 71px;
   left: 15px;
 }
 
-.toggler-w-h {
+.stroke-style {
   width: 45px;
   height: 6px;
 }
