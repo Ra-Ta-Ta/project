@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-oliveGreen w-full p-4 rounded-xl">
+  <div class="w-full bg-oliveGreen rounded-xl p-4">
     <div
       class="w-full m-auto flex flex-col md:flex-row justify-center items-center"
     >

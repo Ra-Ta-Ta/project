@@ -1,27 +1,20 @@
 <template>
-  <div>
-    <header
-      class="top-0 z-30 w-full custom-style"
-      :class="menuIsOpen ? 'absolute' : 'fixed'"
-    >
-      <Toggler v-on="$listeners"></Toggler>
-      <Logo></Logo>
-      <ShoppingBag></ShoppingBag>
-    </header>
-  </div>
+  <header
+    class="fixed top-0 z-30 w-full header-style overflow-visible"
+    :style="headerPosition"
+  >
+    <Toggler v-on="$listeners"></Toggler>
+    <Logo></Logo>
+    <ShoppingBag></ShoppingBag>
+  </header>
 </template>
 <script>
 export default {
-  computed: {
-    menuIsOpen() {
-      const vm = this;
-      return vm.$store.state.toggleMenu.menuIsOpen;
-    }
-  }
+  props: ["header-position"]
 };
 </script>
 <style scoped>
-.custom-style {
+.header-style {
   background-image: linear-gradient(
       180deg,
       rgba(65, 87, 45, 0.7),

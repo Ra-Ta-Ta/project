@@ -2,10 +2,7 @@ body {
   font-family: "SentyTEA", "Noto Sans TC", sans-serif;
 }
 
-html {
-  min-height: 100%;
-}
-
+html,
 body,
 #__nuxt,
 #__layout {

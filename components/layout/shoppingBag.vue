@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="absolute custom-style w-9 h-9 cursor-pointer overflow-hidden ">
+    <div
+      class="absolute shopping-bag-style w-9 h-9 cursor-pointer overflow-hidden "
+    >
       <svg
         enable-background="new 0 0 100 100"
         version="1.1"
@@ -40,7 +42,7 @@ export default {
 };
 </script>
 <style scoped>
-.custom-style {
+.shopping-bag-style {
   top: 15px;
   right: 15px;
 }

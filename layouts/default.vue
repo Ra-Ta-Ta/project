@@ -1,10 +1,13 @@
 <template>
   <div
-    class="fixed w-full h-full bgImg bg-contain bg-center bg-repeat overflow-hidden"
+    class="fixed w-full h-full bg-style bg-contain bg-center bg-repeat overflow-visible"
   >
     <div
-      class="fixed w-9 h-9 custom-style  cursor-pointer "
-      @click="toggleMenu"
+      class="fixed w-9 h-9 toggler-style  cursor-pointer "
+      @click="
+        getMenuStatus();
+        toggleMenu();
+      "
     >
       <div
         class="absolute stroke-style rounded-xl transform -translate-x-1 translate-y-4 "
@@ -16,7 +19,7 @@
         <div
           v-for="(dot, index) in dots"
           :key="dot"
-          class="absolute w-2 h-2 toggler-bgImg bg-cover rounded-full"
+          class="absolute w-2 h-2 dot-style bg-cover rounded-full"
           :style="{ left: `${index * 9.25}px`, top: `-1px` }"
           :ref="`dot${index}`"
         ></div>
@@ -33,7 +36,6 @@
         >{{ item.title }}</nuxt-link
       >
     </nav>
-
     <BgFront ref="bgFront">
       <template v-slot:nuxt>
         <Nuxt />
@@ -43,6 +45,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -84,6 +87,7 @@ export default {
       .repeat(-1);
   },
   methods: {
+    ...mapActions("toggleMenu", ["getMenuStatus"]),
     toggleMenu() {
       const vm = this;
       const { bgFront } = vm.$refs;
@@ -94,24 +98,23 @@ export default {
 </script>
 
 <style scoped>
-.bgImg {
+.bg-style {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("../assets/images/bg/bg.jpg");
 }
-.toggler-bgImg {
-  background-image: url("../assets/images/bg/bg.jpg");
-}
-.custom-style {
+.toggler-style {
   top: 15px;
   left: 15px;
+}
+.stroke-style {
+  width: 45px;
+  height: 6px;
+}
+.dot-style {
+  background-image: url("../assets/images/bg/bg.jpg");
 }
 .nav-style {
   top: 71px;
   left: 15px;
-}
-
-.stroke-style {
-  width: 45px;
-  height: 6px;
 }
 </style>

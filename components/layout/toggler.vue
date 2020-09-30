@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="absolute custom-style w-9 h-9 cursor-pointer overflow-hidden "
+      class="absolute toggler-style w-9 h-9 cursor-pointer overflow-hidden "
       ref="toggler"
       @click="$emit('toggle-menu')"
     >
@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style scoped>
-.custom-style {
+.toggler-style {
   top: 15px;
   left: 15px;
 }
