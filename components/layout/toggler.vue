@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="absolute toggler-style w-9 h-9 cursor-pointer overflow-hidden "
+      class="absolute top-4 left-4 w-9 h-9 cursor-pointer overflow-hidden"
       ref="toggler"
       @click="$emit('toggle-menu')"
     >
@@ -29,31 +29,40 @@ export default {
   data() {
     return {
       dots: [{ left: "0px" }, { left: "14px" }, { left: "28px" }],
-      marquees: [{ top: "0px" }, { top: "14px" }, { top: "28px" }]
+      marquees: [{ top: "0px" }, { top: "14px" }, { top: "28px" }],
     };
   },
   mounted() {
     const vm = this;
     const { dot0, dot1, dot2, toggler } = vm.$refs;
     const distance = toggler.clientWidth;
-    const d = 0.3;
+    const d = 0.7;
     const tl = gsap.timeline({
-      default: { duration: d }
+      defaults: {
+        duration: d,
+        repeat: -1,
+        yoyo: true,
+        scale: 0.6,
+      },
     });
-    tl.to(dot2, { scale: 0.6 })
-      .to(dot1, { scale: 0.6 }, d * 0.5)
-      .to(dot0, { scale: 0.6 }, d * 1)
-      .to(dot2, { scale: 1 }, d * 3)
-      .to(dot1, { scale: 1 }, d * 3.5)
-      .to(dot0, { scale: 1 }, d * 4)
-      .repeat(-1);
-  }
+    tl.to(dot2, {})
+      .to(
+        dot1,
+        {
+          delay: d * 0.33,
+        },
+        "<"
+      )
+      .to(
+        dot0,
+        {
+          delay: d * 0.66,
+        },
+        "<"
+      );
+  },
 };
 </script>
 
 <style scoped>
-.toggler-style {
-  top: 15px;
-  left: 15px;
-}
 </style>

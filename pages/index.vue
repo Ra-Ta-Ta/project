@@ -25,16 +25,22 @@
 <script>
 export default {
   layouts: "default",
-
   data() {
     return {};
-  }
+  },
+  mounted() {
+    const vm = this;
+    vm.$nextTick(() => {
+      vm.$nuxt.$loading.start();
+      setTimeout(() => vm.$nuxt.$loading.finish(), 500);
+    });
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .main-style {
-  padding-top: 82px;
+  padding-top: 84px;
 }
 .header-style {
   background-image: url("../assets/images/component/library.jpg");

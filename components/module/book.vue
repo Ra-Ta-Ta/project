@@ -1,22 +1,21 @@
 <template>
   <div
-    class="relative bottom-0 left-1/2 w-1/2 h-full  origin-bottom book-style"
+    class="relative bottom-0 left-1/2 w-1/2 h-full origin-bottom invisible book-style"
     ref="book"
   >
     <div
-      class="absolute top-0 left-0 w-full h-full   origin-bottom-left front-style"
+      class="absolute top-0 left-0 w-full h-full origin-bottom-left front-style"
       ref="front"
     >
       <div
-        class="absolute top-0 left-0 w-full h-full  bg-100 bg-center bg-no-repeat cover-style"
+        class="absolute top-0 left-0 w-full h-full bg-100 bg-center bg-no-repeat cover-style"
       ></div>
       <div
-        class="absolute top-0 left-0 w-full h-full  bg-center bg-no-repeat bg-100 page-style"
+        class="absolute top-0 left-0 w-full h-full bg-center bg-no-repeat bg-100 page-style"
       >
         <ul
-          class="absolute right-0 w-full h-3/4 flex origin-bottom byobu-style"
-          :style="{ top: `calc(${byobus.height} + 4vw)` }"
-          ref="byobu"
+          class="absolute top-0 right-0 w-full h-3/4 flex origin-top byobu-style"
+          ref="byobuLeft"
         >
           <li
             v-for="byobu in byobus.num"
@@ -25,13 +24,13 @@
           >
             <div
               class="absolute top-0 h-full bg-bottom bg-no-repeat bg-100 byobu-bg-style"
-              :style="setByobuData(-byobu + 1)"
+              :style="setByobuSize(-byobu + 1)"
             ></div>
           </li>
         </ul>
         <div
           class="absolute right-0 w-9/12 h-3/12 origin-bottom overflow-hidden table-style"
-          ref="table"
+          ref="tableLeft"
         >
           <div
             class="absolute top-0 left-1/2 w-full h-full bg-center bg-no-repeat bg-100 table-bg-style"
@@ -42,18 +41,17 @@
         ></div>
         <div
           class="absolute top-1/2 w-1/2 h-1/12 origin-bottom bg-center bg-no-repeat bg-100 zabuton-left-style"
-          ref="zabuton-left"
+          ref="zabutonLeft"
         ></div>
       </div>
     </div>
     <div class="absolute top-0 left-0 w-full h-full back-style">
       <div
-        class="absolute top-0 left-0 w-full h-full  bg-center bg-no-repeat bg-100 page-style"
+        class="absolute top-0 left-0 w-full h-full bg-center bg-no-repeat bg-100 page-style"
       >
         <ul
-          class="absolute w-full h-3/4 flex origin-bottom byobu-style"
-          :style="{ top: `calc(${byobus.height} + 4vw)` }"
-          ref="byobu"
+          class="absolute top-0 left-0 w-full h-3/4 flex origin-top byobu-style"
+          ref="byobuRight"
         >
           <li
             v-for="byobu in byobus.num"
@@ -62,13 +60,13 @@
           >
             <div
               class="absolute top-0 h-full bg-bottom bg-no-repeat bg-100 byobu-bg-style"
-              :style="setByobuData(-byobu - 2)"
+              :style="setByobuSize(-byobu - 2)"
             ></div>
           </li>
         </ul>
         <div
           class="absolute left-0 w-9/12 h-3/12 origin-bottom overflow-hidden table-style"
-          ref="table"
+          ref="tableRight"
         >
           <div
             class="absolute top-0 right-1/2 w-full h-full bg-center bg-no-repeat bg-100 table-bg-style"
@@ -79,7 +77,7 @@
         ></div>
         <div
           class="absolute top-1/2 w-1/2 h-1/12 origin-bottom bg-center bg-no-repeat bg-100 zabuton-right-style"
-          ref="zabuton-right"
+          ref="zabutonRight"
         ></div>
       </div>
       <div
@@ -92,46 +90,105 @@
 export default {
   data() {
     return {
-      byobus: {
-        num: 3,
+      card: {
         width: 0,
         height: 0,
-        shadow: ""
-      }
+      },
+      byobus: {
+        num: 3,
+      },
     };
   },
   beforeMount() {
     const vm = this;
     window.addEventListener("resize", () => {
-      vm.getByobuData();
+      vm.getCardSize();
     });
-    vm.getByobuData();
+    vm.getCardSize();
+  },
+  mounted() {
+    window.addEventListener("load", () => {
+      const vm = this;
+      const {
+        book,
+        front,
+        byobuLeft,
+        byobuRight,
+        tableLeft,
+        tableRight,
+        zabutonLeft,
+        zabutonRight,
+      } = vm.$refs;
+      const tl = gsap.timeline({ defaults: { duration: 1 } });
+      const startWidth = `${vm.card.width * -3}px`;
+      tl.fromTo(
+        book,
+        {
+          transform: `rotateX(-15deg) rotateY(-80deg) translateX(${startWidth})`,
+        },
+        {
+          transform: `rotateX(35deg) rotateY(0deg) translateX(0)`,
+          visibility: "visible",
+        }
+      )
+        .to(book, {
+          rotationX: 60,
+        })
+        .to(front, { rotationY: -180 }, "<")
+
+        .to(
+          [tableLeft, tableRight, zabutonLeft, zabutonRight],
+          {
+            rotationX: -60,
+          },
+          "<"
+        )
+        .to(
+          byobuRight,
+          {
+            delay: 0.2,
+            y: "7vw",
+            z: "1vw",
+            rotationX: 120,
+          },
+          "<"
+        )
+        .to(
+          byobuLeft,
+          {
+            delay: 0.2,
+            y: "7vw",
+            z: "1vw",
+            rotationX: 120,
+          },
+          "<"
+        );
+    });
   },
   beforeDestroyed() {
     const vm = this;
-    window.removeEventListener("resize", vm.getByobuData());
+    window.removeEventListener("resize", vm.getCardSize());
   },
   computed: {
-    setByobuData() {
+    setByobuSize() {
       const vm = this;
-      return byobu => {
+      return (byobu) => {
         return {
-          width: `${vm.byobus.width}px`,
-          left: `${(byobu / 6) * vm.byobus.width}px`
+          left: `${(byobu / 6) * vm.card.width}px`,
         };
       };
-    }
+    },
   },
   methods: {
-    getByobuData() {
+    getCardSize() {
       const vm = this;
       vm.$nextTick(() => {
-        const { byobu } = vm.$refs;
-        vm.byobus.width = byobu.offsetWidth * 2;
-        vm.byobus.height = -byobu.offsetHeight * 0.85 + "px";
+        const card = vm.$parent.$el;
+        vm.card.width = card.offsetWidth - 32;
+        vm.card.height = card.offsetHeight - 32;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -143,7 +200,7 @@ export default {
   transform-style: preserve-3d;
 }
 .book-style {
-  transform: rotateX(60deg);
+  // transform: rotateX(60deg);
   .cover-style {
     background-color: rgba(191, 145, 75, 0.7);
     background-image: url("../../assets/images/component/cover.jpg");
@@ -156,7 +213,7 @@ export default {
   }
 }
 .front-style {
-  transform: rotateY(-0deg);
+  // transform: rotateY(-0deg);
   .cover-style {
     transform: translateZ(3px);
   }
@@ -171,8 +228,6 @@ export default {
 }
 
 .byobu-style {
-  // transform: rotateX(-60deg) translateY(-1.5vw);
-  transform: rotateX(-0deg) translateY(-0vw);
   .byobu-left-style {
     transform: skewY(-10deg);
     &:nth-child(2) {
@@ -187,11 +242,11 @@ export default {
   }
   .byobu-bg-style {
     background-image: url("../../assets/images/component/byobu.jpg");
+    width: 600%;
   }
 }
 .table-style {
   top: 35%;
-  transform: rotateX(-0deg);
   .table-bg-style {
     background-image: url("../../assets/images/component/table.png");
   }
@@ -199,21 +254,17 @@ export default {
 .zabuton-left-style {
   background-image: url("../../assets/images/component/zabuton-left.png");
   left: 15%;
-  transform: rotateX(-0deg);
 }
 .zabuton-right-style {
   background-image: url("../../assets/images/component/zabuton-right.png");
   right: 15%;
-  transform: rotateX(-0deg);
 }
 .girl-left-style {
   background-image: url("../../assets/images/component/girl-left.jpg");
   left: 15%;
-  transform: rotateX(-0deg);
 }
 .girl-right-style {
   background-image: url("../../assets/images/component/girl-right.jpg");
   right: 15%;
-  transform: rotateX(-0deg);
 }
 </style>

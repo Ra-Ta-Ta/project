@@ -25,7 +25,7 @@ export default {
     return { headerPosition: {} };
   },
   computed: {
-    ...mapState("toggleMenu", ["menuIsOpen"])
+    ...mapState("toggleMenu", ["menuIsOpen"]),
   },
   methods: {
     ...mapActions("toggleMenu", ["getMenuStatus"]),
@@ -42,13 +42,13 @@ export default {
       const { bgFront } = vm.$refs;
       gsap.to(bgFront, {
         duration: 0.7,
-        ease: "expo.out",
+        ease: "power4.out",
         rotation: 10,
-        pointerEvents: "none"
+        pointerEvents: "none",
       });
       vm.headerPosition = {
         position: "absolute",
-        top: `${bgFront.scrollTop}px`
+        top: `${bgFront.scrollTop}px`,
       };
     },
     closeMenu() {
@@ -59,12 +59,12 @@ export default {
       }, 700);
       gsap.to(bgFront, {
         duration: 0.7,
-        ease: "expo.out",
+        ease: "power4.out",
         rotation: 0,
-        clearProps: "all"
+        clearProps: "all",
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

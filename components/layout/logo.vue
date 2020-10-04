@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    class="absolute top-3 left-1/2 block w-30 m-auto pl-2 cursor-pointer text-center transform -translate-x-1/2 border-style border-2 border-khaki"
+    class="absolute left-1/2 block w-30 m-auto pl-2 cursor-pointer text-center transform -translate-x-1/2 border-style border-2 border-khaki"
     to="/"
     @mouseover="logoHover"
   >
@@ -14,7 +14,7 @@
     </span>
     <img
       src="../../assets/images/bg/seal.jpg"
-      class="inline w-2 h-2 align-text-bottom transform -translate-x-1/2 "
+      class="inline w-2 h-2 align-text-bottom transform -translate-x-1/2"
     />
   </nuxt-link>
 </template>
@@ -22,7 +22,7 @@
 export default {
   data() {
     return {
-      names: ["甜", "上", "頭"]
+      names: ["甜", "上", "頭"],
     };
   },
   methods: {
@@ -31,12 +31,13 @@ export default {
       const { name1, name2, name3 } = vm.$refs;
       const tl = gsap.timeline({ default: { duration: 0.3 } });
       tl.to(name1, {});
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
 .border-style {
+  top: 13px;
   outline: 2px solid rgba(250, 245, 232, 0.9);
   outline-offset: 2px;
 }

@@ -21,6 +21,6 @@ export default {
       rgba(65, 87, 45, 0.7)
     ),
     url("../../assets/images/bg/bg.jpg");
-  height: 66px;
+  height: 68px;
 }
 </style>
