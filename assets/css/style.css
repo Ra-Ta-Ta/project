@@ -1,9 +1,9 @@
-body {
-  font-family: "SentyTEA", "Noto Sans TC", sans-serif;
+:root {
+  font-family: "SentyTEA", "Noto Sans TC", cursive;
+  font-weight: bold;
 }
 
-html,
-body,
+:root,
 #__nuxt,
 #__layout {
   height: 100%;

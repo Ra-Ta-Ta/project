@@ -1,102 +1,68 @@
 <template>
-  <div
-    class="fixed w-full h-full bg-style bg-contain bg-center bg-repeat overflow-visible"
-  >
     <div
-      class="fixed top-4 left-4 w-9 h-9 cursor-pointer"
-      @click="
-        getMenuStatus();
-        toggleMenu();
-      "
+        class="relative z-20 h-full bg-center bg-repeat bg-100 pointer-events-auto overflow-y-scroll bg-style"
+        ref="bg"
     >
-      <div
-        class="absolute w-11 h-1 rounded-xl transform -translate-x-1 translate-y-4"
-        :class="stroke"
-        v-for="(stroke, index) in strokes"
-        :key="stroke"
-        :ref="`stroke${index}`"
-      >
-        <div
-          v-for="(dot, index) in dots"
-          :key="dot"
-          class="absolute w-2 h-2 dot-style bg-cover rounded-full"
-          :style="{ left: `${index * 9}px`, top: `-2px` }"
-          :ref="`dot${index}`"
-        ></div>
-      </div>
-    </div>
-
-    <nav class="absolute top-18 left-4" ref="menu">
-      <nuxt-link
-        :to="item.link"
-        class="block mb-4 text-oldLace text-2xl font-bold text-left"
-        v-for="item in menuItem"
-        :key="item.title"
-        @click.native="toggleMenu"
-        >{{ item.title }}</nuxt-link
-      >
-    </nav>
-    <BgFront ref="bgFront">
-      <template v-slot:nuxt>
+        <Header
+            @toggle-menu="
+          getMenuStatus();
+          toggleMenu(menuIsOpen);
+        "
+        ></Header>
+        <!-- <nav class="absolute top-18 left-4" ref="menu">
+                <nuxt-link
+                    :to="item.link"
+                    class="block mb-4 text-oldLace text-2xl font-bold text-left"
+                    v-for="item in menuItem"
+                    :key="item.title"
+                    @click.native="toggleMenu"
+                >{{ item.title }}</nuxt-link>
+        </nav>-->
         <Nuxt />
-      </template>
-    </BgFront>
-  </div>
+    </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex"
 export default {
-  data() {
-    return {
-      menuItem: [
-        { title: "關於甜上頭", link: "./about" },
-        { title: "產品介紹", link: "./product" },
-        { title: "常見問題", link: "./question" },
-        { title: "訂單查詢", link: "./query" },
-      ],
-      strokes: ["rotate-45 ", "-rotate-45 "],
-      dots: 5,
-      menuIsOpen: false,
-    };
-  },
-  mounted() {
-    const vm = this;
-    const { stroke0, stroke1 } = vm.$refs;
-    const tl = gsap.timeline({
-      defaults: {
-        duration: 1,
-      },
-    });
-    tl.to([stroke0, stroke1], {
-      duration: 0.7,
-      rotation: 90,
-    })
-      .to([stroke0, stroke1], {
-        rotation: 450,
-      })
-      .to(stroke0, { rotation: 495 }, "<")
-      .to(stroke1, { rotation: 585 }, "<")
-      .repeatDelay(1)
-      .repeat(-1);
-  },
-  methods: {
-    ...mapActions("toggleMenu", ["getMenuStatus"]),
-    toggleMenu() {
-      const vm = this;
-      const { bgFront } = vm.$refs;
-      bgFront.toggleMenu();
+    data() {
+        return {
+            menuItem: [
+                { title: "關於甜上頭", link: "./about" },
+                { title: "產品介紹", link: "./product" },
+                { title: "常見問題", link: "./question" },
+                { title: "訂單查詢", link: "./query" },
+            ],
+        }
     },
-  },
-};
+    computed: {
+        ...mapState("toggleMenu", ["menuIsOpen"]),
+    },
+    methods: {
+        ...mapActions("toggleMenu", ["getMenuStatus"]),
+        toggleMenu(menuIsOpen) {
+            const vm = this
+            if (menuIsOpen) {
+                vm.openMenu()
+            } else {
+                vm.closeMenu()
+            }
+        },
+        openMenu() {
+            const vm = this
+            const { bg } = vm.$refs
+        },
+        closeMenu() {
+            const vm = this
+            const { bg } = vm.$refs
+        },
+    },
+}
 </script>
 
 <style scoped>
 .bg-style {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../assets/images/bg/bg.jpg");
-}
-.dot-style {
-  background-image: url("../assets/images/bg/bg.jpg");
+    background-image: url("https://uploads-ssl.webflow.com/57516ebd5650b01552cd9f03/5d30079985ef6117dc5b983d_Paper02.jpg");
+    background-size: 300px;
 }
 </style>

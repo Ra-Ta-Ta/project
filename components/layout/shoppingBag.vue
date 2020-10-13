@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="absolute top-4 right-4 w-9 h-9 cursor-pointer overflow-hidden">
+    <div class="absolute top-2 right-4 w-7 h-7 cursor-pointer overflow-hidden">
       <svg
         enable-background="new 0 0 100 100"
         version="1.1"
@@ -10,7 +10,7 @@
       >
         <path
           d="m71.087 18.542c-0.42-0.172-0.879-0.268-1.36-0.268-0.59 0-1.146 0.145-1.639 0.397-1.164 0.597-1.961 1.805-1.961 3.203 0 1.352 0.75 2.522 1.854 3.137-1.121 10.328-8.748 18.345-17.965 18.345-9.222 0-16.851-8.024-17.967-18.357 1.091-0.618 1.833-1.782 1.833-3.125 0-1.398-0.796-2.606-1.96-3.203-0.492-0.252-1.049-0.397-1.639-0.397-0.482 0-0.941 0.097-1.36 0.268-1.314 0.538-2.24 1.826-2.24 3.333s0.927 2.795 2.24 3.332c0.045 0.018 0.094 0.025 0.138 0.042 1.251 11.873 10.168 21.109 20.957 21.109 10.792 0 19.708-9.24 20.958-21.116 0.037-0.014 0.078-0.02 0.115-0.035 1.313-0.537 2.239-1.825 2.236-3.332-1e-3 -1.508-0.927-2.796-2.24-3.333z"
-          class="fill-brick"
+          class="fill-oliveGreen"
         />
 
         <path
@@ -22,7 +22,7 @@
           y="77.5%"
           textLength="50%"
           text-anchor="middle"
-          class="w-full fill-brick text-4xl font-bold"
+          class="w-full fill-oliveGreen text-4xl font-bold"
         >
           {{ productNum }}
         </text>
@@ -34,10 +34,9 @@
 export default {
   data() {
     return {
-      productNum: "",
+      productNum: "100"
     };
-  },
+  }
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>
