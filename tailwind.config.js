@@ -14,7 +14,7 @@ module.exports = {
       xl: "1440px"
     },
     colors: {
-      oldLace: "rgba(250,245,232,0.85)",
+      oldLace: "rgba(250,245,232,1)",
       gold: "rgba(243,203,76,0.6)",
       khaki: "rgba(235,206,146,0.85)",
       burlyWood: "rgba(228,178,102,0.76)",

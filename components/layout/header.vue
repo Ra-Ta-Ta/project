@@ -1,9 +1,8 @@
 <template>
-  <header class="fixed top-0 z-30 w-full h-11 overflow-visible header-style">
+  <header class="fixed top-0 z-10 w-full h-11 overflow-visible header-style">
     <div
       class="absolute top-0 left-1/2 w-full transform -translate-x-1/2 -translate-y-1/2 container-style"
     >
-      <Toggler v-on="$listeners"></Toggler>
       <Logo></Logo>
       <ShoppingBag></ShoppingBag>
     </div>
