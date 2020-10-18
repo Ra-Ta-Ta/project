@@ -1,39 +1,41 @@
 <template>
-  <div
-    class="fixed z-20 top-2 left-4 w-7 h-7  cursor-pointer toggler-style"
-    @click="
-      $emit('toggle-menu');
-      rotateToggler(menuIsOpen);
-    "
-    ref="toggler"
-  >
     <div
-      class="absolute -top-2 -left-4 w-screen h-screen rounded-full transform -translate-x-full -translate-y-full"
-      ref="shadow"
-    ></div>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 512 512"
-      class="absolute top-0 left-0 w-full h-full menu-open-style"
-      ref="menuOpen"
+        class="fixed z-20 top-2 left-4 w-7 h-7 cursor-pointer toggler-style"
+        @click="
+            getMenuStatus();
+            openMenu(menuIsOpen);
+        "
+        ref="toggler"
     >
-      <g class="fill-oldLace">
-        <path
-          d="M456.036,59H325.913a47.713,47.713,0,0,0-16.4,2.73l-42.574,15.4a32.052,32.052,0,0,1-21.872-.039L202.49,61.751A47.709,47.709,0,0,0,186.087,59H55.964A47.752,47.752,0,0,0,8,106.682V385.021A48.006,48.006,0,0,0,55.964,433H186.087a31.885,31.885,0,0,1,10.934,1.937L239.6,450.424a48.071,48.071,0,0,0,32.808,0l42.575-15.491A31.908,31.908,0,0,1,325.913,433H456.036A48.006,48.006,0,0,0,504,385.021V106.682A47.752,47.752,0,0,0,456.036,59ZM202.49,419.9a47.851,47.851,0,0,0-16.4-2.9H55.964A31.987,31.987,0,0,1,24,385.021V106.682A31.735,31.735,0,0,1,55.964,75H186.087a31.728,31.728,0,0,1,10.934,1.768l42.575,15.4A47.582,47.582,0,0,0,248,94.3v342c-.989-.256-1.97-.559-2.936-.911ZM488,385.021A31.987,31.987,0,0,1,456.036,417H325.913a47.851,47.851,0,0,0-16.4,2.9l-42.574,15.486c-.966.352-1.947.655-2.936.911V94.3a47.818,47.818,0,0,0,8.4-2.21l42.575-15.323A31.751,31.751,0,0,1,325.913,75H456.036A31.735,31.735,0,0,1,488,106.682Z"
-        />
+        <div
+            class="absolute -top-2 -left-4 w-screen h-screen rounded-full transform -translate-x-full -translate-y-full pointer-events-none"
+            ref="shadow"
+        ></div>
         <svg
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="54%"
-          y="35%"
-          width="200px"
-          height="200px"
-          viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+            class="absolute top-0 left-0 w-full h-full menu-open-style"
+            ref="menuOpen"
         >
-          <path
-            id="dorayaki"
-            d="M475.433,165.344c-10.696-5.017-22.03-6.424-33.161-9.942c-12.112-3.827-23.26-10.244-33.949-16.986
+            <g class="fill-oldLace">
+                <path
+                    d="M456.036,59H325.913a47.713,47.713,0,0,0-16.4,2.73l-42.574,15.4a32.052,32.052,0,0,1-21.872-.039L202.49,61.751A47.709,47.709,0,0,0,186.087,59H55.964A47.752,47.752,0,0,0,8,106.682V385.021A48.006,48.006,0,0,0,55.964,433H186.087a31.885,31.885,0,0,1,10.934,1.937L239.6,450.424a48.071,48.071,0,0,0,32.808,0l42.575-15.491A31.908,31.908,0,0,1,325.913,433H456.036A48.006,48.006,0,0,0,504,385.021V106.682A47.752,47.752,0,0,0,456.036,59ZM202.49,419.9a47.851,47.851,0,0,0-16.4-2.9H55.964A31.987,31.987,0,0,1,24,385.021V106.682A31.735,31.735,0,0,1,55.964,75H186.087a31.728,31.728,0,0,1,10.934,1.768l42.575,15.4A47.582,47.582,0,0,0,248,94.3v342c-.989-.256-1.97-.559-2.936-.911ZM488,385.021A31.987,31.987,0,0,1,456.036,417H325.913a47.851,47.851,0,0,0-16.4,2.9l-42.574,15.486c-.966.352-1.947.655-2.936.911V94.3a47.818,47.818,0,0,0,8.4-2.21l42.575-15.323A31.751,31.751,0,0,1,325.913,75H456.036A31.735,31.735,0,0,1,488,106.682Z"
+                />
+                <svg
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="54%"
+                    y="35%"
+                    width="200px"
+                    height="200px"
+                    viewBox="0 0 512 512"
+                >
+                    <text>
+                        甜上頭
+                    </text>
+                    <path
+                        d="M475.433,165.344c-10.696-5.017-22.03-6.424-33.161-9.942c-12.112-3.827-23.26-10.244-33.949-16.986
 		c-21.36-13.495-41.613-28.672-64.111-40.298c-44.688-23.11-96.084-29.258-144.314-13.67c-23.872,7.723-45.609,20.287-66.458,34.04
 		c-20.404,13.452-40.675,29.635-64.312,37.006C46.822,162.463,25.002,165.906,10,186.016c-15.286,20.496-12.405,47.618,4.264,66.306
 		c1.91,2.152,3.978,4.154,6.14,6.047c-0.444,2.513-0.544,5.06-0.26,7.598c0.302,2.772,1.038,5.377,2.144,7.932
@@ -52,105 +54,103 @@
 		c23.763-11.283,44.612-27.658,66.834-41.529c43.422-27.114,92.641-38.33,141.776-19.399
 		c47.736,18.486,84.273,61.657,135.594,71.432c9.364,1.776,20.605,5.218,26.552,13.234
 		C476.237,217.763,469.134,226.272,462.282,231.164z"
-          ></path>
+                    ></path>
+                </svg>
+
+                <nuxt-link
+                    :to="item.link"
+                    class="fill-oldLace text-2xl font-bold"
+                    v-for="(item, i) in menuItem"
+                    :key="item.title"
+                    :style="{ transform: `translate(15%, ${(i + 3) * 11}%)` }"
+                >
+                    <text>{{ item.title }}</text>
+                </nuxt-link>
+            </g>
         </svg>
 
-        <nuxt-link
-          :to="item.link"
-          class="fill-oldLace text-2xl font-bold"
-          v-for="(item, i) in menuItem"
-          :key="item.title"
-          :style="{ transform: `translate(15%, ${(i + 3) * 11}%)` }"
-          @click.native="
-            $emit('toggle-menu');
-            rotateToggler(menuIsOpen);
-          "
-        >
-          <text>{{ item.title }}</text>
-        </nuxt-link>
-      </g>
-    </svg>
-
-    <img
-      src="~assets/images/bg/menu-close.svg"
-      alt="menu-close"
-      class="absolute top-0 left-0 w-full h-full menu-close-style"
-      ref="menuClose"
-    />
-  </div>
+        <img
+            src="~assets/images/bg/menu-close.svg"
+            alt="menu-close"
+            class="absolute top-0 left-0 w-full h-full menu-close-style"
+            ref="menuClose"
+        />
+    </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from 'vuex';
 export default {
-  data() {
-    return {
-      menuItem: [
-        { title: "關於甜上頭", link: "./about" },
-        { title: "產品介紹", link: "./product" },
-        { title: "常見問題", link: "./question" },
-        { title: "訂單查詢", link: "./query" }
-      ]
-    };
-  },
-  computed: {
-    ...mapState("toggleMenu", ["menuIsOpen"])
-  },
-  methods: {
-    rotateToggler(menuIsOpen) {
-      const vm = this;
-      const { toggler, shadow, menuClose, menuOpen } = vm.$refs;
-      const tl = gsap.timeline({ defaults: { duration: 0.5 } });
-      if (menuIsOpen) {
-        tl.to(toggler, {
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%"
-        })
-          .to(
-            shadow,
-            {
-              boxShadow: "100vw 100vh 0px 100vh rgba(0,0,0,0.5)"
-            },
-            "<"
-          )
-          .to(menuClose, { rotateY: 180 }, "<")
-          .to(menuOpen, { rotateY: 0, zIndex: 1 }, "<");
-      } else {
-        tl.to(toggler, {
-          top: 8,
-          left: 16,
-          width: 28,
-          height: 28,
-          clearProps: "all"
-        })
-          .to(
-            shadow,
-            {
-              boxShadow: "0px 0px 0px 0px rgba(0,0,0,0.5)",
-              clearProps: "all"
-            },
-            "<"
-          )
-          .to(menuClose, { rotateY: 180 }, "<")
-          .to(menuClose, { rotateY: 0, clearProps: "all" }, "<")
-          .to(menuOpen, { rotateY: 180, clearProps: "all" }, "<");
-      }
+    data() {
+        return {
+            menuItem: [
+                { title: '關於甜上頭', link: './about' },
+                { title: '產品介紹', link: './product' },
+                { title: '常見問題', link: './question' },
+                { title: '訂單查詢', link: './query' }
+            ]
+        };
+    },
+    computed: {
+        ...mapState('toggleMenu', ['menuIsOpen'])
+    },
+    methods: {
+        ...mapActions('toggleMenu', ['getMenuStatus']),
+        openMenu(menuIsOpen) {
+            const vm = this;
+            const { toggler, shadow, menuClose, menuOpen } = vm.$refs;
+            const tl = gsap.timeline({ defaults: { duration: 0.5 } });
+            if (menuIsOpen) {
+                tl.to(toggler, {
+                    top: 0,
+                    left: 0,
+                    width: '100vw',
+                    height: '100vh',
+                    cursor: 'auto'
+                })
+                    .to(
+                        shadow,
+                        {
+                            boxShadow: '100vw 100vh 0px 100vh rgba(0,0,0,0.5)'
+                        },
+                        '<'
+                    )
+                    .to(menuClose, { rotateY: 180 }, '<')
+                    .to(menuOpen, { rotateY: 0, zIndex: 1 }, '<');
+            } else {
+                tl.to(toggler, {
+                    top: 8,
+                    left: 16,
+                    width: 28,
+                    height: 28,
+                    clearProps: 'all'
+                })
+                    .to(
+                        shadow,
+                        {
+                            boxShadow: '0px 0px 0px 0px rgba(0,0,0,0.5)',
+                            clearProps: 'all'
+                        },
+                        '<'
+                    )
+                    .to(menuClose, { rotateY: 180 }, '<')
+                    .to(menuClose, { rotateY: 0, clearProps: 'all' }, '<')
+                    .to(menuOpen, { rotateY: 180, clearProps: 'all' }, '<');
+            }
+        }
     }
-  }
 };
 </script>
 
 <style scoped>
 .toggler-style {
-  perspective: 2000px;
+    perspective: 2000px;
 }
 .menu-open-style {
-  transform: rotateY(180deg);
-  backface-visibility: hidden;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
 }
 .menu-close-style {
-  backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 </style>

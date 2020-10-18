@@ -88,6 +88,16 @@ export default {
         }
       }
     },
-    transpile: ["gsap"]
+    transpile: ["gsap"],
+    extend (config, { isDev }) {
+        if (isDev && process.client) {
+          config.module.rules.push({
+            enforce: 'pre',
+            test: /\.(js|vue)$/,
+            loader: 'eslint-loader',
+            exclude: /(node_modules)/
+          })
+        }
+      }
   }
 };

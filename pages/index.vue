@@ -5,7 +5,6 @@
                 <Book></Book>
             </template>
         </Card>
-
         <Footer></Footer>
         <Footer></Footer>
         <Footer></Footer>
@@ -22,18 +21,18 @@
 
 <script>
 export default {
-    layouts: "default",
+    layouts: 'default',
     data() {
-        return {}
+        return {};
     },
     mounted() {
-        const vm = this
+        const vm = this;
         vm.$nextTick(() => {
-            vm.$nuxt.$loading.start()
-            setTimeout(() => vm.$nuxt.$loading.finish(), 500)
-        })
-    },
-}
+            vm.$nuxt.$loading.start();
+            setTimeout(() => vm.$nuxt.$loading.finish(), 500);
+        });
+    }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -42,7 +41,7 @@ export default {
     padding-top: 60px;
 }
 .header-style {
-    background-image: url("../assets/images/component/library.jpg");
+    background-image: url('~assets/images/component/library.jpg');
     max-height: calc(980px * 10 / 16);
     perspective: 100vw;
     perspective-origin: bottom;
