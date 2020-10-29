@@ -1,46 +1,42 @@
 <template>
-  <nuxt-link
-    class="absolute top-1 left-1/2 block w-30 m-auto  pl-1 cursor-pointer text-center  transform -translate-x-1/2 border-2 border-khaki whitespace-no-wrap logo-style"
-    to="/"
-    @mouseover="logoHover"
-  >
-    <span
-      class="inline-block text-2xl text-khaki leading-none font-style"
-      v-for="(name, i) in names"
-      :key="name"
-      :ref="`name${i + 1}`"
-      >{{ name }}</span
-    >
-    <img
-      src="../../assets/images/bg/seal.png"
-      class="absolute bottom-0 right-0 inline w-2 h-2 align-text-bottom  transform -translate-x-1/2 -translate-y-1/2"
-    />
-  </nuxt-link>
+    <nuxt-link class="logo-style" to="/">
+        <span
+            class="block text-center uppercase leading-none font-style"
+        >
+            sugar
+        </span>
+        <span
+            class="block text-center uppercase leading-none font-style"
+        >
+            t<span class="bg-left bg-no-repeat face-style"
+                >&ensp;</span
+            >ngue
+        </span>
+    </nuxt-link>
 </template>
 <script>
 export default {
-  data() {
-    return {
-      names: ["甜", "上", "頭"]
-    };
-  },
-  methods: {
-    logoHover() {
-      const vm = this;
-      const { name1, name2, name3 } = vm.$refs;
-      const tl = gsap.timeline({ default: { duration: 0.3 } });
-      tl.to(name1, {});
-    }
-  }
+    data() {
+        return {
+            face: {
+                src: require("~/assets/images/bg/face.svg"),
+                alt: "face",
+            },
+        };
+    },
 };
 </script>
 <style scoped>
-.logo-style {
-  outline: 2px solid rgba(250, 245, 232, 0.9);
-  outline-offset: 2px;
-  padding-bottom: 2px;
-}
 .font-style {
-  font-size: 28px;
+    font-family: "Cabin Sketch";
+    font-size: 26px;
+    color: rgba(235, 206, 146, 1);
+    letter-spacing: calc(26px * 0.5);
+    text-indent: calc(26px * 0.5);
+}
+.face-style {
+    background-image: url("~assets/images/bg/face.svg");
+    background-size: 80% 80%;
+    margin-right: calc(26px * 0.35);
 }
 </style>

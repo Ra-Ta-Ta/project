@@ -1,23 +1,38 @@
 module.exports = {
     root: true,
     env: {
-      browser: true,
-      node: true,
+        browser: true,
+        node: true,
     },
     parserOptions: {
-      parser: 'babel-eslint',
+        parser: "babel-eslint",
     },
     extends: [
-      '@nuxtjs',
-      'plugin:nuxt/recommended',
-      'plugin:prettier/recommended',
-      'prettier',
-      'prettier/vue',
+        "eslint:recommended",
+        "plugin:vue/recommended",
+        "plugin:prettier/recommended",
+        "prettier",
+        "prettier/vue",
     ],
-    plugins: ['prettier'],
-    
+    plugins: ["prettier"],
+    // add your custom rules here
     rules: {
-      'nuxt/no-cjs-in-config': 'off',
-      indent: ['error', 4], 
+        "no-lonely-if": "off",
+        "new-cap": "off",
+        "vue/attributes-order": "off",
+        "vue/order-in-components": "off",
+        "vue/no-use-v-if-with-v-for": "off",
+        "no-console": "off",
+        "linebreak-style": "off",
+        "vue/component-name-in-template-casing": [
+            "error",
+            "kebab-case",
+            {
+                registeredComponentsOnly: false,
+                ignores: [],
+            },
+        ],
+        "vue/name-property-casing": ["error", "PascalCase"],
+        "vue/prop-name-casing": ["error", "camelCase"],
     },
-  }
+};

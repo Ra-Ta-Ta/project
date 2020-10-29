@@ -1,10 +1,8 @@
 {
+    "trailingComma": "all",
     "tabWidth": 4,
-    "useTabs": false,
-    // "semi": false,
-    "singleQuote": true,
-    "TrailingCooma": "all",
-    "bracketSpacing": true,
-    "jsxBracketSameLine": false,
-    "arrowParens": "avoid"
-}
+    "printWidth": 60,
+    "singleQuote": false,
+    "prettier.semi": true,
+    "endOfLine": "lf"
+  }
