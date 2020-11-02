@@ -9,7 +9,7 @@
         />
         <input
             type="text"
-            class="text-oldLace text-base leading-none uppercase py-4 pl-5 bg-transparent hidden lg:inline search-input-style"
+            class="text-oldLace text-base leading-none uppercase py-4 pl-5 bg-transparent search-input-style"
             placeholder="search..."
         />
     </div>

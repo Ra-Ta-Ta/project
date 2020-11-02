@@ -15,6 +15,15 @@ export default {
     },
     mounted() {
         const vm = this;
+
+        vm.$nextTick(() => {
+            vm.$nuxt.$loading.start();
+
+            setTimeout(
+                () => vm.$nuxt.$loading.finish(),
+                500,
+            );
+        });
         window.addEventListener("resize", vm.vhHandler);
     },
     beforeDestroy() {

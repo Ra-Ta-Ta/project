@@ -1,17 +1,29 @@
 <template>
     <nuxt-link class="logo-style" to="/">
-        <span
-            class="block text-center uppercase leading-none font-style"
+        <div
+            class="text-center uppercase leading-none font-style"
         >
             sugar
-        </span>
-        <span
-            class="block text-center uppercase leading-none font-style"
+        </div>
+        <div
+            class="text-center uppercase leading-none"
+            style="font-size: 0"
         >
-            t<span class="bg-left bg-no-repeat face-style"
-                >&ensp;</span
-            >ngue
-        </span>
+            <span
+                class="inline-block font-style"
+                style="letter-spacing: 0"
+                >t</span
+            >
+            <span
+                class="inline-block bg-no-repeat font-style face-style"
+                >o</span
+            >
+            <span
+                class="inline-block font-style"
+                style="text-indent: 0"
+                >ngue</span
+            >
+        </div>
     </nuxt-link>
 </template>
 <script>
@@ -27,16 +39,20 @@ export default {
 };
 </script>
 <style scoped>
+.logo-style {
+    width: max-content;
+}
 .font-style {
     font-family: "Cabin Sketch";
     font-size: 26px;
     color: rgba(235, 206, 146, 1);
-    letter-spacing: calc(26px * 0.5);
-    text-indent: calc(26px * 0.5);
+    letter-spacing: 0.5em;
+    text-indent: 0.5em;
 }
 .face-style {
-    background-image: url("~assets/images/bg/face.svg");
-    background-size: 80% 80%;
-    margin-right: calc(26px * 0.35);
+    background-image: url("~assets//images/bg/face.svg");
+    background-size: 20px 20px;
+    background-position: 50% 35%;
+    color: transparent;
 }
 </style>
