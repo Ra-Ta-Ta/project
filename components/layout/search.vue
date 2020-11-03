@@ -26,8 +26,13 @@ export default {
     },
 };
 </script>
-<style scoped>
-.search-input-style::placeholder {
-    color: rgba(250, 245, 232, 0.75);
+<style lang="scss" scoped>
+.search-input-style {
+    &::placeholder {
+        color: rgba(250, 245, 232, 0.75);
+    }
+    &:focus::placeholder {
+        color: transparent;
+    }
 }
 </style>

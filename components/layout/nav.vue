@@ -1,21 +1,21 @@
 <template>
     <nav class="w-full nav-style">
         <Search
-            :class="{ active: hoverObj == 'search' }"
-            @mouseover.native="hoverObj = 'search'"
-            @mouseleave.native="hoverObj = ''"
+            :class="{ active: activeObj == 'search' }"
+            @mouseover.native="activeObj = 'search'"
+            @mouseleave.native="activeObj = ''"
         ></Search>
         <nuxt-link
-            v-for="(menuItem, i) in menuItems"
-            :key="menuItem.title"
+            v-for="menuItem in menuItems"
+            :key="menuItem.alt"
             :to="menuItem.link"
             class="w-full flex items-center transition-all duration-300 ease-linear pl-4"
             :class="[
                 menuItem.color,
-                { active: hoverObj == i },
+                { active: activeObj == menuItem.alt },
             ]"
-            @mouseover.native="hoverObj = i"
-            @mouseleave.native="hoverObj = ''"
+            @mouseover.native="activeObj = menuItem.alt"
+            @mouseleave.native="activeObj = ''"
         >
             <img
                 :src="menuItem.src"
@@ -23,15 +23,23 @@
                 class="w-8 h-8"
             />
             <span
-                class="text-oldLace text-base leading-none uppercase py-4 pl-4"
-                >{{ menuItem.title }}</span
-            >
+                class="text-oldLace text-base leading-none uppercase py-4 pl-4 title-style"
+                :class="{
+                    'title-active':
+                        activeObj == menuItem.alt,
+                }"
+                v-text="
+                    activeObj == menuItem.alt
+                        ? menuItem.cnTitle
+                        : menuItem.engTitle
+                "
+            ></span>
         </nuxt-link>
         <Cart
             class="w-full h-12 justify-start items-center transition-all duration-300 ease-linear pl-4 bg-bigDipOruby hidden lg:flex"
-            :class="{ active: hoverObj == 'cart' }"
-            @mouseover.native="hoverObj = 'cart'"
-            @mouseleave.native="hoverObj = ''"
+            :class="{ active: activeObj == 'cart' }"
+            @mouseover.native="activeObj = 'cart'"
+            @mouseleave.native="activeObj = ''"
         ></Cart>
     </nav>
 </template>
@@ -40,31 +48,35 @@
 export default {
     data() {
         return {
-            hoverObj: "",
+            activeObj: "",
             menuItems: [
                 {
-                    title: "about us",
+                    engTitle: "about us",
+                    cnTitle: "關於我們",
                     link: "./about",
                     color: "bg-brass",
                     src: require("~/assets/images/bg/tongue.svg"),
-                    alt: "about us",
+                    alt: "aboutUs",
                 },
                 {
-                    title: "shop",
+                    engTitle: "shop",
+                    cnTitle: "商店",
                     link: "./product",
                     color: "bg-maximumYellowRed",
                     src: require("~/assets/images/bg/candy.svg"),
                     alt: "shop",
                 },
                 {
-                    title: "faq",
-                    link: "./question",
+                    engTitle: "faq",
+                    cnTitle: "常見問題",
+                    link: "./faq",
                     color: "bg-terraCotta",
                     src: require("~/assets/images/bg/faq.svg"),
                     alt: "faq",
                 },
                 {
-                    title: "login",
+                    engTitle: "login",
+                    cnTitle: "會員登入",
                     link: "./login",
                     color: "bg-desire",
                     src: require("~/assets/images/bg/login.svg"),
@@ -83,5 +95,18 @@ export default {
 }
 .active {
     filter: brightness(1.25);
+}
+.title-active {
+    animation: title-active 0.3s;
+}
+@keyframes title-active {
+    0% {
+        transform: translateX(10px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
 }
 </style>

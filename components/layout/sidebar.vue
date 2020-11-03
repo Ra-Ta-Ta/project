@@ -25,7 +25,5 @@ export default {
         url("~assets/images/bg/flower.png"),
         url("~assets/images/bg/bg.jpg");
     background-size: 300px;
-    box-shadow: 2px 0 10px rgba(54, 54, 54, 0.2),
-        -2px 0 10px rgba(54, 54, 54, 0.2);
 }
 </style>

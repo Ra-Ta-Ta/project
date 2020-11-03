@@ -28,7 +28,6 @@ export default {
     mounted() {
         const vm = this;
         const { header, nav } = vm.$refs;
-        console.log(nav);
         vm.nav.animation = gsap
             .timeline({
                 defaults: {

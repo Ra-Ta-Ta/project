@@ -2,9 +2,8 @@
     <nuxt-link class="logo-style" to="/">
         <div
             class="text-center uppercase leading-none font-style"
-        >
-            sugar
-        </div>
+            v-text="'sugar'"
+        ></div>
         <div
             class="text-center uppercase leading-none"
             style="font-size: 0"
@@ -12,17 +11,17 @@
             <span
                 class="inline-block font-style"
                 style="letter-spacing: 0"
-                >t</span
-            >
+                v-text="'t'"
+            ></span>
             <span
                 class="inline-block bg-no-repeat font-style face-style"
-                >o</span
-            >
+                v-text="'o'"
+            ></span>
             <span
                 class="inline-block font-style"
                 style="text-indent: 0"
-                >ngue</span
-            >
+                v-text="'ngue'"
+            ></span>
         </div>
     </nuxt-link>
 </template>

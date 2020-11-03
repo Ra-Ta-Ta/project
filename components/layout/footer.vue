@@ -1,5 +1,7 @@
 <template>
-    <div class="w-full bg-pineTree rounded-xl p-4">
+    <div
+        class="w-full bg-pineTree rounded-xl p-4 footer-style"
+    >
         <div
             class="w-full m-auto flex flex-col lg:flex-row justify-center items-center"
         >
@@ -69,4 +71,7 @@
 <script>
 export default {};
 </script>
-<style scoped></style>
+<style scoped>
+.footer-style {
+}
+</style>
