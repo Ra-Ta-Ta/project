@@ -7,9 +7,10 @@
             @slide-nav="slideNav"
         ></Header>
         <Nav
-            class="fixed z-10 top-15 opacity-1 header-nav-style"
+            class="fixed z-10 top-15 opacity-0 lg:hidden header-nav-style"
             ref="nav"
             :style="{ transform: 'translateY(-100%)' }"
+            @slide-nav="slideNav"
         ></Nav>
         <Sidebar class="hidden lg:flex"></Sidebar>
         <Nuxt />

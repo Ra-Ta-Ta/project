@@ -14,8 +14,7 @@
             <span
                 class="absolute w-full text-bigDipOruby text-sm text-center font-bold leading-none capacity-style"
                 v-text="cart.capacity"
-            >
-            </span>
+            ></span>
         </div>
         <span
             class="text-oldLace text-base leading-none uppercase py-4 pl-4 hidden lg:inline"
@@ -23,8 +22,7 @@
             v-text="
                 cart.active ? cart.cnTitle : cart.engTitle
             "
-        >
-        </span>
+        ></span>
     </nuxt-link>
 </template>
 <script>

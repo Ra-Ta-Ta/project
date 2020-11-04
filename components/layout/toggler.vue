@@ -1,7 +1,7 @@
 <template>
     <div
         class="absolute z-30 top-4 left-4 w-7 h-7 toggler-style"
-        @click="switchToggler"
+        @click="reverseToggler"
     >
         <span
             v-for="(line, i) in lines"
@@ -13,7 +13,9 @@
     </div>
 </template>
 <script>
+import { mapState, mapMutations } from "vuex";
 export default {
+    props: ["toggler-is-switched"],
     data() {
         return {
             toggler: { animation: "" },
@@ -49,13 +51,21 @@ export default {
             )
             .reversed(true);
     },
-    methods: {
-        switchToggler() {
+    watch: {
+        "$store.state.switchToggler.togglerIsReversed"() {
             const vm = this;
-            vm.toggler.animation.reversed()
+            vm.togglerIsReversed
                 ? vm.toggler.animation.play()
                 : vm.toggler.animation.reverse();
         },
+    },
+    computed: {
+        ...mapState("switchToggler", ["togglerIsReversed"]),
+    },
+    methods: {
+        ...mapMutations("switchToggler", [
+            "reverseToggler",
+        ]),
     },
 };
 </script>

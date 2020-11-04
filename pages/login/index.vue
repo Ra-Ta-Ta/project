@@ -1,8 +1,24 @@
 <template>
-    <main
-        class="w-full m-auto p-4 grid grid-cols-1 gap-4 main-style"
-    >
-        <Card class=""> </Card>
+    <main class="w-full h-full m-auto pt-15 p-4 main-style">
+        <Card class="login-style">
+            <template v-slot:content>
+                <div>
+                    <div>
+                        <h1
+                            class=""
+                            v-text="Login / 登入"
+                        ></h1>
+                        <input class="block" type="text" />
+                        <input class="block" type="text" />
+                        <button></button>
+                    </div>
+                    <hr class="mt-3 mb-2 border-dotted" />
+                    <div>
+                        <nuxt-link to=""></nuxt-link>
+                    </div>
+                </div>
+            </template>
+        </Card>
     </main>
 </template>
 
@@ -17,6 +33,6 @@ export default {
 
 <style scoped>
 .main-style {
-    padding-top: 60px;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 </style>

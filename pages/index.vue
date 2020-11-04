@@ -1,6 +1,6 @@
 <template>
     <main
-        class="w-full m-auto p-4 grid grid-cols-1 gap-4 main-style"
+        class="w-full m-auto pt-19 p-4 grid grid-cols-1 gap-4 main-style"
     >
         <Card :bg-class="'bg-100 header-style'">
             <template v-slot:content> </template>
@@ -38,8 +38,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.main-style {
-    padding-top: 60px;
-}
-</style>
+<style scoped></style>

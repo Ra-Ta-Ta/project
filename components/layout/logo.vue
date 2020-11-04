@@ -8,20 +8,20 @@
             class="text-center uppercase leading-none"
             style="font-size: 0"
         >
-            <span
+            <h1
                 class="inline-block font-style"
                 style="letter-spacing: 0"
                 v-text="'t'"
-            ></span>
-            <span
+            ></h1>
+            <h1
                 class="inline-block bg-no-repeat font-style face-style"
                 v-text="'o'"
-            ></span>
-            <span
+            ></h1>
+            <h1
                 class="inline-block font-style"
                 style="text-indent: 0"
                 v-text="'ngue'"
-            ></span>
+            ></h1>
         </div>
     </nuxt-link>
 </template>

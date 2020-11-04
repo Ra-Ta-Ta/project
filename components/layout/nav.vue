@@ -16,6 +16,10 @@
             ]"
             @mouseover.native="activeObj = menuItem.alt"
             @mouseleave.native="activeObj = ''"
+            @click.native="
+                $emit('slide-nav');
+                reverseToggler();
+            "
         >
             <img
                 :src="menuItem.src"
@@ -40,12 +44,18 @@
             :class="{ active: activeObj == 'cart' }"
             @mouseover.native="activeObj = 'cart'"
             @mouseleave.native="activeObj = ''"
+            @click.native="
+                $emit('slide-nav');
+                reverseToggler();
+            "
         ></Cart>
     </nav>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
+    props: ["slide-nav"],
     data() {
         return {
             activeObj: "",
@@ -84,6 +94,11 @@ export default {
                 },
             ],
         };
+    },
+    methods: {
+        ...mapMutations("switchToggler", [
+            "reverseToggler",
+        ]),
     },
 };
 </script>
