@@ -1,8 +1,16 @@
 <template>
     <div
-        class="relative h-screen bg-center bg-repeat bg-100 overflow-x-hidden overflow-y-scroll scrolling-touch lg:pl-50 bg-style"
+        class="fixed w-full h-full bg-center bg-repeat bg-100 overflow-x-hidden overflow-y-scroll scrolling-touch lg:pl-50 bg-style"
     >
-        <Header class="lg:hidden header-style"> </Header>
+        <Header
+            class="lg:hidden header-style"
+            @slide-nav="slideNav"
+        ></Header>
+        <Nav
+            class="fixed z-10 top-15 opacity-1 header-nav-style"
+            ref="nav"
+            :style="{ transform: 'translateY(-100%)' }"
+        ></Nav>
         <Sidebar class="hidden lg:flex"></Sidebar>
         <Nuxt />
     </div>
@@ -11,10 +19,24 @@
 <script>
 export default {
     data() {
-        return {};
+        return {
+            animation: "",
+        };
     },
     mounted() {
         const vm = this;
+        const { nav } = vm.$refs;
+        vm.animation = gsap
+            .timeline({
+                defaults: {
+                    duration: 0.5,
+                },
+            })
+            .to(nav.$el, {
+                yPercent: 100,
+                opacity: 1,
+            })
+            .reversed(true);
 
         vm.$nextTick(() => {
             vm.$nuxt.$loading.start();
@@ -24,27 +46,20 @@ export default {
                 500,
             );
         });
-        window.addEventListener("resize", vm.vhHandler);
-    },
-    beforeDestroy() {
-        const vm = this;
-        window.removeEventListener("resize", vm.vhHandler);
     },
     methods: {
-        vhHandler() {
-            const vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty(
-                "--vh",
-                `${vh}px`,
-            );
+        slideNav() {
+            const vm = this;
+            vm.animation.reversed()
+                ? vm.animation.play()
+                : vm.animation.reverse();
         },
     },
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .bg-style {
-    height: calc(var(--vh, 1vh) * 100);
     background-image: url("https://uploads-ssl.webflow.com/57516ebd5650b01552cd9f03/5d30079985ef6117dc5b983d_Paper02.jpg");
     background-size: 300px;
 }

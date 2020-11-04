@@ -20,8 +20,10 @@
         <span
             class="text-oldLace text-base leading-none uppercase py-4 pl-4 hidden lg:inline"
             :class="{ 'title-active': cart.active }"
+            v-text="
+                cart.active ? cart.cnTitle : cart.engTitle
+            "
         >
-            cart
         </span>
     </nuxt-link>
 </template>
@@ -30,6 +32,8 @@ export default {
     data() {
         return {
             cart: {
+                engTitle: "cart",
+                cnTitle: "購物車",
                 link: "./cart",
                 src: require("~/assets/images/bg/cart.svg"),
                 alt: "cart",

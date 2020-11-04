@@ -1,13 +1,19 @@
-:root {
+html {
+    height: -webkit-fill-available;
+}
+
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     font-family: "Grandstander", "Noto Sans TC", cursive;
 }
 
-:root,
 #__nuxt,
 #__layout {
     height: 100%;
 }
 
+/* hide scrollbar */
 ::-webkit-scrollbar {
     width: 0 !important;
     -ms-overflow-style: none;
