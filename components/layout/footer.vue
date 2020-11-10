@@ -11,7 +11,7 @@
                 type="email"
                 name="subscribe"
                 placeholder="Enter your email"
-                class="w-47 lg:w-64 h-8 inline-block bg-oldLace text-pineTree font-bold tracking-wider placeholder-pineTree rounded-lg pl-2 mt-2 lg:ml-2 mr-2"
+                class="w-47 lg:w-64 h-8 inline-block bg-oldLace text-pineTree font-bold tracking-wider placeholder-pineTree rounded-lg pl-2 mt-2 lg:ml-2 mr-2 email-style"
             />
             <button
                 class="h-8 inline-block bg-khaki rounded-lg text-pineTree text-base font-bold px-4"
@@ -52,4 +52,10 @@
 <script>
 export default {};
 </script>
-<style scoped></style>
+<style lang="scss" scoped>
+.email-style {
+    &:focus::placeholder {
+        color: transparent;
+    }
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
     <main
-        class="w-full h-full flex justify-center items-center m-auto pt-19 lg:pt-4 p-4 main-style"
+        class="w-full h-full flex justify-center items-center m-auto pt-19 lg:pt-4 p-4 bg-no-repeat bg-cover main-style"
     >
         <div
             class="w-full bg-terraCotta rounded-xl p-4 login-style"
@@ -62,29 +62,28 @@
                 />
             </div>
             <div class="flex h-12 mb-3">
-                <nuxt-link
-                    v-for="link in links"
-                    :key="link.engTitle"
-                    :to="link.link"
-                    class="flex justify-center items-center w-3/12 h-full bg-oldLace rounded-lg mr-4"
-                    @mouseover.native="link.active = true"
-                    @mouseleave.native="link.active = false"
+                <button
+                    v-for="button in buttons"
+                    :key="button.engTitle"
+                    class="w-3/12 h-full bg-oldLace rounded-lg mr-4"
+                    @mouseover="button.active = true"
+                    @mouseleave="button.active = false"
                 >
                     <span
                         v-text="
-                            link.active
-                                ? link.cnTitle
-                                : link.engTitle
+                            button.active
+                                ? button.cnTitle
+                                : button.engTitle
                         "
                         class="inline-block text-terraCotta uppercase"
                         :class="{
-                            'title-active': link.active,
+                            'title-active': button.active,
                         }"
                     ></span>
-                </nuxt-link>
+                </button>
             </div>
             <nuxt-link
-                to="/login/forgot-password"
+                to="/forgot-password"
                 v-text="'forgot password ? / 忘記密碼 ?'"
                 class="text-oldLace uppercase"
             ></nuxt-link>
@@ -109,17 +108,15 @@ export default {
                 src: require("~/assets/images/component/scissors.svg"),
                 id: "scissors",
             },
-            links: [
+            buttons: [
                 {
                     engTitle: "sign in",
                     cnTitle: "登入",
-                    link: "/login/success",
                     active: false,
                 },
                 {
                     engTitle: "sign up",
                     cnTitle: "註冊",
-                    link: "/login/sign-up",
                     active: false,
                 },
             ],
@@ -130,6 +127,7 @@ export default {
 
 <style lang="scss" scoped>
 .main-style {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .login-style {
     max-width: 576px;

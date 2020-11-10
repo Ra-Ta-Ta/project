@@ -1,5 +1,11 @@
 <template>
-    <nuxt-link class="logo-style" to="/">
+    <nuxt-link
+        class="logo-style"
+        to="/"
+        @click.native="
+            togglerIsReversed ? reverseToggler() : ''
+        "
+    >
         <div
             class="text-center uppercase leading-none font-style"
             v-text="'sugar'"
@@ -26,6 +32,7 @@
     </nuxt-link>
 </template>
 <script>
+import { mapState, mapMutations } from "vuex";
 export default {
     data() {
         return {
@@ -34,6 +41,14 @@ export default {
                 alt: "face",
             },
         };
+    },
+    computed: {
+        ...mapState("switchToggler", ["togglerIsReversed"]),
+    },
+    methods: {
+        ...mapMutations("switchToggler", [
+            "reverseToggler",
+        ]),
     },
 };
 </script>

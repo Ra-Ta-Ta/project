@@ -1,6 +1,13 @@
-<template lang="html">
-    <div class="loading-page" v-if="loading">
-        <p>Loading...</p>
+<template>
+    <div
+        class="fixed top-0 bottom-0 left-0 right-0 w-full h-full text-center text-xl loading-style"
+        :class="{ hidden: !loading }"
+    >
+        <div
+            v-for="line in lines"
+            :key="line"
+            class=""
+        ></div>
     </div>
 </template>
 
@@ -8,30 +15,24 @@
 export default {
     data: () => ({
         loading: false,
+        lines: 6,
     }),
     methods: {
         start() {
-            this.loading = true;
+            const vm = this;
+            vm.loading = true;
         },
         finish() {
-            this.loading = false;
+            const vm = this;
+            vm.loading = false;
         },
     },
 };
 </script>
 
 <style scoped>
-.loading-page {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    font-size: 30px;
-    font-family: sans-serif;
+.loading-style {
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
 }
 </style>

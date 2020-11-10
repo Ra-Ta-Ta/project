@@ -1,127 +1,133 @@
 <template>
-    <nav class="w-full nav-style">
+    <nav
+        class="fixed z-30 top-15 left-0 lg:hidden w-full transform transition-all duration-500 ease-linear nav-style"
+        :class="[
+            togglerIsReversed
+                ? ' translate-y-0  opacity-100'
+                : ' -translate-y-full opacity-0',
+        ]"
+    >
         <Search
-            :class="{ active: activeObj == 'search' }"
-            @mouseover.native="activeObj = 'search'"
-            @mouseleave.native="activeObj = ''"
+            :class="{
+                'nav-active': nav.activeObj == 'search',
+            }"
+            @mouseover.native="nav.activeObj = 'search'"
+            @mouseleave.native="nav.activeObj = ''"
         ></Search>
         <nuxt-link
             v-for="menuItem in menuItems"
-            :key="menuItem.alt"
+            :key="menuItem.id"
             :to="menuItem.link"
             class="w-full flex items-center transition-all duration-300 ease-linear pl-4"
             :class="[
                 menuItem.color,
-                { active: activeObj == menuItem.alt },
+                {
+                    'nav-active':
+                        nav.activeObj == menuItem.id,
+                },
             ]"
-            @mouseover.native="activeObj = menuItem.alt"
-            @mouseleave.native="activeObj = ''"
-            @click.native="
-                $emit('slide-nav');
-                reverseToggler();
-            "
+            @mouseover.native="nav.activeObj = menuItem.id"
+            @mouseleave.native="nav.activeObj = ''"
+            @click.native="reverseToggler()"
         >
             <img
                 :src="menuItem.src"
-                :alt="menuItem.alt"
+                :alt="menuItem.id"
                 class="w-8 h-8"
             />
             <span
                 class="text-oldLace text-base leading-none uppercase py-4 pl-4 title-style"
                 :class="{
                     'title-active':
-                        activeObj == menuItem.alt,
+                        nav.activeObj == menuItem.id,
                 }"
                 v-text="
-                    activeObj == menuItem.alt
+                    nav.activeObj == menuItem.id
                         ? menuItem.cnTitle
                         : menuItem.engTitle
                 "
             ></span>
         </nuxt-link>
-        <Cart
-            class="w-full h-12 justify-start items-center transition-all duration-300 ease-linear pl-4 bg-bigDipOruby hidden lg:flex"
-            :class="{ active: activeObj == 'cart' }"
-            @mouseover.native="activeObj = 'cart'"
-            @mouseleave.native="activeObj = ''"
-            @click.native="
-                $emit('slide-nav');
-                reverseToggler();
-            "
-        ></Cart>
     </nav>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
-    props: ["slide-nav"],
     data() {
         return {
-            activeObj: "",
+            nav: {
+                activeObj: "",
+            },
             menuItems: [
                 {
                     engTitle: "about us",
                     cnTitle: "關於我們",
-                    link: "./about",
+                    link: "/about",
                     color: "bg-brass",
                     src: require("~/assets/images/bg/tongue.svg"),
-                    alt: "aboutUs",
+                    id: "aboutUs",
                 },
                 {
                     engTitle: "shop",
                     cnTitle: "商店",
-                    link: "./product",
+                    link: "/product",
                     color: "bg-maximumYellowRed",
                     src: require("~/assets/images/bg/candy.svg"),
-                    alt: "shop",
+                    id: "shop",
                 },
                 {
                     engTitle: "faq",
                     cnTitle: "常見問題",
-                    link: "./faq",
+                    link: "/faq",
                     color: "bg-terraCotta",
                     src: require("~/assets/images/bg/faq.svg"),
-                    alt: "faq",
+                    id: "faq",
                 },
                 {
                     engTitle: "login",
                     cnTitle: "會員登入",
-                    link: "./login",
+                    link: "/login",
                     color: "bg-desire",
                     src: require("~/assets/images/bg/login.svg"),
-                    alt: "login",
+                    id: "login",
                 },
             ],
         };
     },
+    mounted() {
+        const vm = this;
+        window.addEventListener("resize", vm.resizeScreen);
+    },
+    beforeDestroy() {
+        const vm = this;
+        window.removeEventListener(
+            "resize",
+            vm.resizeScreen,
+        );
+    },
+    computed: {
+        ...mapState("switchToggler", ["togglerIsReversed"]),
+    },
     methods: {
         ...mapMutations("switchToggler", [
             "reverseToggler",
+            "resizeScreen",
         ]),
     },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .nav-style {
     background-image: url("~assets/images/bg/bg.jpg");
     background-size: 300px;
 }
-.active {
-    filter: brightness(1.25);
+
+.nav-active {
+    @include nav-active;
 }
 .title-active {
-    animation: title-active 0.3s;
-}
-@keyframes title-active {
-    0% {
-        transform: translateX(10px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0px);
-        opacity: 1;
-    }
+    @include title-active;
 }
 </style>

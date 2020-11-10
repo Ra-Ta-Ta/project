@@ -1,18 +1,18 @@
 <template>
-    <header class="fixed z-20 w-full h-15 header-style">
-        <Toggler
-            @click.native="$emit('slide-nav')"
-        ></Toggler>
+    <header
+        class="fixed z-40 left-0 w-full lg:w-50 h-15 lg:h-full header-style"
+    >
+        <Toggler></Toggler>
         <Logo
-            class="absolute z-30 top-1 left-1/2 transform -translate-x-1/2"
+            class="absolute z-50 top-1 lg:top-15 left-1/2 transform -translate-x-1/2"
         ></Logo>
-        <Cart class="absolute z-30 right-4 w-8 h-8"></Cart>
+        <Cart
+            class="absolute z-50 right-4 lg:hidden w-8 h-8"
+        ></Cart>
     </header>
 </template>
 <script>
-export default {
-    props: ["slide-nav"],
-};
+export default {};
 </script>
 <style scoped>
 .header-style {
@@ -20,8 +20,8 @@ export default {
             rgba(34, 50, 22, 0.8),
             rgba(34, 50, 22, 0.8)
         ),
-        url("~assets/images/bg/flower.png"),
+        url("~assets/images/bg/gummy.png"),
         url("~assets/images/bg/bg.jpg");
-    background-size: 300px;
+    background-size: 200px;
 }
 </style>

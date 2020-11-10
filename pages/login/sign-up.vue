@@ -1,6 +1,6 @@
 <template>
     <main
-        class="w-full m-auto p-4 grid grid-cols-1 gap-4 main-style"
+        class="w-full h-full flex justify-center items-center m-auto pt-19 lg:pt-4 p-4 main-style"
     ></main>
 </template>
 
@@ -13,8 +13,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .main-style {
-    padding-top: 60px;
+}
+.login-style {
+    max-width: 576px;
 }
 </style>

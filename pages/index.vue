@@ -25,16 +25,6 @@ export default {
     data() {
         return {};
     },
-    mounted() {
-        const vm = this;
-        vm.$nextTick(() => {
-            vm.$nuxt.$loading.start();
-            setTimeout(
-                () => vm.$nuxt.$loading.finish(),
-                500,
-            );
-        });
-    },
 };
 </script>
 

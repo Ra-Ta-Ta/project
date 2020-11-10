@@ -2,10 +2,11 @@
     <div
         class="relative w-full h-full bg-center bg-repeat bg-100 overflow-x-hidden overflow-y-scroll scrolling-touch lg:pl-50 bg-style"
     >
-        <Error404
-            v-if="error.statusCode === 404"
-        ></Error404>
-        <Error500 v-else></Error500>
+        <h1 v-if="error.statusCode === 404">
+            Page not found
+        </h1>
+        <h1 v-else>An error occurred</h1>
+        <nuxt-link to="/">Home page</nuxt-link>
     </div>
 </template>
 

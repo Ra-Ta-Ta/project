@@ -1,6 +1,6 @@
 <template>
     <main
-        class="w-full h-full flex justify-center items-center m-auto pt-19 lg:pt-4 p-4 main-style"
+        class="w-full h-full flex justify-center items-center m-auto pt-19 lg:pt-4 p-4 bg-no-repeat bg-cover main-style"
     >
         <div
             class="w-full bg-terraCotta rounded-xl p-4 login-style"
@@ -66,9 +66,9 @@
                     v-for="link in links"
                     :key="link.engTitle"
                     :to="link.link"
-                    class="flex justify-center items-center w-3/12 h-full bg-oldLace rounded-lg mr-4"
-                    @mouseover.native="link.active = true"
-                    @mouseleave.native="link.active = false"
+                    class="w-3/12 h-full bg-oldLace rounded-lg mr-4"
+                    @mouseover="link.active = true"
+                    @mouseleave="link.active = false"
                 >
                     <span
                         v-text="
@@ -113,13 +113,13 @@ export default {
                 {
                     engTitle: "sign in",
                     cnTitle: "登入",
-                    link: "/login/success",
+                    link: "/success",
                     active: false,
                 },
                 {
                     engTitle: "sign up",
                     cnTitle: "註冊",
-                    link: "/login/sign-up",
+                    link: "/sign-up",
                     active: false,
                 },
             ],
@@ -130,6 +130,7 @@ export default {
 
 <style lang="scss" scoped>
 .main-style {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .login-style {
     max-width: 576px;

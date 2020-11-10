@@ -29,6 +29,31 @@ export default {
                     process.env.npm_package_description ||
                     "",
             },
+            {
+                property: "og:title",
+                content: "Sugar Tongue",
+            },
+            {
+                property: "og:description",
+                content: "Connoisseurs of Confectionery",
+            },
+            {
+                property: "og:site_name",
+                content: "Sugar Tongue",
+            },
+            { property: "og:locale", content: "zh_TW" },
+            {
+                property: "og:image",
+                content: "~/assets/images/bg/face.svg",
+            },
+            {
+                name: "msapplication-TileImage",
+                content: "~/assets/images/bg/face.svg",
+            },
+            {
+                name: "msapplication-TileColor",
+                content: "rgba(235, 206, 146, 0.75)",
+            },
         ],
         script: [
             {
@@ -47,6 +72,14 @@ export default {
             },
         ],
         link: [
+            {
+                rel: "shortcut icon",
+                href: "~/assets/images/bg/favicon.ico",
+            },
+            {
+                rel: "mask-icon",
+                href: "~/assets/images/bg/face.svg",
+            },
             {
                 rel: "stylesheet",
                 href:
@@ -67,14 +100,19 @@ export default {
     /*
      ** Global CSS
      */
-    css: ["@/assets/css/style.css"],
+    css: [
+        "~/assets/css/style.css",
+        "~/assets/scss/mixin.scss",
+    ],
     /*
      ** Plugins to load before mounting the App
      ** https://nuxtjs.org/guide/plugins
      */
+    styleResources: {
+        scss: "~/assets/scss/*.scss",
+    },
     plugins: [
         { src: "~/plugins/lazysizes.js", mode: "client" },
-        { src: "~/plugins/axios.js" },
     ],
     /*
      ** Auto import components
@@ -87,6 +125,7 @@ export default {
     buildModules: [
         // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
         "@nuxtjs/tailwindcss",
+        "@nuxtjs/style-resources",
     ],
     /*
      ** Nuxt.js modules
@@ -168,4 +207,9 @@ export default {
         // proxy: true
     },
     loading: "~/components/loading/loading.vue",
+    server: {
+        port: 8000, // default: 3000
+        host: "0.0.0.0", // default: localhost,
+        timing: false,
+    },
 };

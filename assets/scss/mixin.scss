@@ -1,0 +1,41 @@
+/* label transition */
+@mixin label {
+    transform-origin: 0 0;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.2s ease;
+}
+
+@mixin input-focus-label(
+    $focusColor: rgba(235, 206, 146, 0.75)
+) {
+    color: $focusColor;
+    transform: translate3d(0, -12px, 0) scale(0.75);
+}
+
+@mixin input-blur-label(
+    $blurColor: rgba(250, 245, 232, 0.75)
+) {
+    color: $blurColor;
+    transform: translate3d(0, -12px, 0) scale(0.75);
+}
+
+/* nav active */
+@mixin nav-active {
+    filter: brightness(1.25);
+}
+
+/* title active */
+@mixin title-active {
+    animation: title-active 0.3s;
+}
+
+@keyframes title-active {
+    0% {
+        transform: translateX(10px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}

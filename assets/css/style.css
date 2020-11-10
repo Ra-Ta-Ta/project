@@ -20,6 +20,21 @@ body {
     overflow: -moz-scrollbars-none;
 }
 
+button:focus,
 input:focus {
     outline: none;
+}
+
+/* pages transition */
+.page-enter {
+    transform: scale(0);
+}
+
+.page-leave {
+    transform: scale(1);
+}
+
+.page-enter-active,
+.page-leave-active {
+    transition: all 0.5s ease;
 }

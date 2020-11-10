@@ -6,11 +6,7 @@
         @mouseleave.native="cart.active = false"
     >
         <div class="relative w-8 h-8">
-            <img
-                :src="cart.src"
-                :alt="`${cart.alt}`"
-                class=""
-            />
+            <img :src="cart.src" :alt="`${cart.alt}`" />
             <span
                 class="absolute w-full text-bigDipOruby text-sm text-center font-bold leading-none capacity-style"
                 v-text="cart.capacity"
@@ -42,7 +38,7 @@ export default {
     },
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .cart-style {
     top: 14px;
 }
@@ -51,16 +47,6 @@ export default {
     text-indent: 2px;
 }
 .title-active {
-    animation: title-active 0.3s;
-}
-@keyframes title-active {
-    0% {
-        transform: translateX(10px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0px);
-        opacity: 1;
-    }
+    @include title-active;
 }
 </style>

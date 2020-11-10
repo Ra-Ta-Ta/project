@@ -1,6 +1,6 @@
 <template>
     <div
-        class="absolute z-30 top-4 left-4 w-7 h-7 toggler-style"
+        class="absolute z-30 top-4 left-4 lg:hidden w-7 h-7 toggler-style"
         @click="reverseToggler"
     >
         <span
