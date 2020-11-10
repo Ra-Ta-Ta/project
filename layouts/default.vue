@@ -11,21 +11,14 @@
 
 <script>
 export default {
-    data() {
-        return {};
+    async asyncData({ $axios }) {
+        const api =
+            "http://172.20.10.2:8000/api/sugar-tongue/products";
+        const data = await $axios.$get(api);
+        console.log(data);
     },
-    created() {
-        console.log(this.$axios);
-        //    async asyncData({ $axios }) {
-        //     try{
-        //         const respons = await $axios.$get('https://dog.ceo/api/breeds/image/random');
-        //         let image = respons.message;
-        //         return{image};
-        //     }catch(err){
-        //         console.log(err);
-        //     }
-        // }
-        //   }
+    mounted() {
+        const vm = this;
     },
 };
 </script>
