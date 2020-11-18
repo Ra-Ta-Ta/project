@@ -14,6 +14,15 @@
             @mouseover.native="nav.activeObj = 'search'"
             @mouseleave.native="nav.activeObj = ''"
         ></Search>
+        <User
+            class="w-full h-12 flex justify-start items-center transition-all duration-300 ease-linear pl-4 bg-desire"
+            :class="{
+                'nav-active': nav.activeObj == 'user',
+            }"
+            @mouseover.native="nav.activeObj = 'user'"
+            @mouseleave.native="nav.activeObj = ''"
+            @click.native="reverseToggler()"
+        ></User>
         <nuxt-link
             v-for="menuItem in menuItems"
             :key="menuItem.id"
@@ -21,6 +30,7 @@
             class="w-full flex items-center transition-all duration-300 ease-linear pl-4"
             :class="[
                 menuItem.color,
+                menuItem.class,
                 {
                     'nav-active':
                         nav.activeObj == menuItem.id,
@@ -64,7 +74,7 @@ export default {
                     engTitle: "about us",
                     cnTitle: "關於我們",
                     link: "/about",
-                    color: "bg-brass",
+                    class: "about-us-style",
                     src: require("~/assets/images/bg/tongue.svg"),
                     id: "aboutUs",
                 },
@@ -72,7 +82,7 @@ export default {
                     engTitle: "shop",
                     cnTitle: "商店",
                     link: "/product",
-                    color: "bg-maximumYellowRed",
+                    class: "shop-style",
                     src: require("~/assets/images/bg/candy.svg"),
                     id: "shop",
                 },
@@ -80,17 +90,9 @@ export default {
                     engTitle: "faq",
                     cnTitle: "常見問題",
                     link: "/faq",
-                    color: "bg-terraCotta",
+                    class: "faq-style",
                     src: require("~/assets/images/bg/faq.svg"),
                     id: "faq",
-                },
-                {
-                    engTitle: "login",
-                    cnTitle: "會員登入",
-                    link: "/login",
-                    color: "bg-desire",
-                    src: require("~/assets/images/bg/login.svg"),
-                    id: "login",
                 },
             ],
         };
@@ -107,10 +109,10 @@ export default {
         );
     },
     computed: {
-        ...mapState("switchToggler", ["togglerIsReversed"]),
+        ...mapState("togglerStatus", ["togglerIsReversed"]),
     },
     methods: {
-        ...mapMutations("switchToggler", [
+        ...mapMutations("togglerStatus", [
             "reverseToggler",
             "resizeScreen",
         ]),
@@ -123,7 +125,15 @@ export default {
     background-image: url("~assets/images/bg/bg.jpg");
     background-size: 300px;
 }
-
+.about-us-style {
+    background-color: $about-us-color;
+}
+.shop-style {
+    background-color: $shop-color;
+}
+.faq-style {
+    background-color: $faq-color;
+}
 .nav-active {
     @include nav-active;
 }

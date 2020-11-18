@@ -22,20 +22,52 @@ module.exports = {
             midSky: "rgba(45, 136, 165, 0.75)",
             deepSky: "rgba(22, 90, 151, 0.75)",
 
-            //Autumn Forest
-            pineTree: "rgba(34, 50, 22, 0.75)",
-            antiqueBronze: "rgba(100, 98, 27, 0.75)",
-            philippineGold: "rgba(183, 117, 19, 0.75)",
-            satinSheenGold: "rgba(200, 154, 52, 0.75)",
-            crayola: "rgba(163, 86, 47, 0.75)",
+            //Bee & Flower
+            midnightGreen: "rgba(0, 64, 86, 0.75)",
+            deepPeach: "rgba(255, 206, 168, 0.75)",
+            rajah: "rgba(253, 163, 101, 0.75)",
+            Bronze: "rgba(210, 110, 50, 0.75)",
+            internationalOrange: "rgba(187, 33, 0, 0.75)",
+            americanBronze: "rgba(65, 27, 11, 0.75)",
 
-            //Hanging Out In Autumn
-            oldMossGreen: "rgba(125, 139, 62, 0.75)",
-            brass: "rgba(182, 172, 61, 0.75)",
-            maximumYellowRed: "rgba(238, 185, 71, 0.75)",
-            terraCotta: "rgba(239, 124, 95, 0.75)",
-            desire: "rgba(224, 61, 80, 0.75)",
-            bigDipOruby: "rgba(156, 36, 64, 0.75)",
+            //Beautiful Mosaic
+            spaceCadet: "rgba(21, 42, 83, 0.75)",
+            maximumBlue: "rgba(79, 183, 201, 0.75)",
+            middleBlue: "rgba(131, 212, 226, 0.75)",
+            platinum: "rgba(233, 223, 225, 0.75)",
+            darkVanilla: "rgba(221, 195, 167, 0.75)",
+            tan: "rgba(215, 153, 114, 0.75)",
+            copperRed: "rgba(202, 119, 71, 0.75)",
+
+            //Autumn Foliage
+            prussianBlue: "rgba(10,50,86,0.75)",
+            blueSapphire: "rgba(22,89,106,0.75)",
+            maize: "rgba(249, 198, 73,0.75)",
+            yellowOrange: "rgba(254, 160, 69,0.75)",
+            redSalsa: "rgba(255, 58, 72,0.75)",
+
+            //Cloth Leaves
+            rifleGreen: "rgba(63,81,53, 0.75)",
+            axolotl: "rgba(102,123,98, 0.75)",
+            artichoke: "rgba(154,146,114, 0.75)",
+            coconut: "rgba(148, 82, 63, 0.75)",
+            americanBrown: "rgba(129, 56, 62, 0.75)",
+            darkPuce: "rgba(91, 50, 62, 0.75)",
+
+            //Lamenting Yesterday
+            artichoke: "rgba(134,160,127, 0.75)",
+            shadow: "rgba(142,129,102, 0.75)",
+            paleTaupe: "rgba(176,157,118, 0.75)",
+            crayolaGold: "rgba(228, 193, 123, 0.75)",
+            cookiesAndCream: "rgba(241, 227, 181, 0.75)",
+
+            //Traditional Fairy Tale
+            darkBrown: "rgba(87,67,37, 0.75)",
+            fieldDrab: "rgba(120,89,43, 0.75)",
+            desertSand: "rgba(227,208,169, 0.75)",
+            wintergreenDream: "rgba(88, 130, 128, 0.75)",
+            metallicGold: "rgba(218, 175, 70, 0.75)",
+            ruddyBrown: "rgba(179, 92, 47, 0.75)",
 
             transparent: "transparent",
             current: "currentColor",
@@ -330,13 +362,15 @@ module.exports = {
                 "monospace",
             ],
         },
-        fontSize: {
+        fontSize: (theme) => ({
+            ...theme("spacing"),
             xs: "0.75rem",
             sm: "0.875rem",
             base: "1rem",
             lg: "1.125rem",
             xl: "1.25rem",
-        },
+        }),
+
         fontWeight: {
             hairline: "100",
             thin: "200",

@@ -52,7 +52,7 @@ export default {
             .reversed(true);
     },
     watch: {
-        "$store.state.switchToggler.togglerIsReversed"() {
+        "$store.state.togglerStatus.togglerIsReversed"() {
             const vm = this;
             vm.togglerIsReversed
                 ? vm.toggler.animation.play()
@@ -60,10 +60,10 @@ export default {
         },
     },
     computed: {
-        ...mapState("switchToggler", ["togglerIsReversed"]),
+        ...mapState("togglerStatus", ["togglerIsReversed"]),
     },
     methods: {
-        ...mapMutations("switchToggler", [
+        ...mapMutations("togglerStatus", [
             "reverseToggler",
         ]),
     },

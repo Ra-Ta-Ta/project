@@ -1,3 +1,5 @@
+const fs = require("fs");
+const path = require("path");
 export default {
     /*
      ** Nuxt rendering mode
@@ -74,7 +76,8 @@ export default {
         link: [
             {
                 rel: "shortcut icon",
-                href: "~/assets/images/bg/favicon.ico",
+                type: "image/x-icon",
+                href: "/favicon.ico",
             },
             {
                 rel: "mask-icon",
@@ -102,6 +105,7 @@ export default {
      */
     css: [
         "~/assets/css/style.css",
+        "~/assets/scss/variable.scss",
         "~/assets/scss/mixin.scss",
     ],
     /*
@@ -113,6 +117,7 @@ export default {
     },
     plugins: [
         { src: "~/plugins/lazysizes.js", mode: "client" },
+        { src: "~/plugins/axios.js" },
     ],
     /*
      ** Auto import components
@@ -132,7 +137,9 @@ export default {
      */
     modules: [
         "@aceforth/nuxt-optimized-images",
+        "@nuxtjs/style-resources",
         "@nuxtjs/axios",
+        "@nuxtjs/proxy",
     ],
     /*npm
      ** Build configuration
@@ -140,9 +147,10 @@ export default {
      */
 
     build: {
+        transpile: ["gsap"],
+        vendor: ["axios"],
         //分析打包後的 js 檔案內各個 module 佔的大小
         analyze: true,
-        transpile: ["gsap"],
         ////打包正式環境版本時將 css 提取至單獨文件
         extractCSS: process.env.DEPLOY_ENV === "production",
         //打包正式環境版本時做最小化壓縮
@@ -203,13 +211,36 @@ export default {
             quality: 85,
         },
     },
-    axios: {
-        // proxy: true
-    },
     loading: "~/components/loading/loading.vue",
     server: {
-        port: 8000, // default: 3000
-        host: "0.0.0.0", // default: localhost,
+        port: 3000,
+        host: "localhost",
         timing: false,
+        https: {
+            key: fs.readFileSync(
+                path.resolve(
+                    __dirname,
+                    "localhost-key.pem",
+                ),
+            ),
+            cert: fs.readFileSync(
+                path.resolve(__dirname, "localhost.pem"),
+            ),
+        },
+    },
+    env: {
+        baseUrl: "https://vue-course-api.hexschool.io",
+    },
+    axios: {
+        https: true,
+        proxy: true,
+    },
+    proxy: {
+        "/api": {
+            target: `https://vue-course-api.hexschool.io`,
+            pathRewrite: {
+                "^/api": "",
+            },
+        },
     },
 };

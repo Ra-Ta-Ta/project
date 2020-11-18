@@ -7,9 +7,7 @@
 <script>
 export default {
     layouts: "default",
-    data() {
-        return {};
-    },
+    middleware: "authenticated",
 };
 </script>
 

@@ -1,18 +1,52 @@
 <template>
-    <div
-        class="relative w-full h-full bg-center bg-repeat bg-100 overflow-x-hidden overflow-y-scroll scrolling-touch lg:pl-50 bg-style"
+    <main
+        class="w-full h-full m-auto pt-19 lg:pt-4 p-4 grid grid-cols-1 gap-4 main-style"
     >
-        <h1 v-if="error.statusCode === 404">
-            Page not found
-        </h1>
-        <h1 v-else>An error occurred</h1>
-        <nuxt-link to="/">Home page</nuxt-link>
-    </div>
+        <Card class="w-full bg-midnightGreen">
+            <template v-slot:content>
+                <h1
+                    v-if="error.statusCode === 404"
+                    class="text-28 leading-none uppercase"
+                >
+                    <p
+                        class="text-rajah"
+                        v-text="error.statusCode"
+                    ></p>
+                    <p
+                        class="text-oldLace"
+                        v-text="'Page not found.'"
+                    ></p>
+                </h1>
+                <h1 v-else>An error occurred</h1>
+                <nuxt-link to="/">Home page</nuxt-link>
+            </template>
+        </Card>
+        <Card class="w-full bg-Bronze">
+            <template v-slot:content>
+                <div
+                    class="lg:inline-block text-oldLace text-center font-sm whitespace-no-wrap"
+                    v-html="
+                        'SUGAR TONGUE.&nbsp;© All Rights Reserved'
+                    "
+                ></div>
+                <div
+                    class="lg:inline-block text-oldLace text-center font-sm whitespace-no-wrap"
+                    v-html="
+                        '客服信箱 : info@sugartongue.com'
+                    "
+                ></div>
+                <div
+                    class="lg:inline-block text-oldLace text-center font-sm whitespace-no-wrap"
+                    v-html="'客服電話 : 07-123-4567'"
+                ></div>
+            </template>
+        </Card>
+    </main>
 </template>
 
 <script>
 export default {
-    layouts: "error",
+    layouts: "default",
     props: ["error"],
 };
 </script>

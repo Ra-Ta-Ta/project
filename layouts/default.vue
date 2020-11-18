@@ -10,15 +10,10 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
-    async asyncData({ $axios }) {
-        const api =
-            "http://172.20.10.2:8000/api/sugar-tongue/products";
-        const data = await $axios.$get(api);
-        console.log(data);
-    },
-    mounted() {
-        const vm = this;
+    data() {
+        return {};
     },
 };
 </script>

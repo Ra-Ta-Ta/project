@@ -6,10 +6,10 @@ const state = () => {
 
 const actions = {
     reverseToggler({ commit }) {
-        commit("reverseToggler", state);
+        commit("reverseToggler");
     },
     resizeScreen({ commit }) {
-        commit("resizeScreen", state);
+        commit("resizeScreen");
     },
 };
 

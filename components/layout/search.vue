@@ -1,6 +1,6 @@
 <template>
     <div
-        class="w-full h-12 flex justify-start items-center transition-all duration-300 ease-linear pl-4 bg-oldMossGreen overflow-hidden search-style"
+        class="w-full h-12 flex justify-start items-center transition-all duration-300 ease-linear pl-4 overflow-hidden search-style"
         :class="{ 'search-active': search.active }"
     >
         <img
@@ -39,6 +39,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.search-style {
+    background-color: $search-color;
+}
 .search-active {
     @include nav-active;
 }

@@ -14,11 +14,11 @@
 <script>
 export default {};
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .header-style {
     background-image: linear-gradient(
-            rgba(34, 50, 22, 0.8),
-            rgba(34, 50, 22, 0.8)
+            $header-color,
+            $header-color
         ),
         url("~assets/images/bg/gummy.png"),
         url("~assets/images/bg/bg.jpg");

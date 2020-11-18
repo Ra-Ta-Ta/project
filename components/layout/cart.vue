@@ -8,7 +8,7 @@
         <div class="relative w-8 h-8">
             <img :src="cart.src" :alt="`${cart.alt}`" />
             <span
-                class="absolute w-full text-bigDipOruby text-sm text-center font-bold leading-none capacity-style"
+                class="absolute w-full text-ruddyBrown text-sm text-center font-bold leading-none capacity-style"
                 v-text="cart.capacity"
             ></span>
         </div>
