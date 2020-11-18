@@ -1,7 +1,7 @@
 <template>
     <nuxt-link
         :to="cart.link"
-        class="cursor-pointer overflow-hidden cart-style"
+        class="absolute lg:static z-50 right-4 w-8 h-8 lg:w-full lg:h-12 lg:flex lg:justify-start lg:items-center lg:transition-all lg:duration-300 lg:ease-linear lg:pl-4 cursor-pointer overflow-hidden cart-style"
         @mouseover.native="cart.active = true"
         @mouseleave.native="cart.active = false"
     >
@@ -40,6 +40,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .cart-style {
+    @media screen and (min-width: 990px) {
+        background-color: $cart-color;
+    }
     top: 14px;
 }
 .capacity-style {

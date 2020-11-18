@@ -1,6 +1,6 @@
 <template>
     <nav
-        class="fixed z-30 top-15 left-0 lg:hidden w-full transform transition-all duration-500 ease-linear nav-style"
+        class="fixed left-0 transform transition-all duration-500 ease-linear nav-style"
         :class="[
             togglerIsReversed
                 ? ' translate-y-0  opacity-100'
@@ -58,6 +58,14 @@
                 "
             ></span>
         </nuxt-link>
+        <Cart
+            class="hidden"
+            :class="{
+                'nav-active': nav.activeObj == 'cart',
+            }"
+            @mouseover.native="nav.activeObj = 'cart'"
+            @mouseleave.native="nav.activeObj = ''"
+        ></Cart>
     </nav>
 </template>
 

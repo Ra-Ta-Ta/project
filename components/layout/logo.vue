@@ -1,6 +1,6 @@
 <template>
     <nuxt-link
-        class="logo-style"
+        class="absolute z-50 top-1 lg:top-15 left-1/2 transform -translate-x-1/2 logo-style"
         to="/"
         @click.native="
             togglerIsReversed ? reverseToggler() : ''

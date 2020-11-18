@@ -12,7 +12,7 @@
             "
         >
             <div
-                class="inline-block text-oldLace mb-4 uppercase"
+                class="inline-block text-oldLace font-bold text-6 mb-3 uppercase"
             >
                 <span v-text="'sign in / '"></span>
                 <span
@@ -77,7 +77,7 @@
             </div>
             <button
                 type="submit"
-                class="inline-flex justify-center items-center w-3/12 h-12 bg-oldLace rounded-lg mr-4"
+                class="inline-flex justify-center items-center w-3/12 h-12 font-bold bg-oldLace rounded-lg mr-4"
                 @mouseover="signInBtn.active = true"
                 @mouseleave="signInBtn.active = false"
             >
@@ -95,7 +95,7 @@
             </button>
             <nuxt-link
                 :to="signUpBtn.link"
-                class="inline-flex justify-center items-center w-3/12 h-12 bg-oldLace rounded-lg mr-4"
+                class="inline-flex justify-center items-center w-3/12 h-12 font-bold bg-oldLace rounded-lg mr-4"
                 @mouseover="signUpBtn.active = true"
                 @mouseleave="signUpBtn.active = false"
             >

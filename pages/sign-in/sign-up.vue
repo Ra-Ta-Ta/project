@@ -7,7 +7,7 @@
             @submit.prevent="signIn"
         >
             <div
-                class="inline-block text-oldLace mb-4 uppercase"
+                class="inline-block text-oldLace text-6 font-bold mb-3 uppercase"
             >
                 <span v-text="'sign up / '"></span>
                 <span
@@ -95,7 +95,7 @@
             </div>
             <button
                 type="submit"
-                class="inline-flex justify-center items-center w-3/12 h-12 bg-oldLace rounded-lg mr-4"
+                class="inline-flex justify-center items-center w-3/12 h-12 font-bold bg-oldLace rounded-lg mr-4"
                 @mouseover="createAccount.active = true"
                 @mouseleave="createAccount.active = false"
             >
@@ -143,7 +143,7 @@ export default {
             },
             createAccount: {
                 engTitle: "create account",
-                cnTitle: "註冊",
+                cnTitle: "建立帳戶",
                 active: false,
             },
         };
