@@ -119,6 +119,7 @@
 import { mapState, mapActions } from "vuex";
 export default {
     layouts: "default",
+    loading: true,
     data() {
         return {
             email: {
