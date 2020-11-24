@@ -1,9 +1,10 @@
 const state = () => {
     return {
-        uid: "",
         user: "",
+        uid: "",
         expired: "",
-        authenticated: "",
+        success: "",
+        token: "",
     };
 };
 
@@ -16,13 +17,13 @@ const actions = {
                 userData,
             );
             if (signInResult.success) {
-                console.log("sign in success");
+                console.log(signInResult);
                 await commit("setResult", signInResult);
                 await commit("setUser", userData.username);
                 await dispatch("checkStatus");
                 vm.$router.push({ path: "/" });
             } else {
-                console.log("sign in fail");
+                console.log(signInResult);
             }
         } catch (error) {
             throw new Error(error);
@@ -35,10 +36,10 @@ const actions = {
                 `${process.env.baseUrl}/api/user/check`,
             );
             if (checkResult.success) {
-                console.log("check in success");
-                await commit("setAuthenticated");
+                console.log(checkResult);
+                await commit("setState");
             } else {
-                console.log("check in fail");
+                console.log(checkResult);
             }
         } catch (error) {
             throw new Error(error);
@@ -49,30 +50,59 @@ const actions = {
 const mutations = {
     setResult(state, signInResult) {
         const vm = this;
-        state.uid = signInResult.uid;
-        state.expired = signInResult.expired;
-        vm.$axios.setHeader(
-            "Authorization",
-            signInResult.token,
-        );
-        document.cookie = `authenticated=${
-            signInResult.success
-        }; expires=${new Date(signInResult.expired)};`;
+        const cookies = [
+            "uid",
+            "success",
+            "expired",
+            "token",
+        ];
+
+        cookies.forEach((cookie) => {
+            document.cookie = `${cookie}=${
+                signInResult[cookie]
+            }; expires=${new Date(signInResult.expired)};`;
+        });
     },
-    setAuthenticated(state) {
-        state.authenticated = document.cookie.replace(
-            /(?:(?:^|.*;\s*)authenticated\s*=\s*([^;]*).*$)|^.*$/,
-            "$1",
-        );
+    setState(state) {
+        const vm = this;
+        const states = [
+            "uid",
+            "success",
+            "expired",
+            "token",
+        ];
+        states.forEach((item) => {
+            state[item] =
+                decodeURIComponent(
+                    document.cookie.replace(
+                        new RegExp(
+                            "(?:(?:^|.*;)\\s*" +
+                                encodeURIComponent(
+                                    item,
+                                ).replace(
+                                    /[-.+*]/g,
+                                    "\\$&",
+                                ) +
+                                "\\s*\\=\\s*([^;]*).*$)|^.*$",
+                        ),
+                        "$1",
+                    ),
+                ) || "";
+        });
+        vm.$axios.setToken(state.token);
     },
     setUser(state, userEmail) {
-        const user = userEmail.substring(
+        state.user = userEmail.substring(
             0,
             userEmail.indexOf("@"),
         );
-        document.cookie = `user=${user}; expires=${new Date(
-            state.expired,
-        )};`;
+        state.expired = document.cookie.replace(
+            /(?:(?:^|.*;\s*)expired\s*=\s*([^;]*).*$)|^.*$/,
+            "$1",
+        );
+        document.cookie = `user=${
+            state.user
+        }; expires=${new Date(state.expired)};`;
     },
 };
 

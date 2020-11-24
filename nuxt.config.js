@@ -239,6 +239,7 @@ export default {
     axios: {
         https: true,
         proxy: true,
+        credentials: true,
     },
     proxy: {
         "/api": {

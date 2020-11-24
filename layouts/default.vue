@@ -18,9 +18,14 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
-    data() {
-        return {};
+    mounted() {
+        const vm = this;
+        vm.checkStatus();
+    },
+    methods: {
+        ...mapActions("signInStatus", ["checkStatus"]),
     },
 };
 </script>

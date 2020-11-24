@@ -6,6 +6,7 @@ body {
     min-height: 100vh;
     min-height: -webkit-fill-available;
     font-family: "Grandstander", "Noto Sans TC", cursive;
+    color: rgba(250, 245, 232, 0.75);
 }
 
 #__nuxt,
