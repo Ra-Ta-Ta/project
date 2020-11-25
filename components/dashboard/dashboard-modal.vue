@@ -40,8 +40,7 @@
                             id="title"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="tempProduct.title"
-                            required
+                            v-model="product.title"
                         />
                         <span
                             v-text="'標題'"
@@ -63,9 +62,7 @@
                                 type="checkbox"
                                 id="is_enabled"
                                 class="invisible"
-                                v-model="
-                                    tempProduct.is_enabled
-                                "
+                                v-model="product.is_enabled"
                                 :true-value="1"
                                 :false-value="0"
                             />
@@ -84,8 +81,7 @@
                             id="category"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="tempProduct.category"
-                            required
+                            v-model="product.category"
                         />
                         <span
                             v-text="'分類'"
@@ -101,8 +97,7 @@
                             id="unit"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="tempProduct.unit"
-                            required
+                            v-model="product.unit"
                         />
                         <span
                             v-text="'單位'"
@@ -119,10 +114,7 @@
                             id="origin_price"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="
-                                tempProduct.origin_price
-                            "
-                            required
+                            v-model="product.origin_price"
                         />
                         <span
                             v-text="'原價'"
@@ -138,8 +130,7 @@
                             id="price"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="tempProduct.price"
-                            required
+                            v-model="product.price"
                         />
                         <span
                             v-text="'售價'"
@@ -156,10 +147,7 @@
                             id="description"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="
-                                tempProduct.description
-                            "
-                            required
+                            v-model="product.description"
                         />
                         <span
                             v-text="'產品描述'"
@@ -175,8 +163,7 @@
                             id="content"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="tempProduct.content"
-                            required
+                            v-model="product.content"
                         />
                         <span
                             v-text="'產品內容'"
@@ -186,15 +173,14 @@
 
                     <label
                         for="imageUrl"
-                        class="relative flex w-full h-12"
+                        class="relative flex w-full h-12 col-start-1 col-end-2 lg:col-end-3"
                     >
                         <input
                             type="text"
                             id="imageUrl"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="tempProduct.imageUrl"
-                            required
+                            v-model="product.imageUrl"
                         />
                         <span
                             v-text="'圖片網址'"
@@ -203,25 +189,30 @@
                     </label>
                     <label
                         for="customFile"
-                        class="flex itens-center w-full h-12 bg-oldLace rounded-lg"
+                        class="relative flex justify-center items-center w-full h-24 bg-oldLace hover:bg-metallicGold rounded-lg transform transition-all duration-150 ease-linear col-start-1 col-end-2 lg:col-end-3"
                     >
-                        <button
-                            v-text="'請點擊上傳圖片'"
-                            class="w-full h-full text-wintergreenDream text-base uppercase leading-none text-left pointer-events-none pl-4"
-                        ></button>
                         <input
                             type="file"
                             id="customFile"
-                            class="w-0 invisible"
+                            class="absolute z-10 inset-0 w-full h-full opacity-0"
                             ref="files"
+                            @change="uploadImage"
+                        />
+                        <p
+                            v-if="
+                                product.imageUrl ===
+                                undefined
+                            "
+                            class="text-wintergreenDream leading-none p-4 pointer-events-none"
+                            v-text="'拖曳圖片到此處上傳'"
+                        ></p>
+                        <img
+                            v-else
+                            :src="product.imageUrl"
+                            class="h-full py-4"
+                            alt=""
                         />
                     </label>
-
-                    <img
-                        :src="tempProduct.imageUrl"
-                        class="col-start-1 col-end-2 lg:col-end-3 w-1/2 h-24 m-auto"
-                        alt=""
-                    />
                 </div>
             </div>
             <!--footer-->
@@ -229,14 +220,14 @@
                 class="flex items-center justify-end border-t border-oldLace rounded-b-lg p-4"
             >
                 <button
-                    class="text-metallicGold bg-transparent border border-metallicGold hover:bg-ruddyBrown hover:text-white font-bold px-4 py-2 rounded-lg transform transition-all duration-500 ease-linear"
+                    class="text-metallicGold bg-transparent border border-metallicGold hover:bg-ruddyBrown hover:text-white font-bold px-4 py-2 rounded-lg transform transition-all duration-150 ease-linear"
                     type="button"
                     style="transition: all 0.15s ease"
                     @click="$emit('open-modal')"
                     v-text="'取消'"
                 ></button>
                 <button
-                    class="bg-metallicGold hover:bg-ruddyBrown hover:text-white font-bold px-4 py-2 ml-2 rounded-lg transform transition-all duration-500 ease-linear"
+                    class="bg-metallicGold hover:bg-ruddyBrown hover:text-white font-bold px-4 py-2 ml-2 rounded-lg transform transition-all duration-150 ease-linear"
                     type="button"
                     style="transition: all 0.15s ease"
                     v-text="'確認'"
@@ -255,6 +246,47 @@ export default {
         "temp-product",
         "update-product",
     ],
+    data() {
+        return {
+            product: this.tempProduct,
+        };
+    },
+    methods: {
+        async uploadImage() {
+            try {
+                const vm = this;
+                const uploadedImage =
+                    vm.$refs.files.files[0];
+                const formData = new FormData();
+                formData.append(
+                    "file-to-upload",
+                    uploadedImage,
+                );
+                const uploadImageResult = await vm.$axios.$post(
+                    `${process.env.baseUrl}/api/sugar-tongue/admin/upload`,
+                    formData,
+                    {
+                        headers: {
+                            "Content-Type":
+                                "multipart/form-data",
+                        },
+                    },
+                );
+                if (uploadImageResult.success) {
+                    console.log(uploadImageResult);
+                    vm.$set(
+                        vm.product,
+                        "imageUrl",
+                        uploadImageResult.imageUrl,
+                    );
+                } else {
+                    console.log(uploadImageResult);
+                }
+            } catch (error) {
+                throw new Error(error);
+            }
+        },
+    },
 };
 </script>
 
@@ -286,20 +318,20 @@ export default {
 }
 .is_enabled-style {
     &:before {
-        content: "OFF";
-        color: rgba(87, 67, 37, 0.75);
-        position: absolute;
-        top: 4px;
-        left: 8px;
-        font-weight: bold;
-        line-height: 1;
-    }
-    &:after {
         content: "ON";
         color: rgba(250, 245, 232, 0.75);
         position: absolute;
         top: 4px;
-        right: 10px;
+        left: 10px;
+        font-weight: bold;
+        line-height: 1;
+    }
+    &:after {
+        content: "OFF";
+        color: rgba(87, 67, 37, 0.75);
+        position: absolute;
+        top: 4px;
+        right: 8px;
         font-weight: bold;
         line-height: 1;
     }

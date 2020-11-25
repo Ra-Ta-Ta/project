@@ -76,4 +76,7 @@ export default {
     background-size: 300px;
     max-width: 576px;
 }
+.shadow-style {
+    background-color: rgba(0, 0, 0, 0.25);
+}
 </style>

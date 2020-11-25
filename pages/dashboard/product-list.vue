@@ -87,13 +87,13 @@
             @open-modal="openModal"
             @update-product="updateProduct"
             :is-new="modal.isNew"
-            :temp-product="modal.tempProduct"
+            :temp-product="tempProduct"
             v-if="modal.isOpened"
         ></DashboardModal>
         <DashboardAlert
             @open-alert="openAlert"
             @delete-product="deleteProduct"
-            :temp-product="alert.tempProduct"
+            :temp-product="tempProduct"
             v-if="alert.isOpened"
         ></DashboardAlert>
     </main>
@@ -106,13 +106,12 @@ export default {
     data() {
         return {
             products: [],
-
+            tempProduct: {},
             modal: {
                 isOpened: false,
                 isNew: false,
-                tempProduct: {},
             },
-            alert: { isOpened: false, tempProduct: {} },
+            alert: { isOpened: false },
         };
     },
     created() {
@@ -144,13 +143,13 @@ export default {
                 const vm = this;
                 const api = vm.modal.isNew
                     ? `${process.env.baseUrl}/api/sugar-tongue/admin/product`
-                    : `${process.env.baseUrl}/api/sugar-tongue/admin/product/${vm.modal.tempProduct.id}`;
+                    : `${process.env.baseUrl}/api/sugar-tongue/admin/product/${vm.tempProduct.id}`;
                 const method = vm.modal.isNew
                     ? "$post"
                     : "$put";
                 const updateProductResult = await vm.$axios[
                     method
-                ](api, { data: vm.modal.tempProduct });
+                ](api, { data: vm.tempProduct });
                 if (updateProductResult.success) {
                     console.log(updateProductResult);
                     vm.openModal();
@@ -167,8 +166,8 @@ export default {
         async deleteProduct() {
             try {
                 const vm = this;
-                const deleteProductResult = await vm.$axios.delete(
-                    `${process.env.baseUrl}/api/sugar-tongue/admin/product/${vm.alert.tempProduct.id}`,
+                const deleteProductResult = await vm.$axios.$delete(
+                    `${process.env.baseUrl}/api/sugar-tongue/admin/product/${vm.tempProduct.id}`,
                 );
                 if (deleteProductResult.success) {
                     console.log(deleteProductResult);
@@ -186,20 +185,17 @@ export default {
         openModal(isNew, product) {
             const vm = this;
             if (isNew) {
-                vm.modal.tempProduct = {};
+                vm.tempProduct = {};
                 vm.modal.isNew = true;
             } else {
-                vm.modal.tempProduct = Object.assign(
-                    {},
-                    product,
-                );
+                vm.tempProduct = Object.assign({}, product);
                 vm.modal.isNew = false;
             }
             vm.modal.isOpened = !vm.modal.isOpened;
         },
         openAlert(product) {
             const vm = this;
-            vm.alert.tempProduct = product;
+            vm.tempProduct = product;
             vm.alert.isOpened = !vm.alert.isOpened;
         },
     },
