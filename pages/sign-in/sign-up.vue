@@ -149,10 +149,10 @@ export default {
         };
     },
     computed: {
-        ...mapState("signInStatus", ["uid"]),
+        ...mapState("user", ["uid"]),
     },
     methods: {
-        ...mapActions("signInStatus", ["signIn"]),
+        ...mapActions("user", ["signIn"]),
         async postSignUpData() {
             try {
                 const vm = this;

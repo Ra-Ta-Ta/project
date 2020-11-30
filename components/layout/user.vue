@@ -55,10 +55,10 @@ export default {
         vm.checkStatus();
     },
     computed: {
-        ...mapState("signInStatus", ["expired", "success"]),
+        ...mapState("user", ["expired", "success"]),
     },
     methods: {
-        ...mapActions("signInStatus", ["checkStatus"]),
+        ...mapActions("user", ["checkStatus"]),
         async signOut() {
             try {
                 const vm = this;

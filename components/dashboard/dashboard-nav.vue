@@ -1,6 +1,6 @@
 <template>
     <nav
-        class="fixed left-0 transform transition-all duration-500 ease-linear nav-style"
+        class="fixed left-0 transform transition-all duration-300 ease-linear nav-style"
         :class="[
             togglerIsReversed
                 ? ' translate-y-0  opacity-100'
@@ -93,10 +93,10 @@ export default {
         );
     },
     computed: {
-        ...mapState("togglerStatus", ["togglerIsReversed"]),
+        ...mapState("toggler", ["togglerIsReversed"]),
     },
     methods: {
-        ...mapMutations("togglerStatus", [
+        ...mapMutations("toggler", [
             "reverseToggler",
             "resizeScreen",
         ]),

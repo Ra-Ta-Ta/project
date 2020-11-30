@@ -40,6 +40,7 @@ const actions = {
                 await commit("setState");
             } else {
                 console.log(checkResult);
+                await commit("setState");
             }
         } catch (error) {
             throw new Error(error);

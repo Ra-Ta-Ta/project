@@ -1,9 +1,15 @@
 <template>
     <div
-        class="fixed inset-0 z-30 w-full h-full p-4 pt-19 lg:pt-4 lg:pl-50 flex justify-center items-center shadow-style"
+        class="fixed inset-0 z-30 w-full h-full p-4 pt-19 lg:pt-4 lg:pl-50 flex justify-center items-center transform transition-all duration-300 ease-linear shadow-style"
+        :class="
+            alertIsOpened
+                ? ' opacity-100 pointer-events-auto'
+                : 'opacity-0 pointer-events-none '
+        "
     >
         <div
-            class="flex flex-col w-full h-full lg:h-auto rounded-lg modal-style"
+            class="flex flex-col w-full max-h-full rounded-lg transform transition-all duration-300 ease-linear modal-style"
+            :class="alertIsOpened ? 'scale-100' : 'scale-0'"
         >
             <!--header-->
             <div
@@ -13,16 +19,12 @@
                     class="text-5 font-bold"
                     v-text="'刪除警告'"
                 ></h3>
-                <button
-                    class="ml-auto bg-transparent border-0 text-black text-5 leading-none"
-                    @click="$emit('open-alert')"
+                <Button
+                    v-text="'X'"
+                    class="ml-auto bg-transparent text-5 leading-none"
+                    @click.native="$emit('open-alert')"
                 >
-                    <span
-                        class="bg-transparent text-oldLace opacity-5 h-6 w-6 font-bold block"
-                        v-text="'X'"
-                    >
-                    </span>
-                </button>
+                </Button>
             </div>
             <!--body-->
             <div
@@ -41,20 +43,16 @@
             <div
                 class="flex items-center justify-end border-t border-oldLace rounded-b-lg p-4"
             >
-                <button
-                    class="text-ruddyBrown bg-transparent border border-ruddyBrown hover:border-metallicGold hover:bg-metallicGold hover:text-white font-bold px-4 py-2 rounded-lg transform transition-all duration-500 ease-linear"
-                    type="button"
-                    style="transition: all 0.15s ease"
+                <Button
                     v-text="'確定刪除'"
-                    @click="$emit('delete-product')"
-                ></button>
-                <button
-                    class="bg-ruddyBrown hover:bg-metallicGold hover:text-white font-bold px-4 py-2 ml-2 rounded-lg transform transition-all duration-500 ease-linear"
-                    type="button"
-                    style="transition: all 0.15s ease"
+                    class="text-ruddyBrown bg-transparent border border-ruddyBrown hover:border-metallicGold hover:bg-metallicGold hover:text-white"
+                    @click.native="$emit('delete-product')"
+                ></Button>
+                <Button
                     v-text="'取消'"
-                    @click="$emit('open-alert')"
-                ></button>
+                    class="bg-ruddyBrown hover:bg-metallicGold hover:text-white ml-2"
+                    @click.native="$emit('open-alert')"
+                ></Button>
             </div>
         </div>
     </div>
@@ -62,7 +60,12 @@
 
 <script>
 export default {
-    props: ["open-alert", "temp-product", "delete-product"],
+    props: [
+        "open-alert",
+        "temp-product",
+        "delete-product",
+        "alert-is-opened",
+    ],
 };
 </script>
 

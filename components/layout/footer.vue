@@ -20,10 +20,11 @@
                 @focus="active = true"
                 @blur="active = false"
             />
-            <button
-                class="h-8 inline-block bg-khaki rounded-lg text-darkBrown text-base font-bold px-4"
+            <Button
                 v-text="'訂閱'"
-            ></button>
+                class="bg-khaki text-darkBrown px-4"
+            >
+            </Button>
         </div>
         <hr class="mt-5 mb-4 border-dotted" />
         <div

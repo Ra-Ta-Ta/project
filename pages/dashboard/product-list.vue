@@ -2,110 +2,115 @@
     <main
         class="w-full h-full m-auto p-4 pt-19 lg:pt-4 grid grid-cols-1 gap-4 main-style"
     >
-        <Card class="h-full text-darkBrown bg-desertSand">
-            <template v-slot:content>
-                <table
-                    cellpadding="8"
-                    class="w-full table-auto text-left"
+        <div
+            class="w-full h-full max-h-full rounded-xl p-3 text-darkBrown bg-desertSand"
+        >
+            <table
+                class="w-full h-full text-left border-separate table-style"
+            >
+                <thead class="block">
+                    <tr
+                        class="table table-fixed w-full border-t border-b border-darkBrown"
+                    >
+                        <th>分類</th>
+                        <th>品項</th>
+                        <th>原價</th>
+                        <th>售價</th>
+                        <th>狀態</th>
+                        <th>編輯</th>
+                    </tr>
+                </thead>
+                <tbody
+                    class="block w-full h-full overflow-x-hidden overflow-y-auto mb-4 tbody-style"
                 >
-                    <thead>
-                        <tr
-                            class="border-t border-b border-darkBrown"
+                    <tr
+                        v-for="product in products"
+                        :key="product.id"
+                        class="table table-fixed w-full border-b border-fieldDrab"
+                    >
+                        <td v-text="product.category"></td>
+                        <td v-text="product.title"></td>
+                        <td
+                            v-text="product.origin_price"
+                            class=""
+                        ></td>
+                        <td
+                            v-text="product.price"
+                            class=""
+                        ></td>
+                        <td>
+                            <span
+                                v-if="product.is_enabled"
+                                v-text="'啟用'"
+                                class="text-wintergreenDream"
+                            ></span>
+                            <span
+                                v-else
+                                v-text="'停用'"
+                                class="text-ruddyBrown"
+                            ></span>
+                        </td>
+                        <td
+                            class="grid gap-1 grid-cols-1 md:grid-cols-2"
                         >
-                            <th width="120">分類</th>
-                            <th width="120">品項</th>
-                            <th width="80">原價</th>
-                            <th width="80">售價</th>
-                            <th width="80">狀態</th>
-                            <th width="80">編輯</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                            v-for="product in products"
-                            :key="product.id"
-                            class="border-t border-b border-fieldDrab"
-                        >
-                            <td
-                                v-text="product.category"
-                            ></td>
-                            <td v-text="product.title"></td>
-                            <td
-                                v-text="
-                                    product.origin_price
+                            <Button
+                                v-text="'編輯'"
+                                class="text-oldLace bg-fieldDrab"
+                                @click.native="
+                                    openModal(
+                                        false,
+                                        product,
+                                    )
                                 "
-                                class=""
-                            ></td>
-                            <td
-                                v-text="product.price"
-                                class=""
-                            ></td>
-                            <td>
-                                <span
-                                    v-if="
-                                        product.is_enabled
-                                    "
-                                    v-text="'啟用'"
-                                    class="text-wintergreenDream"
-                                ></span>
-                                <span
-                                    v-else
-                                    v-text="'停用'"
-                                    class="text-ruddyBrown"
-                                ></span>
-                            </td>
-                            <td>
-                                <button
-                                    v-text="'編輯'"
-                                    class="text-oldLace bg-fieldDrab rounded-lg px-2 py-1"
-                                    @click="
-                                        openModal(
-                                            false,
-                                            product,
-                                        )
-                                    "
-                                ></button>
-                                <button
-                                    v-text="'刪除'"
-                                    class="text-oldLace bg-ruddyBrown rounded-lg px-2 py-1"
-                                    @click="
-                                        openAlert(product)
-                                    "
-                                ></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button
-                    v-text="'建立新的產品'"
-                    class="absolute bottom-8 right-8 text-oldLace bg-wintergreenDream rounded-lg px-2 py-1"
-                    @click="openModal(true)"
-                ></button>
-            </template>
-        </Card>
+                            >
+                            </Button>
+                            <Button
+                                v-text="'刪除'"
+                                class="text-oldLace bg-ruddyBrown"
+                                @click.native="
+                                    openAlert(product)
+                                "
+                            >
+                            </Button>
+                        </td>
+                    </tr>
+                </tbody>
+                <div class="flex justify-between h-9">
+                    <Pagination
+                        class="justify-start"
+                    ></Pagination>
+                    <Button
+                        v-text="'建立新商品'"
+                        class="text-oldLace bg-wintergreenDream ml-4"
+                        @click.native="openModal(true)"
+                    >
+                    </Button>
+                </div>
+            </table>
+        </div>
         <DashboardModal
             @open-modal="openModal"
             @update-product="updateProduct"
             :is-new="modal.isNew"
             :temp-product="tempProduct"
-            v-if="modal.isOpened"
+            :temp-img.sync="tempProduct.imageUrl"
+            :modal-is-opened="modal.isOpened"
         ></DashboardModal>
         <DashboardAlert
             @open-alert="openAlert"
             @delete-product="deleteProduct"
             :temp-product="tempProduct"
-            v-if="alert.isOpened"
+            :alert-is-opened="alert.isOpened"
         ></DashboardAlert>
     </main>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
     layout: "dashboard",
     data() {
         return {
-            products: [],
             tempProduct: {},
             modal: {
                 isOpened: false,
@@ -114,30 +119,16 @@ export default {
             alert: { isOpened: false },
         };
     },
-    created() {
+    mounted() {
         const vm = this;
         vm.getProducts();
     },
     computed: {
-        ...mapState("signInStatus", ["uid"]),
+        ...mapState("user", ["uid"]),
+        ...mapState("product", ["products"]),
     },
     methods: {
-        async getProducts() {
-            try {
-                const vm = this;
-                const getProductsResult = await vm.$axios.$get(
-                    `${process.env.baseUrl}/api/sugar-tongue/products`,
-                );
-                if (getProductsResult.success) {
-                    vm.products =
-                        getProductsResult.products;
-                } else {
-                    console.log(getProductsResult);
-                }
-            } catch (error) {
-                throw new Error(error);
-            }
-        },
+        ...mapActions("product", ["getProducts"]),
         async updateProduct() {
             try {
                 const vm = this;
@@ -195,11 +186,21 @@ export default {
         },
         openAlert(product) {
             const vm = this;
-            vm.tempProduct = product;
+            vm.tempProduct = Object.assign({}, product);
             vm.alert.isOpened = !vm.alert.isOpened;
         },
     },
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.table-style {
+    border-spacing: 4px;
+}
+.tbody-style {
+    height: calc(100% - 86px);
+    // @media screen and (min-width: 992px) {
+    //     height: calc(100% - 70px);
+    // }
+}
+</style>

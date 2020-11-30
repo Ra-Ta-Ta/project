@@ -72,6 +72,10 @@ export default {
                     "sha384-IqFDa6K9SJzsScnaQ67Y8rd0qD38ZdhpMnvvHT8HyIIo4zwrxa/YDL5edt/MmN8W",
                 crossorigin: "anonymous",
             },
+            {
+                src:
+                    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin3.min.js",
+            },
         ],
         link: [
             {
@@ -118,6 +122,10 @@ export default {
     plugins: [
         { src: "~/plugins/lazysizes.js", mode: "client" },
         { src: "~/plugins/axios.js" },
+        {
+            src: "~/plugins/vue-notification.js",
+            mode: "client",
+        },
     ],
     /*
      ** Auto import components
@@ -214,9 +222,10 @@ export default {
     loading:
         // "~/components/loading/loading.vue",
         {
-            color: "rgba(41, 56, 46, 0.75)",
+            color: "rgba(88, 130, 128, 1)",
             height: "5px",
         },
+
     server: {
         port: 3000,
         host: "localhost",

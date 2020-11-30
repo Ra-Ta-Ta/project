@@ -43,12 +43,10 @@ export default {
         };
     },
     computed: {
-        ...mapState("togglerStatus", ["togglerIsReversed"]),
+        ...mapState("toggler", ["togglerIsReversed"]),
     },
     methods: {
-        ...mapMutations("togglerStatus", [
-            "reverseToggler",
-        ]),
+        ...mapMutations("toggler", ["reverseToggler"]),
     },
 };
 </script>

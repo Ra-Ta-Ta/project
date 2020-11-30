@@ -26,7 +26,7 @@ export default {
         vm.checkStatus();
     },
     methods: {
-        ...mapActions("signInStatus", ["checkStatus"]),
+        ...mapActions("user", ["checkStatus"]),
     },
 };
 </script>

@@ -75,24 +75,29 @@
                     class="w-full border border-oldLace border-dashed -ml-1"
                 />
             </div>
-            <button
+            <Button
                 type="submit"
-                class="inline-flex justify-center items-center w-3/12 h-12 font-bold bg-oldLace rounded-lg mr-4"
-                @mouseover="signInBtn.active = true"
-                @mouseleave="signInBtn.active = false"
+                class="inline-flex justify-center items-center w-3/12 h-12 bg-oldLace mr-4"
+                @mouseover.native="signInBtn.active = true"
+                @mouseleave.native="
+                    signInBtn.active = false
+                "
             >
-                <span
-                    v-text="
-                        signInBtn.active
-                            ? signInBtn.cnTitle
-                            : signInBtn.engTitle
-                    "
-                    class="inline-block text-ruddyBrown uppercase"
-                    :class="{
-                        'title-active': signInBtn.active,
-                    }"
-                ></span>
-            </button>
+                <template v-slot:content>
+                    <span
+                        v-text="
+                            signInBtn.active
+                                ? signInBtn.cnTitle
+                                : signInBtn.engTitle
+                        "
+                        class="inline-block text-ruddyBrown uppercase"
+                        :class="{
+                            'title-active':
+                                signInBtn.active,
+                        }"
+                    ></span>
+                </template>
+            </Button>
             <nuxt-link
                 :to="signUpBtn.link"
                 class="inline-flex justify-center items-center w-3/12 h-12 font-bold bg-oldLace rounded-lg mr-4"
@@ -150,10 +155,10 @@ export default {
         };
     },
     computed: {
-        ...mapActions("signInStatus", ["authenticated"]),
+        ...mapActions("user", ["authenticated"]),
     },
     methods: {
-        ...mapActions("signInStatus", ["signIn"]),
+        ...mapActions("user", ["signIn"]),
     },
 };
 </script>

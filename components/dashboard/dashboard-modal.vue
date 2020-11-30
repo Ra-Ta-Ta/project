@@ -1,9 +1,15 @@
 <template>
     <div
-        class="fixed inset-0 z-30 w-full h-full p-4 pt-19 lg:pt-4 lg:pl-50 flex justify-center items-center shadow-style"
+        class="fixed inset-0 z-30 w-full h-full p-4 pt-19 lg:pt-4 lg:pl-50 flex justify-center items-center transform transition-all duration-300 ease-linear opacity-0 pointer-events-none shadow-style"
+        :class="
+            modalIsOpened
+                ? ' opacity-100 pointer-events-auto'
+                : ''
+        "
     >
         <div
-            class="flex flex-col w-full h-full lg:h-auto rounded-lg modal-style"
+            class="flex flex-col w-full max-h-full rounded-lg transform transition-all duration-300 ease-linear scale-0 modal-style"
+            :class="modalIsOpened ? 'scale-100' : ''"
         >
             <!--header-->
             <div
@@ -13,16 +19,12 @@
                     class="text-5 font-bold"
                     v-text="isNew ? '新增產品' : '編輯產品'"
                 ></h3>
-                <button
-                    class="ml-auto bg-transparent border-0 text-black text-5 leading-none"
-                    @click="$emit('open-modal')"
-                >
-                    <span
-                        class="bg-transparent text-oldLace opacity-5 h-6 w-6 font-bold block"
-                        v-text="'X'"
-                    >
-                    </span>
-                </button>
+
+                <Button
+                    v-text="'X'"
+                    class="ml-auto bg-transparent text-5 leading-none"
+                    @click.native="$emit('open-modal')"
+                ></Button>
             </div>
             <!--body-->
             <div
@@ -40,7 +42,7 @@
                             id="title"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="product.title"
+                            v-model="tempProduct.title"
                         />
                         <span
                             v-text="'標題'"
@@ -62,7 +64,9 @@
                                 type="checkbox"
                                 id="is_enabled"
                                 class="invisible"
-                                v-model="product.is_enabled"
+                                v-model="
+                                    tempProduct.is_enabled
+                                "
                                 :true-value="1"
                                 :false-value="0"
                             />
@@ -81,7 +85,7 @@
                             id="category"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="product.category"
+                            v-model="tempProduct.category"
                         />
                         <span
                             v-text="'分類'"
@@ -97,7 +101,7 @@
                             id="unit"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="product.unit"
+                            v-model="tempProduct.unit"
                         />
                         <span
                             v-text="'單位'"
@@ -110,11 +114,13 @@
                         class="relative flex w-full h-12"
                     >
                         <input
-                            type="number"
+                            type="text"
                             id="origin_price"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="product.origin_price"
+                            v-model="
+                                tempProduct.origin_price
+                            "
                         />
                         <span
                             v-text="'原價'"
@@ -126,11 +132,11 @@
                         class="relative flex w-full h-12"
                     >
                         <input
-                            type="number"
+                            type="text"
                             id="price"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="product.price"
+                            v-model="tempProduct.price"
                         />
                         <span
                             v-text="'售價'"
@@ -147,7 +153,9 @@
                             id="description"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="product.description"
+                            v-model="
+                                tempProduct.description
+                            "
                         />
                         <span
                             v-text="'產品描述'"
@@ -163,7 +171,7 @@
                             id="content"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="product.content"
+                            v-model="tempProduct.content"
                         />
                         <span
                             v-text="'產品內容'"
@@ -180,7 +188,7 @@
                             id="imageUrl"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
-                            v-model="product.imageUrl"
+                            v-model="tempProduct.imageUrl"
                         />
                         <span
                             v-text="'圖片網址'"
@@ -200,18 +208,24 @@
                         />
                         <p
                             v-if="
-                                product.imageUrl ===
-                                undefined
+                                tempProduct.imageUrl ===
+                                    undefined && !isLoading
                             "
                             class="text-wintergreenDream leading-none p-4 pointer-events-none"
-                            v-text="'拖曳圖片到此處上傳'"
+                            v-text="
+                                '將圖片拖至此處或點擊上傳'
+                            "
                         ></p>
                         <img
-                            v-else
-                            :src="product.imageUrl"
+                            v-if="!isLoading"
+                            :src="tempProduct.imageUrl"
                             class="h-full py-4"
                             alt=""
                         />
+                        <Spinner
+                            v-if="isLoading"
+                            class="w-16 h-16"
+                        ></Spinner>
                     </label>
                 </div>
             </div>
@@ -219,22 +233,22 @@
             <div
                 class="flex items-center justify-end border-t border-oldLace rounded-b-lg p-4"
             >
-                <button
-                    class="text-metallicGold bg-transparent border border-metallicGold hover:bg-ruddyBrown hover:text-white font-bold px-4 py-2 rounded-lg transform transition-all duration-150 ease-linear"
-                    type="button"
-                    style="transition: all 0.15s ease"
-                    @click="$emit('open-modal')"
+                <Button
                     v-text="'取消'"
-                ></button>
-                <button
-                    class="bg-metallicGold hover:bg-ruddyBrown hover:text-white font-bold px-4 py-2 ml-2 rounded-lg transform transition-all duration-150 ease-linear"
-                    type="button"
-                    style="transition: all 0.15s ease"
+                    class="text-metallicGold bg-transparent border border-metallicGold hover:bg-ruddyBrown hover:text-white"
+                    @click.native="$emit('open-modal')"
+                ></Button>
+                <Button
                     v-text="'確認'"
-                    @click="$emit('update-product')"
-                ></button>
+                    class="bg-metallicGold hover:bg-ruddyBrown hover:text-white ml-2"
+                    @click.native="$emit('update-product')"
+                ></Button>
             </div>
         </div>
+        <notifications
+            group="alert"
+            position="top center"
+        ></notifications>
     </div>
 </template>
 
@@ -244,17 +258,21 @@ export default {
         "is-new",
         "open-modal",
         "temp-product",
+        "temp-img",
         "update-product",
+        "modal-is-opened",
     ],
     data() {
         return {
-            product: this.tempProduct,
+            isLoading: false,
         };
     },
+
     methods: {
         async uploadImage() {
             try {
                 const vm = this;
+                vm.isLoading = true;
                 const uploadedImage =
                     vm.$refs.files.files[0];
                 const formData = new FormData();
@@ -272,15 +290,23 @@ export default {
                         },
                     },
                 );
+
                 if (uploadImageResult.success) {
                     console.log(uploadImageResult);
-                    vm.$set(
-                        vm.product,
-                        "imageUrl",
+                    vm.$emit(
+                        "update:temp-img",
                         uploadImageResult.imageUrl,
                     );
+                    vm.isLoading = false;
                 } else {
                     console.log(uploadImageResult);
+                    vm.$notify({
+                        group: "alert",
+                        title: "錯誤",
+                        type: "error",
+                        text: uploadImageResult.message,
+                    });
+                    vm.isLoading = false;
                 }
             } catch (error) {
                 throw new Error(error);
