@@ -1,15 +1,15 @@
 <template>
     <nuxt-link
-        :to="success === 'true' ? '' : signInData.link"
+        :to="success ? '' : signInData.link"
         class="w-full h-12 flex justify-start items-center transition-all duration-300 ease-linear pl-4 cursor-pointer overflow-hidden user-style"
         @mouseover.native="user.active = true"
         @mouseleave.native="user.active = false"
-        @click.native="success === 'true' ? signOut() : ''"
+        @click.native="success ? signOut() : ''"
     >
         <img :src="user.src" alt="" class="w-8 h-8" />
 
         <span
-            v-if="success === 'true'"
+            v-if="success"
             class="text-oldLace text-base leading-none uppercase py-4 pl-4"
             :class="{ 'title-active': user.active }"
             v-text="
@@ -31,7 +31,7 @@
     </nuxt-link>
 </template>
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 export default {
     data() {
         return {
@@ -50,15 +50,15 @@ export default {
             },
         };
     },
-    mounted() {
-        const vm = this;
-        vm.checkStatus();
-    },
     computed: {
         ...mapState("user", ["expired", "success"]),
     },
     methods: {
-        ...mapActions("user", ["checkStatus"]),
+        ...mapActions(["nuxtServerInit"]),
+        ...mapMutations("user", [
+            "removeCookie",
+            "setState",
+        ]),
         async signOut() {
             try {
                 const vm = this;
@@ -68,20 +68,9 @@ export default {
 
                 if (signOutResult.success) {
                     console.log(signOutResult);
-                    const cookies = {
-                        success: false,
-                        uid: "",
-                        user: "",
-                        expired: "",
-                    };
-                    for (let cookie in cookies) {
-                        document.cookie = `${cookie}=${
-                            cookies[cookie]
-                        }; expires=${new Date(
-                            vm.expired,
-                        )};`;
-                    }
-                    vm.checkStatus();
+                    await vm.nuxtServerInit();
+                    await vm.removeCookie();
+                    await vm.setState();
                     vm.$router.push({ path: "/sign-in" });
                 } else {
                     console.log(signOutResult);

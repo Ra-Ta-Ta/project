@@ -31,11 +31,17 @@
                         <td v-text="product.category"></td>
                         <td v-text="product.title"></td>
                         <td
-                            v-text="product.origin_price"
+                            v-text="
+                                $currency(
+                                    product.origin_price,
+                                )
+                            "
                             class=""
                         ></td>
                         <td
-                            v-text="product.price"
+                            v-text="
+                                $currency(product.price)
+                            "
                             class=""
                         ></td>
                         <td>

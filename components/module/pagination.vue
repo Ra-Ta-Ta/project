@@ -1,8 +1,8 @@
 <template>
-    <nav class="flex -space-x-px">
+    <nav class="flex">
         <a
             href="#"
-            class="relative inline-flex items-center px-2 py-1 bg-metallicGold text-oldLace rounded-l-lg border border-fieldDrab"
+            class="relative inline-flex items-center p-1 bg-metallicGold text-oldLace rounded-l-lg"
             :class="{
                 disabled: !pagination.has_pre,
             }"
@@ -10,9 +10,11 @@
                 getProducts(pagination.current_page - 1)
             "
         >
-            <span class="sr-only">Previous</span>
             <svg
-                class="h-5 w-5"
+                class="h-7 w-7"
+                :class="{
+                    'arrow-style': pagination.has_pre,
+                }"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -27,20 +29,16 @@
         </a>
         <a
             href="#"
-            v-for="page in pagination.total_pages"
-            :key="page"
-            v-text="page"
-            class="relative inline-flex items-center px-4 py-1 bg-metallicGold text-oldLace border border-fieldDrab"
-            :class="{
-                'current-page':
-                    pagination.current_page === page,
-            }"
+            v-text="
+                `${pagination.current_page} / ${pagination.total_pages}`
+            "
+            class="relative inline-flex items-center px-3 py-1 bg-metallicGold text-oldLace leading-none"
             @click="getProducts(page)"
         >
         </a>
         <a
             href="#"
-            class="relative inline-flex items-center px-2 py-1 rounded-r-lg bg-metallicGold text-oldLace border border-fieldDrab"
+            class="relative inline-flex items-center p-1 rounded-r-lg bg-metallicGold text-oldLace"
             :class="{
                 disabled: !pagination.has_next,
             }"
@@ -48,9 +46,11 @@
                 getProducts(pagination.current_page + 1)
             "
         >
-            <span class="sr-only">Next</span>
             <svg
-                class="h-5 w-5"
+                class="h-7 w-7"
+                :class="{
+                    'arrow-style': pagination.has_next,
+                }"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -81,10 +81,12 @@ export default {
 };
 </script>
 <style scoped>
-.current-page {
-    filter: brightness(1.2);
+.arrow-style:hover {
+    transform: scale(1.25);
+    filter: brightness(1.25);
+    transition: all 0.3s ease;
 }
 .disabled {
-    filter: brightness(0.8);
+    filter: brightness(0.75);
 }
 </style>

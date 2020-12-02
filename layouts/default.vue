@@ -18,16 +18,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-export default {
-    mounted() {
-        const vm = this;
-        vm.checkStatus();
-    },
-    methods: {
-        ...mapActions("user", ["checkStatus"]),
-    },
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>

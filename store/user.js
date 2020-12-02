@@ -16,11 +16,15 @@ const actions = {
                 `${process.env.baseUrl}/admin/signin`,
                 userData,
             );
+            console.log();
             if (signInResult.success) {
                 console.log(signInResult);
-                await commit("setResult", signInResult);
+                await dispatch("nuxtServerInit", null, {
+                    root: true,
+                });
+                await commit("setCookie", signInResult);
                 await commit("setUser", userData.username);
-                await dispatch("checkStatus");
+                await commit("setState");
                 vm.$router.push({ path: "/" });
             } else {
                 console.log(signInResult);
@@ -29,81 +33,69 @@ const actions = {
             throw new Error(error);
         }
     },
-    async checkStatus({ commit }) {
-        try {
-            const vm = this;
-            const checkResult = await vm.$axios.$post(
-                `${process.env.baseUrl}/api/user/check`,
-            );
-            if (checkResult.success) {
-                console.log(checkResult);
-                await commit("setState");
-            } else {
-                console.log(checkResult);
-                await commit("setState");
-            }
-        } catch (error) {
-            throw new Error(error);
-        }
-    },
 };
 
 const mutations = {
-    setResult(state, signInResult) {
+    setCookie(state, signInResult) {
         const vm = this;
-        const cookies = [
-            "uid",
-            "success",
-            "expired",
-            "token",
+        const options = {
+            expires: new Date(signInResult.expired),
+        };
+        const cookieList = [
+            {
+                name: "uid",
+                value: signInResult.uid,
+                opts: options,
+            },
+            {
+                name: "success",
+                value: signInResult.success,
+                opts: options,
+            },
+            {
+                name: "expired",
+                value: signInResult.expired,
+                opts: options,
+            },
+            {
+                name: "token",
+                value: signInResult.token,
+                opts: options,
+            },
         ];
-
-        cookies.forEach((cookie) => {
-            document.cookie = `${cookie}=${
-                signInResult[cookie]
-            }; expires=${new Date(signInResult.expired)};`;
-        });
+        vm.$cookies.setAll(cookieList);
+    },
+    removeCookie(state) {
+        const vm = this;
+        vm.$cookies.removeAll();
     },
     setState(state) {
         const vm = this;
         const states = [
+            "user",
             "uid",
             "success",
             "expired",
             "token",
         ];
+        const cookies = vm.$cookies.getAll();
         states.forEach((item) => {
-            state[item] =
-                decodeURIComponent(
-                    document.cookie.replace(
-                        new RegExp(
-                            "(?:(?:^|.*;)\\s*" +
-                                encodeURIComponent(
-                                    item,
-                                ).replace(
-                                    /[-.+*]/g,
-                                    "\\$&",
-                                ) +
-                                "\\s*\\=\\s*([^;]*).*$)|^.*$",
-                        ),
-                        "$1",
-                    ),
-                ) || "";
+            state[item] = cookies[item];
         });
         vm.$axios.setToken(state.token);
     },
     setUser(state, userEmail) {
-        state.user = userEmail.substring(
+        const vm = this;
+        const user = userEmail.substring(
             0,
             userEmail.indexOf("@"),
         );
-        state.expired = document.cookie.replace(
-            /(?:(?:^|.*;\s*)expired\s*=\s*([^;]*).*$)|^.*$/,
-            "$1",
+        const expired = new Date(
+            vm.$cookies.get("expired"),
         );
-        document.cookie = `user=${
-            state.user
-        }; expires=${new Date(state.expired)};`;
+        vm.$cookies.set("user", user, {
+            expires: expired,
+        });
     },
 };
 

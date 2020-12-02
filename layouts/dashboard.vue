@@ -19,15 +19,8 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
 export default {
-    mounted() {
-        const vm = this;
-        vm.checkStatus();
-    },
-    methods: {
-        ...mapActions("user", ["checkStatus"]),
-    },
+    middleware: "authenticated",
 };
 </script>
 

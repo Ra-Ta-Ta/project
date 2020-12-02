@@ -8,10 +8,10 @@ export default {};
 </script>
 <style lang="scss" scoped>
 .button-style {
-    box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
     &:hover {
+        box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
         transform: perspective(200px) rotateY(-30deg);
-        filter: brightness(1.25);
+        filter: brightness(1.1);
     }
 }
 </style>

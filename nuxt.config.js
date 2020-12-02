@@ -72,10 +72,6 @@ export default {
                     "sha384-IqFDa6K9SJzsScnaQ67Y8rd0qD38ZdhpMnvvHT8HyIIo4zwrxa/YDL5edt/MmN8W",
                 crossorigin: "anonymous",
             },
-            {
-                src:
-                    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin3.min.js",
-            },
         ],
         link: [
             {
@@ -122,6 +118,7 @@ export default {
     plugins: [
         { src: "~/plugins/lazysizes.js", mode: "client" },
         { src: "~/plugins/axios.js" },
+        { src: "~/plugins/filter.js" },
         {
             src: "~/plugins/vue-notification.js",
             mode: "client",
@@ -148,6 +145,7 @@ export default {
         "@nuxtjs/style-resources",
         "@nuxtjs/axios",
         "@nuxtjs/proxy",
+        "cookie-universal-nuxt",
     ],
     /*npm
      ** Build configuration
