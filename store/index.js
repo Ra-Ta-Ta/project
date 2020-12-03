@@ -32,6 +32,7 @@ const actions = {
 const mutations = {
     setState(state, checkResult) {
         state.authenticated = checkResult;
+        console.log(state.authenticated);
     },
 };
 

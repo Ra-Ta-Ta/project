@@ -3,7 +3,6 @@ const state = () => {
         user: "",
         uid: "",
         expired: "",
-        success: "",
         token: "",
     };
 };
@@ -48,11 +47,6 @@ const mutations = {
                 opts: options,
             },
             {
-                name: "success",
-                value: signInResult.success,
-                opts: options,
-            },
-            {
                 name: "expired",
                 value: signInResult.expired,
                 opts: options,
@@ -71,13 +65,7 @@ const mutations = {
     },
     setState(state) {
         const vm = this;
-        const states = [
-            "user",
-            "uid",
-            "success",
-            "expired",
-            "token",
-        ];
+        const states = ["user", "uid", "expired", "token"];
         const cookies = vm.$cookies.getAll();
         states.forEach((item) => {
             state[item] = cookies[item];

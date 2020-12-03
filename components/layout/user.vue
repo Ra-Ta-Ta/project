@@ -1,15 +1,15 @@
 <template>
     <nuxt-link
-        :to="success ? '' : signInData.link"
+        :to="authenticated ? '' : signInData.link"
         class="w-full h-12 flex justify-start items-center transition-all duration-300 ease-linear pl-4 cursor-pointer overflow-hidden user-style"
         @mouseover.native="user.active = true"
         @mouseleave.native="user.active = false"
-        @click.native="success ? signOut() : ''"
+        @click.native="authenticated ? signOut() : ''"
     >
         <img :src="user.src" alt="" class="w-8 h-8" />
 
         <span
-            v-if="success"
+            v-if="authenticated"
             class="text-oldLace text-base leading-none uppercase py-4 pl-4"
             :class="{ 'title-active': user.active }"
             v-text="
@@ -51,7 +51,7 @@ export default {
         };
     },
     computed: {
-        ...mapState("user", ["expired", "success"]),
+        ...mapState(["authenticated"]),
     },
     methods: {
         ...mapActions(["nuxtServerInit"]),

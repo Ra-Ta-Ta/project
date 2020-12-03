@@ -7,9 +7,7 @@
     </div>
 </template>
 <script>
-export default {
-    props: ["bg-class"],
-};
+export default {};
 </script>
 <style scoped>
 .card-style {

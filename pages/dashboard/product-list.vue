@@ -1,7 +1,10 @@
 <template>
-    <main
-        class="w-full h-full m-auto p-4 pt-19 lg:pt-4 grid grid-cols-1 gap-4 main-style"
-    >
+    <Main>
+        <template v-slot:content>
+        
+                
+            
+        
         <div
             class="w-full h-full max-h-full rounded-xl p-3 text-darkBrown bg-desertSand"
         >
@@ -108,7 +111,8 @@
             :temp-product="tempProduct"
             :alert-is-opened="alert.isOpened"
         ></DashboardAlert>
-    </main>
+    </template>
+    </Main>
 </template>
 
 <script>

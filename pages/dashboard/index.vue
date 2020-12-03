@@ -1,7 +1,7 @@
 <template>
-    <main
-        class="w-full m-auto p-4 grid grid-cols-1 gap-4 main-style"
-    ></main>
+    <Main>
+        <template v-slot:content> </template>
+    </Main>
 </template>
 
 <script>
