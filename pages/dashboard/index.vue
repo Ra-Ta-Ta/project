@@ -15,6 +15,5 @@ export default {
 
 <style scoped>
 .main-style {
-    padding-top: 60px;
 }
 </style>

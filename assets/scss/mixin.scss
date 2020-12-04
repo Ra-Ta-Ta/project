@@ -22,6 +22,27 @@
 /* nav active */
 @mixin nav-active {
     filter: brightness(1.25);
+    img {
+        animation: nav-img-active 0.5s;
+    }
+}
+
+@keyframes nav-img-active {
+    0%,
+    30%,
+    60%,
+    100% {
+        transform: translateX(0px);
+    }
+    15% {
+        transform: translateX(7px);
+    }
+    45% {
+        transform: translateX(4px);
+    }
+    75% {
+        transform: translateX(2px);
+    }
 }
 
 /* title active */

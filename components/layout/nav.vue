@@ -145,6 +145,7 @@ export default {
 .nav-active {
     @include nav-active;
 }
+
 .title-active {
     @include title-active;
 }

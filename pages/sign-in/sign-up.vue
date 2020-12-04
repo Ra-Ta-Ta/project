@@ -2,7 +2,7 @@
     <Main class="main-style">
         <template v-slot:content>
             <form
-                class="w-full bg-desertSand rounded-xl p-4 signIn-style"
+                class="w-full bg-fieldDrab rounded-xl p-4 signIn-style"
                 @submit.prevent="signIn"
             >
                 <div
@@ -11,7 +11,7 @@
                     <span v-text="'sign up / '"></span>
                     <span
                         v-text="'註冊'"
-                        class="text-ruddyBrown"
+                        class="text-metallicGold"
                     ></span>
                 </div>
                 <label
@@ -27,13 +27,13 @@
                         type="email"
                         :id="email.id"
                         placeholder=" "
-                        class="inline-block w-full h-full text-ruddyBrown bg-oldLace rounded-r-lg px-2 input-style"
+                        class="inline-block w-full h-full text-fieldDrab bg-oldLace rounded-r-lg px-2 input-style"
                         v-model="email.email"
                         required
                     />
                     <span
                         v-text="email.id"
-                        class="absolute top-3 left-14 text-ruddyBrown text-base uppercase pointer-events-none label-style"
+                        class="absolute top-3 left-14 text-fieldDrab text-base uppercase pointer-events-none label-style"
                     ></span>
                 </label>
                 <label
@@ -50,13 +50,13 @@
                         :id="password.id"
                         pattern="[a-zA-Z0-9]{8,}"
                         placeholder=" "
-                        class="inline-block w-full h-full text-ruddyBrown bg-oldLace rounded-r-lg px-2 input-style password-style"
+                        class="inline-block w-full h-full text-fieldDrab bg-oldLace rounded-r-lg px-2 input-style password-style"
                         v-model="password.password"
                         required
                     />
                     <span
                         v-text="password.id"
-                        class="absolute top-3 left-14 text-ruddyBrown text-base uppercase pointer-events-none label-style"
+                        class="absolute top-3 left-14 text-fieldDrab text-base uppercase pointer-events-none label-style"
                     ></span>
                 </label>
                 <label
@@ -73,13 +73,13 @@
                         :id="confirmPassword.id"
                         pattern="[a-zA-Z0-9]{8,}"
                         placeholder=" "
-                        class="inline-block w-full h-full text-ruddyBrown bg-oldLace rounded-r-lg px-2 input-style password-style"
+                        class="inline-block w-full h-full text-fieldDrab bg-oldLace rounded-r-lg px-2 input-style password-style"
                         v-model="confirmPassword.password"
                         required
                     />
                     <span
                         v-text="confirmPassword.id"
-                        class="absolute top-3 left-14 text-ruddyBrown text-base uppercase pointer-events-none label-style"
+                        class="absolute top-3 left-14 text-fieldDrab text-base uppercase pointer-events-none label-style"
                     ></span>
                 </label>
                 <div class="flex items-center mb-2 -mx-4">
@@ -106,7 +106,7 @@
                                 ? createAccount.cnTitle
                                 : createAccount.engTitle
                         "
-                        class="inline-block text-ruddyBrown uppercase"
+                        class="inline-block text-wintergreenDream uppercase"
                         :class="{
                             'title-active':
                                 createAccount.active,

@@ -1,6 +1,7 @@
 const state = () => {
     return {
         products: [],
+        product: {},
         pagination: {},
     };
 };
@@ -14,9 +15,31 @@ const actions = {
             );
             if (getProductsResult.success) {
                 console.log(getProductsResult);
-                commit("setResult", getProductsResult);
+                commit(
+                    "setProductsResult",
+                    getProductsResult,
+                );
             } else {
                 console.log(getProductsResult);
+            }
+        } catch (error) {
+            throw new Error(error);
+        }
+    },
+    async getProduct({ commit }, id) {
+        try {
+            const vm = this;
+            const getProductResult = await vm.$axios.$get(
+                `${process.env.baseUrl}/api/sugar-tongue/product/${id}`,
+            );
+            if (getProductResult.success) {
+                console.log(getProductResult);
+                commit(
+                    "setProductResult",
+                    getProductResult,
+                );
+            } else {
+                console.log(getProductResult);
             }
         } catch (error) {
             throw new Error(error);
@@ -25,9 +48,12 @@ const actions = {
 };
 
 const mutations = {
-    setResult(state, getProductsResult) {
+    setProductsResult(state, getProductsResult) {
         state.products = getProductsResult.products;
         state.pagination = getProductsResult.pagination;
+    },
+    setProductResult(state, getProductResult) {
+        state.product = getProductResult.product;
     },
 };
 

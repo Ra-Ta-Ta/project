@@ -2,6 +2,9 @@
     <nuxt-link
         :to="cart.link"
         class="absolute lg:static z-50 right-4 w-8 h-8 lg:w-full lg:h-12 lg:flex lg:justify-start lg:items-center lg:transition-all lg:duration-300 lg:ease-linear lg:pl-4 cursor-pointer overflow-hidden cart-style"
+        :class="{
+            'nav-active': cart.active,
+        }"
         @mouseover.native="cart.active = true"
         @mouseleave.native="cart.active = false"
     >
@@ -48,6 +51,9 @@ export default {
 .capacity-style {
     bottom: 2px;
     text-indent: 2px;
+}
+.nav-active {
+    @include nav-active;
 }
 .title-active {
     @include title-active;

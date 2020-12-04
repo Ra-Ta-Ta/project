@@ -2,7 +2,7 @@
     <Main class="main-style">
         <template v-slot:content>
             <form
-                class="w-full bg-desertSand rounded-xl p-4 signIn-style"
+                class="w-full bg-fieldDrab rounded-xl p-4 signIn-style"
                 @submit.prevent="
                     signIn({
                         username: email.email,
@@ -16,7 +16,7 @@
                     <span v-text="'sign in / '"></span>
                     <span
                         v-text="'登入'"
-                        class="text-ruddyBrown"
+                        class="text-metallicGold"
                     ></span>
                 </div>
                 <label
@@ -86,7 +86,7 @@
                                 ? signInBtn.cnTitle
                                 : signInBtn.engTitle
                         "
-                        class="inline-block text-ruddyBrown font-bold uppercase"
+                        class="inline-block text-wintergreenDream font-bold uppercase"
                         :class="{
                             'title-active':
                                 signInBtn.active,
@@ -109,7 +109,7 @@
                                 ? signUpBtn.cnTitle
                                 : signUpBtn.engTitle
                         "
-                        class="inline-block text-ruddyBrown uppercase"
+                        class="inline-block text-wintergreenDream uppercase"
                         :class="{
                             'title-active':
                                 signUpBtn.active,
