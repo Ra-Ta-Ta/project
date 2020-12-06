@@ -22,28 +22,53 @@
 /* nav active */
 @mixin nav-active {
     filter: brightness(1.25);
-    img {
+    .nav-img-style {
         animation: nav-img-active 0.5s;
     }
 }
 
 @keyframes nav-img-active {
-    0%,
-    30%,
-    60%,
+    16.65% {
+        transform: skew(-12deg);
+    }
+
+    33.3% {
+        transform: skew(10deg);
+    }
+
+    49.95% {
+        transform: skew(-6deg);
+    }
+
+    66.6% {
+        transform: skew(4deg);
+    }
+
+    83.25% {
+        transform: skew(-2deg);
+    }
+
     100% {
-        transform: translateX(0px);
-    }
-    15% {
-        transform: translateX(7px);
-    }
-    45% {
-        transform: translateX(4px);
-    }
-    75% {
-        transform: translateX(2px);
+        transform: skew(0deg);
     }
 }
+// @keyframes nav-img-active {
+//     0%,
+//     30%,
+//     60%,
+//     100% {
+//         transform: translateX(0px);
+//     }
+//     15% {
+//         transform: translateX(7px);
+//     }
+//     45% {
+//         transform: translateX(4px);
+//     }
+//     75% {
+//         transform: translateX(2px);
+//     }
+// }
 
 /* title active */
 @mixin title-active {

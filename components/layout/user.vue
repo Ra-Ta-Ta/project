@@ -2,11 +2,16 @@
     <nuxt-link
         :to="authenticated ? '' : signInData.link"
         class="w-full h-12 flex justify-start items-center transition-all duration-300 ease-linear pl-4 cursor-pointer overflow-hidden user-style"
+        :class="{ 'nav-active': user.active }"
         @mouseover.native="user.active = true"
         @mouseleave.native="user.active = false"
         @click.native="authenticated ? signOut() : ''"
     >
-        <img :src="user.src" alt="" class="w-8 h-8" />
+        <img
+            :src="user.src"
+            alt=""
+            class="w-8 h-8 nav-img-style"
+        />
 
         <span
             v-if="authenticated"
@@ -90,6 +95,9 @@ export default {
 .capacity-style {
     bottom: 2px;
     text-indent: 2px;
+}
+.nav-active {
+    @include nav-active;
 }
 .title-active {
     @include title-active;

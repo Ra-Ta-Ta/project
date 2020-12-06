@@ -217,12 +217,7 @@ export default {
             quality: 85,
         },
     },
-    loading:
-        // "~/components/loading/loading.vue",
-        {
-            color: "rgba(88, 130, 128, 1)",
-            height: "5px",
-        },
+    loading: "~/components/loading/loading.vue",
 
     server: {
         port: 3000,

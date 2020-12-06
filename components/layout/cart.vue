@@ -8,7 +8,7 @@
         @mouseover.native="cart.active = true"
         @mouseleave.native="cart.active = false"
     >
-        <div class="relative w-8 h-8">
+        <div class="relative w-8 h-8 nav-img-style">
             <img :src="cart.src" :alt="`${cart.alt}`" />
             <span
                 class="absolute w-full text-ruddyBrown text-sm text-center font-bold leading-none capacity-style"

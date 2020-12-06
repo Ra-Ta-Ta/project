@@ -1,12 +1,12 @@
 <template>
     <div
         class="w-full h-12 flex justify-start items-center transition-all duration-300 ease-linear pl-4 overflow-hidden search-style"
-        :class="{ 'search-active': search.active }"
+        :class="{ 'nav-active': search.active }"
     >
         <img
             :src="search.src"
             :alt="`${search.id}`"
-            class="w-7 h-7"
+            class="w-7 h-7 nav-img-style"
         />
         <form class="relative pl-5 pr-2 overflow-hidden">
             <input
@@ -42,7 +42,7 @@ export default {
 .search-style {
     background-color: $search-color;
 }
-.search-active {
+.nav-active {
     @include nav-active;
 }
 .input-style {

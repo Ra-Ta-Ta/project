@@ -10,7 +10,7 @@
                     </h1>
                 </template>
             </Card>
-            <Card class="bg-desertSand">
+            <Card class="bg-fieldDrab">
                 <template v-slot:content>
                     <div></div>
                 </template>

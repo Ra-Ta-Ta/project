@@ -1,13 +1,16 @@
 <template>
     <div
-        class="rounded-xl p-4 transform transition-all duration-150 ease-linear hover:scale-101 product-style"
+        class="rounded-xl p-4 transform transition-all duration-150 ease-linear product-style"
     >
-        <slot name="content"></slot>
+        <div class="card">
+            <div class="front">A</div>
+            <div class="back">B</div>
+        </div>
     </div>
 </template>
 <script>
 export default {
-    props: [product],
+    props: ["temp-product"],
 };
 </script>
 <style scoped>

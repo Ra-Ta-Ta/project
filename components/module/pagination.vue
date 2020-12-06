@@ -11,9 +11,9 @@
             "
         >
             <svg
-                class="h-7 w-7"
+                class="h-7 w-7 transition-all duration-150 ease-linear"
                 :class="{
-                    'arrow-style': pagination.has_pre,
+                    'left-arrow-style': pagination.has_pre,
                 }"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
@@ -47,9 +47,10 @@
             "
         >
             <svg
-                class="h-7 w-7"
+                class="h-7 w-7 transition-all duration-150 ease-linear"
                 :class="{
-                    'arrow-style': pagination.has_next,
+                    'right-arrow-style':
+                        pagination.has_next,
                 }"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
@@ -81,10 +82,13 @@ export default {
 };
 </script>
 <style scoped>
-.arrow-style:hover {
-    transform: scale(1.25);
+.left-arrow-style:hover {
+    transform: scale(1.25) translateX(-4px);
     filter: brightness(1.25);
-    transition: all 0.3s ease;
+}
+.right-arrow-style:hover {
+    transform: scale(1.25) translateX(4px);
+    filter: brightness(1.25);
 }
 .disabled {
     filter: brightness(0.75);
