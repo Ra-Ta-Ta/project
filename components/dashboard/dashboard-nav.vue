@@ -27,7 +27,7 @@
             <img
                 :src="menuItem.src"
                 :alt="menuItem.id"
-                class="w-8 h-8"
+                class="w-8 h-8 nav-img-style"
             />
             <span
                 class="text-oldLace text-base leading-none uppercase py-4 pl-4 title-style"
