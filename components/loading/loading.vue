@@ -1,7 +1,7 @@
 <template>
     <div
+        v-if="loading"
         class="fixed inset-0 w-full h-full text-center text-xl loading-style"
-        :class="{ hidden: !loading }"
     >
         <div class="preloader-style">
             <svg

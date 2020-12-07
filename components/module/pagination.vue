@@ -28,13 +28,33 @@
             </svg>
         </a>
         <a
-            href="#"
-            v-text="
-                `${pagination.current_page} / ${pagination.total_pages}`
-            "
-            class="relative inline-flex items-center px-3 py-1 bg-metallicGold text-oldLace leading-none"
-            @click="getProducts(page)"
+            class="relative inline-flex items-center px-3 py-1 bg-metallicGold text-oldLace leading-none cursor-pointer"
+            @click="selected = !selected"
         >
+            {{
+                pagination.current_page !== undefined
+                    ? `${pagination.current_page} / ${pagination.total_pages}`
+                    : ""
+            }}
+            <ul
+                class="absolute -top-1 left-1/2 rounded-lg transform origin-bottom -translate-x-1/2 -translate-y-full transition-all duration-150 ease-linear overflow-x-hidden overflow-y-auto list-style"
+                :class="selected ? 'scale-100' : ' scale-0'"
+            >
+                <li
+                    v-for="page in pagination.total_pages"
+                    :key="page"
+                    v-text="page"
+                    class="text-center px-6 py-1"
+                    :class="
+                        active === page
+                            ? 'bg-fieldDrab'
+                            : 'bg-metallicGold'
+                    "
+                    @click="getProducts(page)"
+                    @mouseover="active = page"
+                    @mouseleave="active = ''"
+                ></li>
+            </ul>
         </a>
         <a
             href="#"
@@ -69,9 +89,8 @@
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
-    mounted() {
-        const vm = this;
-        vm.getProducts();
+    data() {
+        return { selected: false, active: false };
     },
     computed: {
         ...mapState("product", ["pagination"]),
@@ -81,7 +100,7 @@ export default {
     },
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .left-arrow-style:hover {
     transform: scale(1.25) translateX(-4px);
     filter: brightness(1.25);
@@ -92,5 +111,25 @@ export default {
 }
 .disabled {
     filter: brightness(0.75);
+}
+.list-style {
+    max-height: 50vh;
+    padding-bottom: 6px;
+    &:before {
+        content: "";
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        display: block;
+        width: 8px;
+        height: 8px;
+        background-color: rgba(218, 175, 70, 0.75);
+        transform: translateX(-50%) rotate(45deg);
+        z-index: -10;
+    }
+    & li:last-child {
+        border-bottom-right-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+    }
 }
 </style>

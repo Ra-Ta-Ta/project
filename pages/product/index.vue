@@ -12,7 +12,7 @@
             </Card>
             <Card class="bg-fieldDrab">
                 <template v-slot:content>
-                    <div></div>
+                    <Product></Product>
                 </template>
             </Card>
         </template>
