@@ -1,9 +1,9 @@
 <template>
     <div
-        class="rounded-xl p-4 transform transition-all duration-150 ease-linear product-style"
+        class="relative w-full rounded-xl p-4 transform transition-all duration-150 ease-linear product-style"
     >
-        <div class="front">A</div>
-        <div class="back">B</div>
+        <div class="front-style"></div>
+        <div class="bg-oldLace back-style"></div>
     </div>
 </template>
 <script>
@@ -13,5 +13,7 @@ export default {
 </script>
 <style scoped>
 .product-style {
+    max-width: 37rem;
+    max-height: 47rem;
 }
 </style>

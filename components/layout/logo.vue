@@ -6,41 +6,59 @@
             togglerIsReversed ? reverseToggler() : ''
         "
     >
-        <div
+        <h1
             class="text-center uppercase leading-none font-style"
-            v-text="'sugar'"
-        ></div>
-        <div
-            class="text-center uppercase leading-none"
-            style="font-size: 0"
+            ref="logo"
         >
-            <h1
-                class="inline-block font-style"
-                style="letter-spacing: 0"
-                v-text="'t'"
-            ></h1>
-            <h1
-                class="inline-block bg-no-repeat font-style face-style"
-                v-text="'o'"
-            ></h1>
-            <h1
-                class="inline-block font-style"
-                style="text-indent: 0"
-                v-text="'ngue'"
-            ></h1>
-        </div>
+            sugar<br />t<span
+                class="inline-block face-style"
+                ref="face"
+                >o</span
+            >ngue
+        </h1>
     </nuxt-link>
 </template>
 <script>
 import { mapState, mapMutations } from "vuex";
 export default {
     data() {
-        return {
-            face: {
-                src: require("~/assets/images/bg/face.svg"),
-                alt: "face",
+        return {};
+    },
+    mounted() {
+        const vm = this;
+        const { logo, face } = vm.$refs;
+        const st = new SplitText([logo], {
+            type: "chars",
+        });
+        const tl = gsap.timeline({
+            defaults: { duration: 0.5 },
+        });
+        tl.from(st.chars, {
+            opacity: 0,
+            scale: 0,
+            y: 80,
+            rotationX: 180,
+            transformOrigin: "0% 50%",
+            ease: Back.easeOut,
+            delay: 2,
+            stagger: {
+                from: 0,
+                amount: 0.5,
             },
-        };
+        }).to(face, {
+            keyframes: [
+                {
+                    rotationX: 180,
+                    scale: 3,
+                    color: "transparent",
+                    backgroundSize: "20px 20px",
+                },
+                {
+                    rotationX: 360,
+                    scale: 1,
+                },
+            ],
+        });
     },
     computed: {
         ...mapState("toggler", ["togglerIsReversed"]),
@@ -50,21 +68,23 @@ export default {
     },
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .logo-style {
     width: max-content;
+    transform-style: preserve-3d;
+    perspective: 300px;
 }
 .font-style {
     font-family: "Cabin Sketch";
     font-size: 26px;
     color: rgba(235, 206, 146, 1);
     letter-spacing: 0.5em;
-    text-indent: 0.5em;
+    /* text-indent: 0.5em; */
 }
 .face-style {
-    background-image: url("~assets//images/bg/face.svg");
-    background-size: 20px 20px;
-    background-position: 50% 35%;
-    color: transparent;
+    background: url("~assets/images/bg/face.svg") no-repeat
+        0% 45%;
+    background-size: 0px 0px;
+    transform-origin: 30% center;
 }
 </style>

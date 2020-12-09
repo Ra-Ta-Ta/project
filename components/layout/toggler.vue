@@ -1,12 +1,12 @@
 <template>
     <div
-        class="absolute z-30 top-4 left-4 lg:hidden w-7 h-7 toggler-style"
+        class="absolute z-30 top-4 left-4 lg:hidden w-7 h-7 cursor-pointer toggler-style"
         @click="reverseToggler"
     >
         <span
             v-for="(line, i) in lines"
             :key="`line${i}`"
-            class="absolute block w-full h-1 rounded-xl bg-oldLace line-style"
+            class="absolute block w-full h-1 rounded-xl bg-oldLace translate-all duration-150 ease-linear line-style"
             :style="line"
             :ref="`line${i}`"
         ></span>
@@ -18,7 +18,7 @@ export default {
     props: ["toggler-is-switched"],
     data() {
         return {
-            toggler: { animation: "" },
+            animation: "",
             lines: [
                 { top: "2px" },
                 {
@@ -33,7 +33,7 @@ export default {
     mounted() {
         const vm = this;
         const { line0, line1, line2 } = vm.$refs;
-        vm.toggler.animation = gsap
+        vm.animation = gsap
             .timeline({
                 defaults: {
                     duration: 0.5,
@@ -52,11 +52,11 @@ export default {
             .reversed(true);
     },
     watch: {
-        "$store.state.toggler.togglerIsReversed"() {
+        togglerIsReversed() {
             const vm = this;
             vm.togglerIsReversed
-                ? vm.toggler.animation.play()
-                : vm.toggler.animation.reverse();
+                ? vm.animation.play()
+                : vm.animation.reverse();
         },
     },
     computed: {
@@ -67,4 +67,10 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.toggler-style {
+    &:hover .line-style {
+        background-color: rgba(235, 206, 146, 0.75);
+    }
+}
+</style>

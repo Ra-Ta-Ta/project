@@ -72,6 +72,10 @@ export default {
                     "sha384-IqFDa6K9SJzsScnaQ67Y8rd0qD38ZdhpMnvvHT8HyIIo4zwrxa/YDL5edt/MmN8W",
                 crossorigin: "anonymous",
             },
+            {
+                src:
+                    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/SplitText3.min.js",
+            },
         ],
         link: [
             {

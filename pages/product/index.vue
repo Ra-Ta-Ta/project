@@ -10,11 +10,9 @@
                     </h1>
                 </template>
             </Card>
-            <Card class="bg-fieldDrab">
-                <template v-slot:content>
-                    <Product></Product>
-                </template>
-            </Card>
+            <div class="grid w-full">
+                <Product></Product>
+            </div>
         </template>
     </Main>
 </template>
