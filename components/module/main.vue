@@ -1,6 +1,6 @@
 <template>
     <main
-        class="w-full h-full pt-19 lg:pt-4 p-4 grid gap-4 place-items-center main-style"
+        class="w-full h-full pt-19 lg:pt-4 p-4 grid gap-4 main-style"
     >
         <slot name="content"></slot>
     </main>
