@@ -13,9 +13,13 @@
                 </template>
             </Card>
             <div
-                class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 w-full h-full"
+                class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 auto-rows-max"
             >
-                <Product></Product>
+                <Product
+                    v-for="(tempProduct, i) in products"
+                    :key="i"
+                    :tmep-product="tempProduct"
+                ></Product>
             </div>
         </template>
     </Main>
@@ -27,6 +31,12 @@ export default {
     layouts: "default",
     data() {
         return {};
+    },
+    created() {
+        const vm = this;
+        vm.$nextTick(() => {
+            vm.getProducts();
+        });
     },
     computed: {
         ...mapState("product", [

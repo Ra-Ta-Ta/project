@@ -98,6 +98,7 @@
                     </Button>
                 </div>
             </div>
+
             <DashboardModal
                 @open-modal="openModal"
                 @update-product="updateProduct"

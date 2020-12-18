@@ -1,6 +1,6 @@
 <template>
     <main
-        class="w-full h-full pt-19 lg:pt-4 p-4 grid gap-4 main-style"
+        class="relative w-full min-h-full pt-19 lg:pt-4 p-4 grid gap-4 overflow-x-hidden overflow-y-auto main-style"
     >
         <slot name="content"></slot>
     </main>

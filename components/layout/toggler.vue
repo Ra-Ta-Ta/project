@@ -15,7 +15,6 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 export default {
-    props: ["toggler-is-switched"],
     data() {
         return {
             animation: "",

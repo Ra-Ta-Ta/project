@@ -125,6 +125,7 @@ export default {
         { src: "~/plugins/filter.js" },
         {
             src: "~/plugins/vue-notification.js",
+            mode: "client",
         },
     ],
     /*

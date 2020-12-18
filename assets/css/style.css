@@ -33,30 +33,28 @@ input:-webkit-autofill:active {
     transition-delay: 9999s;
     transition-property: background-color, color;
 }
-
 /* pages transition */
 .page-enter-active {
-    animation: slide-in-right 0.6s;
-    animation-timing-function: ease;
+    animation: slide-in-up 0.6s ease;
+
+    @keyframes slide-in-up {
+        0% {
+            transform: translateY(100vh) scale(0, 1);
+        }
+        100% {
+            transform: translateY(0vh) scale(1, 1);
+        }
+    }
 }
 .page-leave-active {
-    animation: slide-out-left 0.75s;
-    animation-timing-function: ease;
-}
+    animation: slide-out-down 0.6s ease;
 
-@keyframes slide-in-right {
-    0% {
-        transform: translateY(100vh) scale(0, 1);
-    }
-    100% {
-        transform: translateY(0vh) scale(1, 1);
-    }
-}
-@keyframes slide-out-left {
-    0% {
-        transform: translateY(0vh) scale(1, 1);
-    }
-    100% {
-        transform: translateY(100vh) scale(0, 1);
+    @keyframes slide-out-down {
+        0% {
+            transform: translateY(0vh) scale(1, 1);
+        }
+        100% {
+            transform: translateY(100vh) scale(0, 1);
+        }
     }
 }

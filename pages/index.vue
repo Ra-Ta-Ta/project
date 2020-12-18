@@ -11,6 +11,9 @@
             <Footer></Footer>
             <Footer></Footer>
             <Footer></Footer>
+            <Footer></Footer>
+            <Footer></Footer>
+            <Footer></Footer>
         </template>
     </Main>
 </template>

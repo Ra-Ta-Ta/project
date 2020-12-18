@@ -1,10 +1,10 @@
 <template>
     <div
-        class="fixed inset-0 z-30 w-full h-full p-4 pt-19 lg:pt-4 lg:pl-50 flex justify-center items-center transform transition-all duration-300 ease-linear shadow-style"
+        class="absolute z-30 w-full h-full p-4 pt-19 lg:pt-4 flex justify-center items-center transform transition-all duration-300 ease-linear shadow-style"
         :class="
             alertIsOpened
-                ? ' opacity-100 pointer-events-auto'
-                : 'opacity-0 pointer-events-none '
+                ? ' opacity-100  pointer-events-auto'
+                : 'opacity-0  pointer-events-none '
         "
     >
         <div
@@ -44,14 +44,14 @@
                 class="flex items-center justify-end border-t border-oldLace rounded-b-lg p-4"
             >
                 <Button
-                    v-text="'確定刪除'"
-                    class="text-ruddyBrown bg-transparent border border-ruddyBrown hover:border-metallicGold hover:bg-metallicGold hover:text-white"
-                    @click.native="$emit('delete-product')"
+                    v-text="'取消'"
+                    class="bg-ruddyBrown hover:bg-metallicGold hover:text-white"
+                    @click.native="$emit('open-alert')"
                 ></Button>
                 <Button
-                    v-text="'取消'"
-                    class="bg-ruddyBrown hover:bg-metallicGold hover:text-white ml-2"
-                    @click.native="$emit('open-alert')"
+                    v-text="'確定刪除'"
+                    class="text-ruddyBrown bg-transparent border border-ruddyBrown hover:border-metallicGold hover:bg-metallicGold hover:text-white ml-2"
+                    @click.native="$emit('delete-product')"
                 ></Button>
             </div>
         </div>

@@ -1,10 +1,10 @@
 <template>
     <div
-        class="fixed inset-0 z-30 w-full h-full p-4 pt-19 lg:pt-4 lg:pl-50 flex justify-center items-center transform transition-all duration-300 ease-linear opacity-0 pointer-events-none shadow-style"
+        class="absolute z-30 flex justify-center items-center w-full h-full transform transition duration-300 ease-linear p-4 pt-19 lg:pt-4 shadow-style"
         :class="
             modalIsOpened
-                ? ' opacity-100 pointer-events-auto'
-                : ''
+                ? ' opacity-100  pointer-events-auto'
+                : 'opacity-0  pointer-events-none'
         "
     >
         <div
@@ -246,9 +246,10 @@
             </div>
         </div>
         <notifications
-            group="alert"
+            group="error"
             position="top center"
-        ></notifications>
+            class="fixed"
+        />
     </div>
 </template>
 
@@ -301,7 +302,7 @@ export default {
                 } else {
                     console.log(uploadImageResult);
                     vm.$notify({
-                        group: "alert",
+                        group: "error",
                         title: "錯誤",
                         type: "error",
                         text: uploadImageResult.message,

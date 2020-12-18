@@ -29,7 +29,8 @@
         </a>
         <a
             class="relative inline-flex items-center px-3 py-1 bg-metallicGold text-oldLace leading-none cursor-pointer"
-            @click="selected = !selected"
+            @click="showPageList = !showPageList"
+            ref="pageList"
         >
             {{
                 pagination.current_page !== undefined
@@ -38,7 +39,9 @@
             }}
             <ul
                 class="absolute -top-1 left-1/2 rounded-lg transform origin-bottom -translate-x-1/2 -translate-y-full transition-all duration-150 ease-linear overflow-x-hidden overflow-y-auto list-style"
-                :class="selected ? 'scale-100' : ' scale-0'"
+                :class="
+                    showPageList ? 'scale-100' : ' scale-0'
+                "
             >
                 <li
                     v-for="page in pagination.total_pages"
@@ -90,13 +93,33 @@
 import { mapState, mapActions } from "vuex";
 export default {
     data() {
-        return { selected: false, active: false };
+        return { showPageList: false, active: false };
+    },
+    mounted() {
+        const vm = this;
+        document.addEventListener(
+            "click",
+            vm.closePageList,
+        );
+    },
+    beforeDestroy() {
+        const vm = this;
+        document.removeEventListener(
+            "click",
+            vm.closePageList,
+        );
     },
     computed: {
         ...mapState("product", ["pagination"]),
     },
     methods: {
         ...mapActions("product", ["getProducts"]),
+        closePageList(e) {
+            const vm = this;
+            if (!vm.$refs.pageList.contains(e.target)) {
+                vm.showPageList = false;
+            }
+        },
     },
 };
 </script>

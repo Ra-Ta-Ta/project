@@ -18,7 +18,12 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
+    created() {
+        const vm = this;
+        vm.setState();
+    },
     mounted() {
         this.$nextTick(() => {
             this.$nuxt.$loading.start();
@@ -27,6 +32,9 @@ export default {
                 2000,
             );
         });
+    },
+    methods: {
+        ...mapMutations("user", ["setState"]),
     },
 };
 </script>

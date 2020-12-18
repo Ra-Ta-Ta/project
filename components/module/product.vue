@@ -1,16 +1,26 @@
 <template>
     <div
-        class="relative w-full h-full border-4 border-oldLace rounded-xl transform-gpu transition-all duration-150 ease-linear overflow-hidden product-style"
+        class="relative w-full border-8 border-oldLace rounded-xl transform-gpu transition-all duration-150 ease-linear overflow-hidden product-style"
     >
         <div
             class="absolute top-0 left-0 flex flex-col w-full h-full back-style"
         >
             <div
-                class="h-20 bg-fieldDrab back-banner-style"
-            ></div>
-            <div
-                class="h-full bg-100 bg-center back-main-style"
-            ></div>
+                class="h-full bg-100 bg-center overflow-hidden back-main-style"
+            >
+                <img
+                    :src="tempProduct.imageUrl"
+                    class="h-1/2 py-4"
+                    alt=""
+                />
+            </div>
+            <div class="h-3/5 bg-oldLace back-banner-style">
+                <div
+                    class="font-bold title-stlye"
+                    v-text="tempProduct.title"
+                ></div>
+                <div class="subtitle-stlye"></div>
+            </div>
         </div>
         <div
             class="absolute top-0 left-0 w-full h-full transfrom rotate-180 front-style"
@@ -24,7 +34,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .product-style {
-    max-height: 500px;
+    &:before {
+        content: "";
+        display: block;
+        padding-bottom: 133%;
+    }
 }
 .front-style,
 .back-style {

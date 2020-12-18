@@ -1,5 +1,7 @@
 <template>
-    <Main class="main-style">
+    <Main
+        class="relative place-items-center overflow-hidden main-style"
+    >
         <template v-slot:content>
             <form
                 class="w-full bg-fieldDrab rounded-xl p-4 signIn-style"
@@ -168,6 +170,7 @@ export default {
 .signIn-style {
     max-width: 576px;
 }
+
 .input-style {
     + .label-style {
         @include label;
