@@ -10,11 +10,15 @@ const actions = {
                 `${process.env.baseUrl}/api/user/check`,
             );
             if (checkResult.success) {
-                await commit(
-                    "setState",
-                    checkResult.success,
-                );
-                await commit("user/setState");
+                if (vm.$cookies.get("user") !== undefined) {
+                    await commit(
+                        "setState",
+                        checkResult.success,
+                    );
+                    await commit("user/setState");
+                } else {
+                    vm.$router.push({ path: "/sign-in" });
+                }
             } else {
                 await commit(
                     "setState",
@@ -22,6 +26,7 @@ const actions = {
                 );
                 await commit("user/removeCookie");
                 await commit("user/setState");
+                vm.$router.push({ path: "/sign-in" });
             }
         } catch (error) {
             throw new Error(error);

@@ -6,20 +6,25 @@
             class="absolute top-0 left-0 flex flex-col w-full h-full back-style"
         >
             <div
-                class="h-full bg-100 bg-center overflow-hidden back-main-style"
+                class="relative h-full bg-100 bg-center overflow-hidden back-main-style"
             >
                 <img
                     :src="tempProduct.imageUrl"
-                    class="h-1/2 py-4"
+                    class="absolute z-10 top-0 left-0 h-1/2 transform -translate-x-1/2 -translate-y-1/2"
                     alt=""
                 />
             </div>
-            <div class="h-3/5 bg-oldLace back-banner-style">
+            <div
+                class="h-3/5 bg-oldLace py-2 back-banner-style"
+            >
                 <div
-                    class="font-bold title-stlye"
+                    class="text-darkBrown font-bold title-stlye"
                     v-text="tempProduct.title"
                 ></div>
-                <div class="subtitle-stlye"></div>
+                <div class="price-stlye">
+                    <span v-text="origin_price"></span>
+                    <span v-text="price"></span>
+                </div>
             </div>
         </div>
         <div
@@ -45,12 +50,12 @@ export default {
     backface-visibility: hidden;
 }
 .back-main-style {
-    background-image: linear-gradient(
-        135deg,
-        rgba(227, 208, 169, 0.75) 0% 25%,
-        rgba(88, 130, 128, 0.75) 25% 50%,
-        rgba(218, 175, 70, 0.75) 50% 75%,
-        rgba(179, 92, 47, 0.75) 75%
-    );
+    // background-image: linear-gradient(
+    //     135deg,
+    //     rgba(227, 208, 169, 0.75) 25%,
+    //     rgba(88, 130, 128, 0.75) 50%,
+    //     rgba(218, 175, 70, 0.75) 75%,
+    //     rgba(179, 92, 47, 0.75) 100%
+    // );
 }
 </style>

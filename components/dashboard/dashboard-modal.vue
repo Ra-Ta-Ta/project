@@ -148,7 +148,7 @@
                         for="description"
                         class="relative flex w-full h-12"
                     >
-                        <input
+                        <textarea
                             type="text"
                             id="description"
                             placeholder=" "
@@ -156,7 +156,7 @@
                             v-model="
                                 tempProduct.description
                             "
-                        />
+                        ></textarea>
                         <span
                             v-text="'產品描述'"
                             class="absolute top-3 left-4 text-wintergreenDream text-base uppercase pointer-events-none label-style"
@@ -166,13 +166,13 @@
                         for="content"
                         class="relative flex w-full h-12"
                     >
-                        <input
+                        <textarea
                             type="text"
                             id="content"
                             placeholder=" "
                             class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
                             v-model="tempProduct.content"
-                        />
+                        ></textarea>
                         <span
                             v-text="'產品內容'"
                             class="absolute top-3 left-4 text-wintergreenDream text-base uppercase pointer-events-none label-style"

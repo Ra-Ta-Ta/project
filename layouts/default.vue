@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapActions } from "vuex";
 export default {
     created() {
         const vm = this;
-        vm.setState();
+        // vm.checkStatus();
     },
     mounted() {
         this.$nextTick(() => {
@@ -34,7 +34,7 @@ export default {
         });
     },
     methods: {
-        ...mapMutations("user", ["setState"]),
+        ...mapActions("user", ["checkStatus"]),
     },
 };
 </script>

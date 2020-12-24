@@ -18,7 +18,7 @@
                 <Product
                     v-for="(tempProduct, i) in products"
                     :key="i"
-                    :tmep-product="tempProduct"
+                    :temp-product="tempProduct"
                 ></Product>
             </div>
         </template>
@@ -34,9 +34,7 @@ export default {
     },
     created() {
         const vm = this;
-        vm.$nextTick(() => {
-            vm.getProducts();
-        });
+        vm.getProducts();
     },
     computed: {
         ...mapState("product", [

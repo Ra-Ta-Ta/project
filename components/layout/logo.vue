@@ -10,11 +10,25 @@
             class="text-center uppercase leading-none font-style"
             ref="logo"
         >
-            sugar<br />t<span
-                class="inline-block face-style"
-                ref="face"
-                >o</span
-            >ngue
+            <div>
+                <span
+                    v-for="char in firstRow"
+                    :key="char"
+                    v-text="char"
+                    class="inline-block"
+                    ref="char"
+                ></span>
+            </div>
+            <div>
+                <span
+                    v-for="char in secondRow"
+                    :key="char"
+                    v-text="char"
+                    class="inline-block"
+                    :class="{ 'face-style': char === 'o' }"
+                    ref="char"
+                ></span>
+            </div>
         </h1>
     </nuxt-link>
 </template>
@@ -22,49 +36,37 @@
 import { mapState, mapMutations } from "vuex";
 export default {
     data() {
-        return {};
+        return {
+            firstRow: ["s", "u", "g", "a", "r"],
+            secondRow: ["t", "o", "n", "g", "u", "e"],
+        };
     },
     mounted() {
         const vm = this;
-        const { logo, face } = vm.$refs;
-        const st = new SplitText([logo], {
-            type: "chars",
-        });
-        const tl = gsap.timeline({
-            defaults: { duration: 0.5 },
-        });
-        tl.from(st.chars, {
-            opacity: 0,
-            scale: 0,
-            y: 80,
-            rotationX: 180,
-            transformOrigin: "0% 50%",
-            ease: Back.easeOut,
-            delay: 2,
-            stagger: {
-                from: 0,
-                amount: 0.5,
-            },
-        }).to(face, {
-            keyframes: [
-                {
-                    rotationX: 180,
-                    scale: 3,
-                    color: "transparent",
-                    backgroundSize: "20px 20px",
-                },
-                {
-                    rotationX: 360,
-                    scale: 1,
-                },
-            ],
-        });
+        vm.charWave();
     },
     computed: {
         ...mapState("toggler", ["togglerIsReversed"]),
     },
     methods: {
         ...mapMutations("toggler", ["reverseToggler"]),
+        charWave() {
+            const vm = this;
+            const { char } = vm.$refs;
+            gsap.from(char, {
+                opacity: 0,
+                scale: 0,
+                y: 80,
+                rotationX: 180,
+                ease: Back.easeOut,
+                delay: 2,
+                duration: 0.5,
+                stagger: {
+                    from: 0,
+                    amount: 0.5,
+                },
+            });
+        },
     },
 };
 </script>
@@ -79,12 +81,13 @@ export default {
     font-size: 26px;
     color: rgba(235, 206, 146, 1);
     letter-spacing: 0.5em;
-    /* text-indent: 0.5em; */
 }
 .face-style {
     background: url("~assets/images/bg/face.svg") no-repeat
-        0% 45%;
-    background-size: 0px 0px;
+        0% 40%;
+    background-size: 20px 20px;
     transform-origin: 30% center;
+    color: transparent;
+    letter-spacing: 0.6em;
 }
 </style>

@@ -15,10 +15,9 @@ const actions = {
                 `${process.env.baseUrl}/admin/signin`,
                 userData,
             );
-            console.log();
             if (signInResult.success) {
                 console.log(signInResult);
-                await dispatch("nuxtServerInit", null, {
+                await commit("setState", true, {
                     root: true,
                 });
                 await commit("setCookie", signInResult);
@@ -27,6 +26,28 @@ const actions = {
                 vm.$router.push({ path: "/" });
             } else {
                 console.log(signInResult);
+            }
+        } catch (error) {
+            throw new Error(error);
+        }
+    },
+    async checkStatus({ commit }) {
+        try {
+            const vm = this;
+            const checkStatusResult = await vm.$axios.$post(
+                `${process.env.baseUrl}/api/user/check`,
+            );
+            console.log(vm.$cookies.get("user"));
+            if (checkStatusResult.success) {
+                console.log(checkStatusResult);
+                if (vm.$cookies.get("user") !== undefined) {
+                    await commit("setState");
+                } else {
+                    vm.$router.push({ path: "/sign-in" });
+                }
+            } else {
+                console.log(checkStatusResult);
+                vm.$router.push({ path: "/sign-in" });
             }
         } catch (error) {
             throw new Error(error);
