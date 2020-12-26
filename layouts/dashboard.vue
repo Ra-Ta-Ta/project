@@ -19,24 +19,17 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
 export default {
     middleware: "authenticated",
-    created() {
-        const vm = this;
-        // vm.checkStatus();
-    },
     mounted() {
-        this.$nextTick(() => {
-            this.$nuxt.$loading.start();
+        const vm = this;
+        vm.$nextTick(() => {
+            vm.$nuxt.$loading.start();
             setTimeout(
-                () => this.$nuxt.$loading.finish(),
+                () => vm.$nuxt.$loading.finish(),
                 2000,
             );
         });
-    },
-    methods: {
-        ...mapActions("user", ["checkStatus"]),
     },
 };
 </script>

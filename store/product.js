@@ -15,14 +15,12 @@ const actions = {
                 `${process.env.baseUrl}/api/sugar-tongue/products?page=${page}`,
             );
             if (getProductsResult.success) {
-                console.log(getProductsResult);
                 window.$nuxt.$loading.loading = false;
                 commit(
                     "setProductsResult",
                     getProductsResult,
                 );
             } else {
-                console.log(getProductsResult);
                 window.$nuxt.$loading.loading = false;
             }
         } catch (error) {

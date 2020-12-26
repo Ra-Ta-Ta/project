@@ -16,9 +16,9 @@
                 class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 auto-rows-max"
             >
                 <Product
-                    v-for="(tempProduct, i) in products"
+                    v-for="(product, i) in products"
                     :key="i"
-                    :temp-product="tempProduct"
+                    :temp-product="product"
                 ></Product>
             </div>
         </template>
@@ -32,7 +32,7 @@ export default {
     data() {
         return {};
     },
-    created() {
+    mounted() {
         const vm = this;
         vm.getProducts();
     },

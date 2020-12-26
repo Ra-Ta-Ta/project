@@ -3,30 +3,26 @@ const state = () => {
 };
 
 const actions = {
-    async nuxtServerInit({ commit }) {
+    async nuxtServerInit(
+        { state, commit },
+        { $cookies, $axios },
+    ) {
         try {
-            const vm = this;
-            const checkResult = await vm.$axios.$post(
+            const checkResult = await $axios.$post(
                 `${process.env.baseUrl}/api/user/check`,
             );
-            if (checkResult.success) {
-                if (vm.$cookies.get("user") !== undefined) {
-                    await commit(
-                        "setState",
-                        checkResult.success,
-                    );
-                    await commit("user/setState");
-                } else {
-                    vm.$router.push({ path: "/sign-in" });
-                }
+
+            if (
+                checkResult.success &&
+                $cookies.get("user") !== undefined &&
+                $cookies.get("token") !== undefined
+            ) {
+                await commit("setAuthenticated", true);
+                await commit("user/setState");
             } else {
-                await commit(
-                    "setState",
-                    checkResult.success,
-                );
+                await commit("setAuthenticated", false);
                 await commit("user/removeCookie");
                 await commit("user/setState");
-                vm.$router.push({ path: "/sign-in" });
             }
         } catch (error) {
             throw new Error(error);
@@ -35,7 +31,7 @@ const actions = {
 };
 
 const mutations = {
-    setState(state, checkResult) {
+    setAuthenticated(state, checkResult) {
         state.authenticated = checkResult;
     },
 };

@@ -22,8 +22,10 @@
                     v-text="tempProduct.title"
                 ></div>
                 <div class="price-stlye">
-                    <span v-text="origin_price"></span>
-                    <span v-text="price"></span>
+                    <span
+                        v-text="tempProduct.origin_price"
+                    ></span>
+                    <span v-text="tempProduct.price"></span>
                 </div>
             </div>
         </div>

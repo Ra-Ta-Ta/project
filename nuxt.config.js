@@ -121,7 +121,6 @@ export default {
         { src: "~/plugins/filter.js" },
         {
             src: "~/plugins/vue-notification.js",
-            mode: "client",
         },
     ],
     /*
@@ -145,7 +144,7 @@ export default {
         "@nuxtjs/style-resources",
         "@nuxtjs/axios",
         "@nuxtjs/proxy",
-        "cookie-universal-nuxt",
+        ["cookie-universal-nuxt"],
     ],
     /*npm
      ** Build configuration

@@ -36,7 +36,7 @@
     </nuxt-link>
 </template>
 <script>
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
     data() {
         return {
@@ -59,7 +59,7 @@ export default {
         ...mapState(["authenticated"]),
     },
     methods: {
-        ...mapActions(["nuxtServerInit"]),
+        ...mapMutations(["setAuthenticated"]),
         ...mapMutations("user", [
             "removeCookie",
             "setState",
@@ -73,7 +73,7 @@ export default {
 
                 if (signOutResult.success) {
                     console.log(signOutResult);
-                    await vm.nuxtServerInit();
+                    await vm.setAuthenticated(false);
                     await vm.removeCookie();
                     await vm.setState();
                     vm.$router.push({ path: "/sign-in" });
