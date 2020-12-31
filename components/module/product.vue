@@ -10,7 +10,7 @@
             >
                 <img
                     :src="tempProduct.imageUrl"
-                    class="absolute z-10 top-0 left-0 h-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                    class=""
                     alt=""
                 />
             </div>
@@ -18,14 +18,22 @@
                 class="h-3/5 bg-oldLace py-2 back-banner-style"
             >
                 <div
-                    class="text-darkBrown font-bold title-stlye"
+                    class="text-darkBrown font-bold uppercase title-stlye"
                     v-text="tempProduct.title"
                 ></div>
                 <div class="price-stlye">
                     <span
-                        v-text="tempProduct.origin_price"
+                        v-text="
+                            $currency(
+                                tempProduct.origin_price,
+                            )
+                        "
                     ></span>
-                    <span v-text="tempProduct.price"></span>
+                    <span
+                        v-text="
+                            $currency(tempProduct.price)
+                        "
+                    ></span>
                 </div>
             </div>
         </div>

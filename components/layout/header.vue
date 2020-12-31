@@ -1,6 +1,6 @@
 <template>
     <header
-        class="fixed z-40 left-0 w-full lg:w-50 h-15 lg:h-full header-style"
+        class="fixed z-40 left-0 w-full h-15 header-style"
     >
         <Logo></Logo>
         <slot name="content"></slot>

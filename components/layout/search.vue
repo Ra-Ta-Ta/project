@@ -1,27 +1,26 @@
 <template>
     <div
-        class="w-full h-12 flex justify-start items-center transition-all duration-300 ease-linear pl-4 overflow-hidden search-style"
-        :class="{ 'nav-active': search.active }"
+        class="absolute z-50 right-30 w-22 h-8 flex justify-between items-center transition-all duration-300 ease-linear overflow-hidden search-style"
+        :class="{ 'icon-active': search.active }"
+        @mouseover="search.active = true"
+        @mouseleave="search.active = false"
     >
         <img
             :src="search.src"
             :alt="`${search.id}`"
             class="w-7 h-7 nav-img-style"
         />
-        <form class="relative pl-5 pr-2 overflow-hidden">
-            <input
-                type="text"
-                :name="search.id"
-                class="w-full text-oldLace text-base leading-none py-4 bg-transparent input-style"
-                placeholder=" "
-                @focus="search.active = true"
-                @blur="search.active = false"
-            />
-            <span
-                class="absolute top-3 left-5 text-base text-oldLace uppercase pointer-events-none label-style"
-                v-text="search.placeholder"
-            ></span>
-        </form>
+        <span
+            class="hidden md:inline-block text-oldLace text-base leading-none uppercase"
+            :class="{
+                'title-active': search.active,
+            }"
+            v-text="
+                search.active
+                    ? search.cnTitle
+                    : search.engTitle
+            "
+        ></span>
     </div>
 </template>
 <script>
@@ -29,10 +28,11 @@ export default {
     data() {
         return {
             search: {
-                placeholder: "search...",
+                engTitle: "search",
+                cnTitle: "搜尋",
                 src: require("~/assets/images/bg/search.svg"),
-                id: "search",
-                active: false,
+                alt: "search",
+                active: "",
             },
         };
     },
@@ -40,20 +40,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 .search-style {
-    background-color: $search-color;
+    top: 14px;
 }
-.nav-active {
-    @include nav-active;
+.icon-active {
+    @include icon-active;
 }
-.input-style {
-    + .label-style {
-        @include label;
-    }
-    &:focus + .label-style {
-        @include input-focus-label;
-    }
-    &:not(:placeholder-shown) + .label-style {
-        @include input-blur-label;
-    }
+.title-active {
+    @include title-active;
 }
 </style>

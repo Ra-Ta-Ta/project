@@ -20,14 +20,14 @@
 }
 
 /* nav active */
-@mixin nav-active {
+@mixin icon-active {
     filter: brightness(1.25);
     .nav-img-style {
-        animation: nav-img-active 0.5s;
+        animation: icon-wobble 0.5s;
     }
 }
 
-@keyframes nav-img-active {
+@keyframes icon-wobble {
     16.65% {
         transform: skew(-12deg);
     }
@@ -52,30 +52,13 @@
         transform: skew(0deg);
     }
 }
-// @keyframes nav-img-active {
-//     0%,
-//     30%,
-//     60%,
-//     100% {
-//         transform: translateX(0px);
-//     }
-//     15% {
-//         transform: translateX(7px);
-//     }
-//     45% {
-//         transform: translateX(4px);
-//     }
-//     75% {
-//         transform: translateX(2px);
-//     }
-// }
 
 /* title active */
 @mixin title-active {
-    animation: title-active 0.3s;
+    animation: title-slide 0.3s;
 }
 
-@keyframes title-active {
+@keyframes title-slide {
     0% {
         transform: translateX(10px);
         opacity: 0;

@@ -16,7 +16,7 @@
                 menuItem.color,
                 menuItem.class,
                 {
-                    'nav-active':
+                    'icon-active':
                         nav.activeObj == menuItem.id,
                 },
             ]"
@@ -67,7 +67,7 @@ export default {
                     cnTitle: "訂購列表",
                     link: "/dashboard/order-list",
                     class: "order-list-style",
-                    src: require("~/assets/images/bg/cart.svg"),
+                    src: require("~/assets/images/bg/basket.svg"),
                     id: "orderList",
                 },
                 {
@@ -118,8 +118,8 @@ export default {
 .coupon-style {
     background-color: $faq-color;
 }
-.nav-active {
-    @include nav-active;
+.icon-active {
+    @include icon-active;
 }
 .title-active {
     @include title-active;

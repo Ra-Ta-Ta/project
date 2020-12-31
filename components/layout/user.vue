@@ -2,7 +2,7 @@
     <nuxt-link
         :to="authenticated ? '' : signInData.link"
         class="w-full h-12 flex justify-start items-center transition-all duration-300 ease-linear pl-4 cursor-pointer overflow-hidden user-style"
-        :class="{ 'nav-active': user.active }"
+        :class="{ 'icon-active': user.active }"
         @mouseover.native="user.active = true"
         @mouseleave.native="user.active = false"
         @click.native="authenticated ? signOut() : ''"
@@ -96,8 +96,8 @@ export default {
     bottom: 2px;
     text-indent: 2px;
 }
-.nav-active {
-    @include nav-active;
+.icon-active {
+    @include icon-active;
 }
 .title-active {
     @include title-active;

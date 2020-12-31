@@ -31,7 +31,10 @@
                             <td
                                 v-text="product.category"
                             ></td>
-                            <td v-text="product.title"></td>
+                            <td
+                                v-text="product.title"
+                                class="truncate"
+                            ></td>
                             <td
                                 v-text="
                                     $currency(

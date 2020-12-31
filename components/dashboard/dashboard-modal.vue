@@ -152,7 +152,7 @@
                             type="text"
                             id="description"
                             placeholder=" "
-                            class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
+                            class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg p-4 input-style"
                             v-model="
                                 tempProduct.description
                             "
@@ -170,7 +170,7 @@
                             type="text"
                             id="content"
                             placeholder=" "
-                            class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
+                            class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg p-4 input-style"
                             v-model="tempProduct.content"
                         ></textarea>
                         <span

@@ -7,17 +7,10 @@
                 : ' -translate-y-full opacity-0',
         ]"
     >
-        <Search
-            :class="{
-                'nav-active': nav.activeObj == 'search',
-            }"
-            @mouseover.native="nav.activeObj = 'search'"
-            @mouseleave.native="nav.activeObj = ''"
-        ></Search>
         <User
             class="w-full h-12 flex justify-start items-center transition-all duration-300 ease-linear pl-4 bg-desire"
             :class="{
-                'nav-active': nav.activeObj == 'user',
+                'icon-active': nav.activeObj == 'user',
             }"
             @mouseover.native="nav.activeObj = 'user'"
             @mouseleave.native="nav.activeObj = ''"
@@ -32,7 +25,7 @@
                 menuItem.color,
                 menuItem.class,
                 {
-                    'nav-active':
+                    'icon-active':
                         nav.activeObj == menuItem.id,
                 },
             ]"
@@ -58,14 +51,14 @@
                 "
             ></span>
         </nuxt-link>
-        <Cart
+        <basket
             class="hidden"
             :class="{
-                'nav-active': nav.activeObj == 'cart',
+                'icon-active': nav.activeObj == 'basket',
             }"
-            @mouseover.native="nav.activeObj = 'cart'"
+            @mouseover.native="nav.activeObj = 'basket'"
             @mouseleave.native="nav.activeObj = ''"
-        ></Cart>
+        ></basket>
     </nav>
 </template>
 
@@ -142,8 +135,8 @@ export default {
 .faq-style {
     background-color: $faq-color;
 }
-.nav-active {
-    @include nav-active;
+.icon-active {
+    @include icon-active;
 }
 
 .title-active {
