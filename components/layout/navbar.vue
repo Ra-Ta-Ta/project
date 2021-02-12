@@ -1,18 +1,19 @@
 <template>
     <nav
-        class="flex justify-between items-center w-full h-15 px-4 m-auto"
+        class="flex justify-between items-center w-full h-15 transform transition-all duration-300 ease-linear px-4 m-auto nav-style"
         :class="[
             togglerIsReversed
-                ? ' opacity-100'
-                : ' opacity-100',
+                ? 'invisible opacity-100'
+                : 'invisible opacity-0',
         ]"
-        ref="nav"
     >
+        <Toggler></Toggler>
+        <Logo></Logo>
         <nuxt-link
             v-for="navItem in navItems"
             :key="navItem.id"
             :to="navItem.link"
-            class="flex items-center flex-no-wrap transition-all duration-300 ease-linear px-2"
+            class="hidden max-content lg:flex items-center transition-all duration-300 ease-linear px-2"
             :class="{
                 wobble: active === navItem.id,
             }"
@@ -29,12 +30,16 @@
                 v-text="navItem.title"
             ></span>
         </nuxt-link>
+        <Search></Search>
+        <Basket></Basket>
     </nav>
 </template>
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import logo from "./logo.vue";
 export default {
+    components: { logo },
     data() {
         return {
             active: "",
@@ -63,7 +68,6 @@ export default {
     mounted() {
         const vm = this;
         window.addEventListener("resize", vm.resizeScreen);
-        vm.scrollTrigger();
     },
     beforeDestroy() {
         const vm = this;
@@ -80,31 +84,16 @@ export default {
             "reverseToggler",
             "resizeScreen",
         ]),
-        scrollTrigger() {
-            const vm = this;
-            const { nav } = vm.$refs;
-            // const logo = vm.$parent.$refs.logo.$el;
-            gsap.to(nav, {
-                position: "fixed",
-                // top: 0,
-                // boxShadow: "0 0 1rem 0 rgba(0, 0, 0, 0.2)",
-                // backgroundColor:
-                //     " rgba(250, 245, 232, 0.2)",
-                // backdropFilter: "blur(5px)",
-                y: 300,
-                scrollTrigger: {
-                    trigger: nav,
-                    start: "top top",
-                    end: `bottom top `,
-                    markers: true,
-                },
-            });
-        },
     },
 };
 </script>
 
 <style lang="scss" scoped>
+.nav-style {
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+    background-color: rgba(250, 245, 232, 0.2);
+    backdrop-filter: blur(5px);
+}
 .wobble {
     @include wobble;
 }

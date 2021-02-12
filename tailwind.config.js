@@ -6,6 +6,11 @@
  */
 module.exports = {
     theme: {
+        extend: {
+            animation: {
+                "spin-slow": "spin 10s linear infinite",
+            },
+        },
         screens: {
             xs: "360px",
             sm: "576px",
@@ -14,17 +19,19 @@ module.exports = {
             xl: "1440px",
         },
         colors: {
-            oldLace: "rgba(250, 245, 232, 0.75)",
-            khaki: "rgba(235, 206, 146, 0.75)",
-            blackLeatherJacket: "rgba(41, 56, 46, 0.75)",
-
-            //Traditional Fairy Tale
-            darkBrown: "rgba(87,67,37, 0.75)",
-            fieldDrab: "rgba(120,89,43, 0.75)",
-            desertSand: "rgba(227, 208, 169, 0.75)",
-            wintergreenDream: "rgba(88, 130, 128, 0.75)",
-            metallicGold: "rgba(218, 175, 70, 0.75)",
-            ruddyBrown: "rgba(179, 92, 47, 0.75)",
+            custom: {
+                white: "rgba(250, 245, 232,0.8)",
+                indigo: "rgba(0, 61, 82, 0.8)",
+                blue_green: "rgba(0, 56, 47, 0.8)",
+                dark_green: "rgba(42, 66, 26, 0.8)",
+                green: "rgba(85, 95, 9, 0.8)",
+                purple: "rgba(36, 29, 51, 0.8)",
+                brown: "rgba(64, 37, 23, 0.8)",
+                dark_brown: "rgba(48, 42, 0, 0.8)",
+                orange: "rgba(201, 101, 44, 0.8)",
+                tan: "rgba(206, 154, 90, 0.8)",
+                yellow: "rgba(230, 193, 46, 0.8)",
+            },
 
             transparent: "transparent",
             current: "currentColor",
@@ -148,7 +155,7 @@ module.exports = {
             0: "0",
             1: "0.25rem",
             2: "0.5rem",
-            3: "0.75rem",
+            3: "0.8rem",
             4: "1rem",
             5: "1.25rem",
             6: "1.5rem",
@@ -182,7 +189,7 @@ module.exports = {
             40: "10rem",
             41: "10.25rem",
             42: "10.5rem",
-            43: "10.75rem",
+            43: "10.8rem",
             44: "11rem",
             45: "11.25rem",
             46: "11.5rem",
@@ -240,7 +247,11 @@ module.exports = {
             default: "1px",
             0: "0",
             2: "2px",
+            3: "3px",
             4: "4px",
+            5: "5px",
+            6: "6px",
+            7: "7px",
             8: "8px",
         },
         boxShadow: {
@@ -272,7 +283,10 @@ module.exports = {
         divideColor: (theme) => theme("borderColor"),
         divideOpacity: (theme) => theme("borderOpacity"),
         divideWidth: (theme) => theme("borderWidth"),
-        fill: (theme) => theme("colors"),
+        fill: (theme) => ({
+            ...theme("colors"),
+            none: "none",
+        }),
         flex: {
             1: "1 1 0%",
             auto: "1 1 auto",
@@ -321,7 +335,7 @@ module.exports = {
         },
         fontSize: (theme) => ({
             ...theme("spacing"),
-            xs: "0.75rem",
+            xs: "0.8rem",
             sm: "0.875rem",
             base: "1rem",
             lg: "1.125rem",
@@ -467,7 +481,7 @@ module.exports = {
             0: "0",
             25: "0.25",
             50: "0.5",
-            75: "0.75",
+            75: "0.8",
             100: "1",
         },
         order: {
@@ -533,6 +547,9 @@ module.exports = {
             "11/12": "91.666667%",
             full: "100%",
             screen: "100vw",
+            "min-content": "min-content",
+            "max-content": "max-content",
+            "fit-content": "fit-content",
         }),
         zIndex: {
             auto: "auto",

@@ -6,28 +6,25 @@
 }
 
 @mixin input-focus-label(
-    $focusColor: rgba(235, 206, 146, 0.75)
+    $focusColor: rgba(200, 154, 52, 0.75)
 ) {
     color: $focusColor;
     transform: translate3d(0, -12px, 0) scale(0.75);
 }
 
 @mixin input-blur-label(
-    $blurColor: rgba(250, 245, 232, 0.75)
+    $blurColor: rgba(250, 245, 232, 0.8)
 ) {
     color: $blurColor;
     transform: translate3d(0, -12px, 0) scale(0.75);
 }
 
 /* nav active */
-@mixin icon-active {
-    filter: brightness(1.25);
-    .nav-img-style {
-        animation: icon-wobble 0.5s;
-    }
+@mixin wobble {
+    animation: wobble 0.5s;
 }
 
-@keyframes icon-wobble {
+@keyframes wobble {
     16.65% {
         transform: skew(-12deg);
     }
@@ -53,18 +50,28 @@
     }
 }
 
-/* title active */
-@mixin title-active {
-    animation: title-slide 0.3s;
+@mixin text-stripes {
+    $pri-color: rgba(72, 160, 201, 1);
+    $sec-color: rgba(231, 232, 203, 1);
+    background: linear-gradient(
+        -45deg,
+        $pri-color 25%,
+        $sec-color 25%,
+        $sec-color 50%,
+        $pri-color 50%,
+        $pri-color 75%,
+        $sec-color 75%,
+        $sec-color
+    );
+    background-clip: text;
+    text-fill-color: transparent;
+    background-size: 20px 20px;
+    background-position: 0 0;
+    animation: text-stripes 1s linear infinite;
 }
 
-@keyframes title-slide {
-    0% {
-        transform: translateX(10px);
-        opacity: 0;
-    }
+@keyframes text-stripes {
     100% {
-        transform: translateX(0px);
-        opacity: 1;
+        background-position: 20px 0, 20px 0, 20px 0;
     }
 }

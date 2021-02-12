@@ -6,7 +6,7 @@
             >
                 <template v-slot:content>
                     <h1
-                        class="text-metallicGold font-bold text-11 uppercase"
+                        class="text-metallicGold text-11 uppercase"
                     >
                         Confectionery shop
                     </h1>

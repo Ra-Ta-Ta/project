@@ -2,7 +2,7 @@
     <nav class="flex">
         <a
             href="#"
-            class="relative inline-flex items-center p-1 bg-metallicGold text-oldLace rounded-l-lg"
+            class="relative inline-flex items-center p-1 bg-metallicGold text-custom-white rounded-l-lg"
             :class="{
                 disabled: !pagination.has_pre,
             }"
@@ -28,7 +28,7 @@
             </svg>
         </a>
         <a
-            class="relative inline-flex items-center px-3 py-1 bg-metallicGold text-oldLace leading-none cursor-pointer"
+            class="relative inline-flex items-center px-3 py-1 bg-metallicGold text-custom-white leading-none cursor-pointer"
             @click="showPageList = !showPageList"
             ref="pageList"
         >
@@ -61,7 +61,7 @@
         </a>
         <a
             href="#"
-            class="relative inline-flex items-center p-1 rounded-r-lg bg-metallicGold text-oldLace"
+            class="relative inline-flex items-center p-1 rounded-r-lg bg-metallicGold text-custom-white"
             :class="{
                 disabled: !pagination.has_next,
             }"

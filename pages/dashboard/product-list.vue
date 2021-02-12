@@ -68,7 +68,7 @@
                             >
                                 <Button
                                     v-text="'編輯'"
-                                    class="text-oldLace bg-fieldDrab"
+                                    class="text-custom-white bg-fieldDrab"
                                     @click.native="
                                         openModal(
                                             false,
@@ -79,7 +79,7 @@
                                 </Button>
                                 <Button
                                     v-text="'刪除'"
-                                    class="text-oldLace bg-ruddyBrown"
+                                    class="text-custom-white bg-ruddyBrown"
                                     @click.native="
                                         openAlert(product)
                                     "
@@ -95,7 +95,7 @@
                     ></Pagination>
                     <Button
                         v-text="'建立新商品'"
-                        class="text-oldLace bg-wintergreenDream ml-4"
+                        class="text-custom-white bg-wintergreenDream ml-4"
                         @click.native="openModal(true)"
                     >
                     </Button>

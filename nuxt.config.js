@@ -46,30 +46,30 @@ export default {
             { property: "og:locale", content: "zh_TW" },
             {
                 property: "og:image",
-                content: "~/assets/images/bg/face.svg",
+                content: "~/assets/images/bg/tongue.svg",
             },
             {
                 name: "msapplication-TileImage",
-                content: "~/assets/images/bg/face.svg",
+                content: "~/assets/images/bg/tongue.svg",
             },
             {
                 name: "msapplication-TileColor",
-                content: "rgba(235, 206, 146, 0.75)",
+                content: "rgba(200,154,52, 0.75)",
             },
         ],
         script: [
             {
                 src:
-                    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js",
+                    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js",
                 integrity:
-                    "sha384-aeOf8PUQ30Impyyio8FDxFHefK/3nHBJWjuT1u1FnJHZU+ro9q9E9cXUzfWBk0kT",
+                    "sha384-EXoMlsRz5LeM9I+svMr9NrSRlZc4GWlywJ430KvHETR8/bMX6mTyTLWdE/8GLWOF",
                 crossorigin: "anonymous",
             },
             {
                 src:
-                    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js",
+                    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js",
                 integrity:
-                    "sha384-IqFDa6K9SJzsScnaQ67Y8rd0qD38ZdhpMnvvHT8HyIIo4zwrxa/YDL5edt/MmN8W",
+                    "sha384-s2objmvrhgb1c6ZpKiigU/yKv+tB3rGosMAbsGucdFdejuuyoN5w4P5yxBJaANg3",
                 crossorigin: "anonymous",
             },
         ],
@@ -81,17 +81,17 @@ export default {
             },
             {
                 rel: "mask-icon",
-                href: "~/assets/images/bg/face.svg",
+                href: "~/assets/images/bg/tongue.svg",
             },
             {
                 rel: "stylesheet",
                 href:
-                    "https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&display=swap",
+                    "https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;700&family=Rubik+Mono+One&display=swap",
             },
             {
                 rel: "stylesheet",
                 href:
-                    "https://fonts.googleapis.com/css2?family=Grandstander:wght@400;700&display=swap",
+                    "https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap",
             },
             {
                 rel: "stylesheet",
@@ -105,7 +105,7 @@ export default {
      */
     css: [
         "~/assets/css/style.css",
-        "~/assets/scss/variable.scss",
+        "~/assets/fonts/fonts.css",
         "~/assets/scss/mixin.scss",
     ],
     /*

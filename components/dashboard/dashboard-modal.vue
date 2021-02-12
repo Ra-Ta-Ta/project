@@ -13,10 +13,10 @@
         >
             <!--header-->
             <div
-                class="flex items-center justify-between bg-metallicGold border-b border-oldLace rounded-t-lg p-4"
+                class="flex items-center justify-between bg-metallicGold border-b border-custom-white rounded-t-lg p-4"
             >
                 <h3
-                    class="text-5 font-bold"
+                    class="text-5"
                     v-text="isNew ? '新增產品' : '編輯產品'"
                 ></h3>
 
@@ -41,7 +41,7 @@
                             type="text"
                             id="title"
                             placeholder=" "
-                            class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
+                            class="inline-block w-full h-full text-wintergreenDream bg-custom-white rounded-lg px-4 input-style"
                             v-model="tempProduct.title"
                         />
                         <span
@@ -50,7 +50,7 @@
                         ></span>
                     </label>
                     <div
-                        class="flex items-center w-full h-12 px-4 bg-oldLace rounded-lg"
+                        class="flex items-center w-full h-12 px-4 bg-custom-white rounded-lg"
                     >
                         <span
                             v-text="'是否啟用'"
@@ -84,7 +84,7 @@
                             type="text"
                             id="category"
                             placeholder=" "
-                            class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
+                            class="inline-block w-full h-full text-wintergreenDream bg-custom-white rounded-lg px-4 input-style"
                             v-model="tempProduct.category"
                         />
                         <span
@@ -100,7 +100,7 @@
                             type="text"
                             id="unit"
                             placeholder=" "
-                            class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
+                            class="inline-block w-full h-full text-wintergreenDream bg-custom-white rounded-lg px-4 input-style"
                             v-model="tempProduct.unit"
                         />
                         <span
@@ -117,7 +117,7 @@
                             type="text"
                             id="origin_price"
                             placeholder=" "
-                            class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
+                            class="inline-block w-full h-full text-wintergreenDream bg-custom-white rounded-lg px-4 input-style"
                             v-model="
                                 tempProduct.origin_price
                             "
@@ -135,7 +135,7 @@
                             type="text"
                             id="price"
                             placeholder=" "
-                            class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
+                            class="inline-block w-full h-full text-wintergreenDream bg-custom-white rounded-lg px-4 input-style"
                             v-model="tempProduct.price"
                         />
                         <span
@@ -152,7 +152,7 @@
                             type="text"
                             id="description"
                             placeholder=" "
-                            class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg p-4 input-style"
+                            class="inline-block w-full h-full text-wintergreenDream bg-custom-white rounded-lg p-4 input-style"
                             v-model="
                                 tempProduct.description
                             "
@@ -170,7 +170,7 @@
                             type="text"
                             id="content"
                             placeholder=" "
-                            class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg p-4 input-style"
+                            class="inline-block w-full h-full text-wintergreenDream bg-custom-white rounded-lg p-4 input-style"
                             v-model="tempProduct.content"
                         ></textarea>
                         <span
@@ -187,7 +187,7 @@
                             type="text"
                             id="imageUrl"
                             placeholder=" "
-                            class="inline-block w-full h-full text-wintergreenDream bg-oldLace rounded-lg px-4 input-style"
+                            class="inline-block w-full h-full text-wintergreenDream bg-custom-white rounded-lg px-4 input-style"
                             v-model="tempProduct.imageUrl"
                         />
                         <span
@@ -197,7 +197,7 @@
                     </label>
                     <label
                         for="customFile"
-                        class="relative flex justify-center items-center w-full h-24 bg-oldLace hover:bg-metallicGold rounded-lg transform transition-all duration-150 ease-linear col-start-1 col-end-2 lg:col-end-3"
+                        class="relative flex justify-center items-center w-full h-24 bg-custom-white hover:bg-metallicGold rounded-lg transform transition-all duration-150 ease-linear col-start-1 col-end-2 lg:col-end-3"
                     >
                         <input
                             type="file"
@@ -231,7 +231,7 @@
             </div>
             <!--footer-->
             <div
-                class="flex items-center justify-end border-t border-oldLace rounded-b-lg p-4"
+                class="flex items-center justify-end border-t border-custom-white rounded-b-lg p-4"
             >
                 <Button
                     v-text="'取消'"
@@ -320,8 +320,8 @@ export default {
 <style lang="scss" scoped>
 .modal-style {
     background-image: linear-gradient(
-            rgba(250, 245, 232, 0.75),
-            rgba(250, 245, 232, 0.75)
+            rgba(250, 245, 232, 0.8),
+            rgba(250, 245, 232, 0.8)
         ),
         url("https://uploads-ssl.webflow.com/57516ebd5650b01552cd9f03/5d30079985ef6117dc5b983d_Paper02.jpg");
     background-size: 300px;
@@ -346,7 +346,7 @@ export default {
 .is_enabled-style {
     &:before {
         content: "ON";
-        color: rgba(250, 245, 232, 0.75);
+        color: rgba(250, 245, 232, 0.8);
         position: absolute;
         top: 4px;
         left: 10px;

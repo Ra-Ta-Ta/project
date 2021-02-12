@@ -1,25 +1,15 @@
 <template>
     <div
-        class="absolute z-50 right-30 w-22 h-8 flex justify-between items-center transition-all duration-300 ease-linear overflow-hidden search-style"
-        :class="{ 'icon-active': search.active }"
+        class="hidden lg:flex items-center h-8 transition-all duration-300 ease-linear overflow-hidden cursor-pointer px-2 search-style"
+        :class="{ wobble: search.active }"
         @mouseover="search.active = true"
         @mouseleave="search.active = false"
     >
-        <img
-            :src="search.src"
-            :alt="`${search.id}`"
-            class="w-7 h-7 nav-img-style"
-        />
+        <img :src="search.src" class="w-7 h-7 icon-style" />
         <span
-            class="hidden md:inline-block text-oldLace text-base leading-none uppercase"
-            :class="{
-                'title-active': search.active,
-            }"
-            v-text="
-                search.active
-                    ? search.cnTitle
-                    : search.engTitle
-            "
+            class="hidden lg:inline-block text-custom-white text-base leading-none uppercase tracking-wider pl-2"
+            :class="{ 'text-stripes': search.active }"
+            v-text="search.title"
         ></span>
     </div>
 </template>
@@ -28,10 +18,8 @@ export default {
     data() {
         return {
             search: {
-                engTitle: "search",
-                cnTitle: "搜尋",
+                title: "search",
                 src: require("~/assets/images/bg/search.svg"),
-                alt: "search",
                 active: "",
             },
         };
@@ -40,12 +28,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .search-style {
-    top: 14px;
 }
-.icon-active {
-    @include icon-active;
+.wobble {
+    @include wobble;
 }
-.title-active {
-    @include title-active;
+.text-stripes {
+    @include text-stripes;
 }
 </style>

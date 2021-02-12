@@ -13,7 +13,7 @@
                 "
             >
                 <div
-                    class="inline-block text-oldLace font-bold text-6 mb-3 uppercase"
+                    class="inline-block text-custom-white text-6 mb-3 uppercase"
                 >
                     <span v-text="'sign in / '"></span>
                     <span
@@ -28,13 +28,13 @@
                     <img
                         :src="email.src"
                         :alt="email.id"
-                        class="inline-block w-12 h-full border-oldLace border-2 rounded-l-lg py-2"
+                        class="inline-block w-12 h-full border-custom-white border-2 rounded-l-lg py-2"
                     />
                     <input
                         type="email"
                         :id="email.id"
                         placeholder=" "
-                        class="inline-block w-full h-full text-ruddyBrown bg-oldLace rounded-r-lg px-2 input-style"
+                        class="inline-block w-full h-full text-ruddyBrown bg-custom-white rounded-r-lg px-2 input-style"
                         v-model="email.email"
                         required
                     />
@@ -50,14 +50,14 @@
                     <img
                         :src="password.src"
                         :alt="password.id"
-                        class="inline-block w-12 h-full border-oldLace border-2 rounded-l-lg py-2"
+                        class="inline-block w-12 h-full border-custom-white border-2 rounded-l-lg py-2"
                     />
                     <input
                         type="password"
                         :id="password.id"
                         pattern="[a-zA-Z0-9]{8,}"
                         placeholder=" "
-                        class="inline-block w-full h-full text-ruddyBrown bg-oldLace rounded-r-lg px-2 input-style password-style"
+                        class="inline-block w-full h-full text-ruddyBrown bg-custom-white rounded-r-lg px-2 input-style password-style"
                         v-model="password.password"
                         required
                     />
@@ -73,12 +73,12 @@
                         class="inline-block w-4 h-4"
                     />
                     <hr
-                        class="w-full border border-oldLace border-dashed -ml-1"
+                        class="w-full border border-custom-white border-dashed -ml-1"
                     />
                 </div>
                 <button
                     type="submit"
-                    class="inline-flex justify-center items-center w-3/12 h-12 bg-oldLace rounded-lg mr-4 transition-all duration-150 ease-linear button-style"
+                    class="inline-flex justify-center items-center w-3/12 h-12 bg-custom-white rounded-lg mr-4 transition-all duration-150 ease-linear button-style"
                     @mouseover="signInBtn.active = true"
                     @mouseleave="signInBtn.active = false"
                 >
@@ -88,16 +88,16 @@
                                 ? signInBtn.cnTitle
                                 : signInBtn.engTitle
                         "
-                        class="inline-block text-wintergreenDream font-bold uppercase"
+                        class="inline-block text-wintergreenDream uppercase"
                         :class="{
-                            'title-active':
+                            'text-stripes':
                                 signInBtn.active,
                         }"
                     ></span>
                 </button>
                 <nuxt-link
                     :to="signUpBtn.link"
-                    class="inline-flex justify-center items-center w-3/12 h-12 font-bold bg-oldLace rounded-lg mr-4 transition-all duration-150 ease-linear button-style"
+                    class="inline-flex justify-center items-center w-3/12 h-12 bg-custom-white rounded-lg mr-4 transition-all duration-150 ease-linear button-style"
                     @mouseover.native="
                         signUpBtn.active = true
                     "
@@ -113,7 +113,7 @@
                         "
                         class="inline-block text-wintergreenDream uppercase"
                         :class="{
-                            'title-active':
+                            'text-stripes':
                                 signUpBtn.active,
                         }"
                     ></span>
@@ -187,9 +187,7 @@ export default {
 .password-style {
     font-family: "cursive";
 }
-.title-active {
-    @include title-active;
-}
+
 .button-style:hover {
     filter: brightness(1.1);
 }

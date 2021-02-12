@@ -1,12 +1,12 @@
 <template>
     <div
-        class="absolute z-30 top-4 left-4 lg:hidden w-7 h-7 cursor-pointer toggler-style"
+        class="relative lg:hidden w-7 h-7 cursor-pointer toggler-style"
         @click="reverseToggler"
     >
         <span
             v-for="(line, i) in lines"
             :key="`line${i}`"
-            class="absolute block w-full h-1 rounded-xl bg-oldLace translate-all duration-150 ease-linear line-style"
+            class="absolute block w-full h-1 rounded-xl bg-custom-white translate-all duration-150 ease-linear line-style"
             :style="line"
             :ref="`line${i}`"
         ></span>
@@ -69,7 +69,7 @@ export default {
 <style lang="scss" scoped>
 .toggler-style {
     &:hover .line-style {
-        background-color: rgba(235, 206, 146, 0.75);
+        background-color: rgba(200, 154, 52, 0.75);
     }
 }
 </style>

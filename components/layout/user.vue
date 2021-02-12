@@ -1,8 +1,7 @@
 <template>
     <nuxt-link
         :to="authenticated ? '' : signInData.link"
-        class="w-full h-12 flex justify-start items-center transition-all duration-300 ease-linear pl-4 cursor-pointer overflow-hidden user-style"
-        :class="{ 'icon-active': user.active }"
+        class="flex items-center h-8 transition-all duration-300 ease-linear cursor-pointer overflow-hidden mr-2 user-style"
         @mouseover.native="user.active = true"
         @mouseleave.native="user.active = false"
         @click.native="authenticated ? signOut() : ''"
@@ -10,28 +9,21 @@
         <img
             :src="user.src"
             alt=""
-            class="w-8 h-8 nav-img-style"
+            class="w-8 h-8"
+            :class="{ wobble: user.active }"
         />
 
         <span
             v-if="authenticated"
-            class="text-oldLace text-base leading-none uppercase py-4 pl-4"
-            :class="{ 'title-active': user.active }"
-            v-text="
-                user.active
-                    ? signOutData.cnTitle
-                    : signOutData.engTitle
-            "
+            class="hidden md:inline-block text-custom-white text-base leading-none uppercase tracking-wider pl-2"
+            :class="{ 'text-stripes': user.active }"
+            v-text="signOutData.title"
         ></span>
         <span
             v-else
-            class="text-oldLace text-base leading-none uppercase py-4 pl-4"
-            :class="{ 'title-active': user.active }"
-            v-text="
-                user.active
-                    ? signInData.cnTitle
-                    : signInData.engTitle
-            "
+            class="hidden lg:inline-block text-custom-white text-base leading-none uppercase tracking-wider pl-2"
+            :class="{ 'text-stripes': user.active }"
+            v-text="signInData.title"
         ></span>
     </nuxt-link>
 </template>
@@ -45,13 +37,11 @@ export default {
                 active: "",
             },
             signInData: {
-                engTitle: "sign in",
-                cnTitle: "登入",
+                title: "sign in",
                 link: "/sign-in",
             },
             signOutData: {
-                engTitle: "sign out",
-                cnTitle: "登出",
+                title: "sign out",
             },
         };
     },
@@ -89,17 +79,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .user-style {
-    background-color: $user-color;
-    top: 14px;
 }
-.capacity-style {
-    bottom: 2px;
-    text-indent: 2px;
+.wobble {
+    @include wobble;
 }
-.icon-active {
-    @include icon-active;
-}
-.title-active {
-    @include title-active;
+.text-stripes {
+    @include text-stripes;
 }
 </style>

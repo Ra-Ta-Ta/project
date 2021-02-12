@@ -13,12 +13,9 @@
         >
             <!--header-->
             <div
-                class="flex items-center justify-between bg-ruddyBrown border-b border-oldLace rounded-t-lg p-4"
+                class="flex items-center justify-between bg-ruddyBrown border-b border-custom-white rounded-t-lg p-4"
             >
-                <h3
-                    class="text-5 font-bold"
-                    v-text="'刪除警告'"
-                ></h3>
+                <h3 class="text-5" v-text="'刪除警告'"></h3>
                 <Button
                     v-text="'X'"
                     class="ml-auto bg-transparent text-5 leading-none"
@@ -41,7 +38,7 @@
             </div>
             <!--footer-->
             <div
-                class="flex items-center justify-end border-t border-oldLace rounded-b-lg p-4"
+                class="flex items-center justify-end border-t border-custom-white rounded-b-lg p-4"
             >
                 <Button
                     v-text="'取消'"
@@ -72,8 +69,8 @@ export default {
 <style lang="scss" scoped>
 .modal-style {
     background-image: linear-gradient(
-            rgba(250, 245, 232, 0.75),
-            rgba(250, 245, 232, 0.75)
+            rgba(250, 245, 232, 0.8),
+            rgba(250, 245, 232, 0.8)
         ),
         url("https://uploads-ssl.webflow.com/57516ebd5650b01552cd9f03/5d30079985ef6117dc5b983d_Paper02.jpg");
     background-size: 300px;

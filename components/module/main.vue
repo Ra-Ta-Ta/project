@@ -1,6 +1,6 @@
 <template>
     <main
-        class="relative w-full min-h-full grid gap-4 pt-19 p-4 m-auto overflow-x-hidden overflow-y-auto main-style"
+        class="relative w-full min-h-full grid gap-4 p-4 m-auto main-style"
     >
         <slot name="content"></slot>
     </main>
@@ -10,6 +10,6 @@ export default {};
 </script>
 <style scoped>
 .main-style {
-    max-width: 1440px;
+    /* max-width: 980px; */
 }
 </style>

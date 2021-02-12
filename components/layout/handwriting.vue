@@ -1,13 +1,7 @@
 <template>
-    <nuxt-link
-        class="block m-auto logo-style"
-        to="/"
-        @click.native="
-            togglerIsReversed ? reverseToggler() : ''
-        "
-    >
+    <div class="m-auto handwriting-style">
         <h1
-            class="text-center uppercase leading-none text-custom-white font-style"
+            class="text-center uppercase leading-none text-custom-yellow font-style"
             ref="logo"
         >
             <div>
@@ -25,14 +19,16 @@
                     :key="char"
                     v-text="char"
                     class="inline-block"
+                    :class="{
+                        ' face-style': char === 'o',
+                    }"
                     ref="char"
                 ></span>
             </div>
         </h1>
-    </nuxt-link>
+    </div>
 </template>
 <script>
-import { mapState, mapMutations } from "vuex";
 export default {
     data() {
         return {
@@ -42,41 +38,36 @@ export default {
     },
     mounted() {
         const vm = this;
-        vm.charWave();
+        vm.handwriting();
     },
-    computed: {
-        ...mapState("toggler", ["togglerIsReversed"]),
-    },
+
     methods: {
-        ...mapMutations("toggler", ["reverseToggler"]),
-        charWave() {
+        handwriting() {
             const vm = this;
-            const { char } = vm.$refs;
-            const tl = gsap.timeline();
-            tl.from(char, {
-                opacity: 0,
-                scale: 0,
-                y: 80,
-                rotationX: 180,
-                ease: Back.easeOut,
-                duration: 0.5,
-                stagger: {
-                    from: 0,
-                    amount: 0.5,
-                },
-            }).to(char, {
-                clearProps: "all",
-            });
+            const paths = vm.$refs;
+
+            // gsap.to(paths, {
+            //     duration: 1,
+            //     strokeDashoffset: 0,
+            //     ease: Linear.easeNone,
+            //     stagger: 0.5,
+            // });
         },
     },
 };
 </script>
 <style lang="scss" scoped>
+.handwriting-style {
+    max-width: 980px;
+}
 .font-style {
-    font-size: 26px;
+    font-size: calc(1rem + 10vmin);
     text-indent: 0.25em;
     letter-spacing: 0.25em;
 }
 .face-style {
+    background: url("~assets/images/bg/tongue.svg")
+        no-repeat center;
+    background-size: 0.25em 0.75em;
 }
 </style>

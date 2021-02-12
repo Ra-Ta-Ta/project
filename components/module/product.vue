@@ -1,6 +1,6 @@
 <template>
     <div
-        class="relative w-full border-8 border-oldLace rounded-xl transform-gpu transition-all duration-150 ease-linear overflow-hidden product-style"
+        class="relative w-full border-8 border-custom-white rounded-xl transform-gpu transition-all duration-150 ease-linear overflow-hidden product-style"
     >
         <div
             class="absolute top-0 left-0 flex flex-col w-full h-full back-style"
@@ -15,10 +15,10 @@
                 />
             </div>
             <div
-                class="h-3/5 bg-oldLace py-2 back-banner-style"
+                class="h-3/5 bg-custom-white py-2 back-banner-style"
             >
                 <div
-                    class="text-darkBrown font-bold uppercase title-stlye"
+                    class="text-darkBrown uppercase title-stlye"
                     v-text="tempProduct.title"
                 ></div>
                 <div class="price-stlye">

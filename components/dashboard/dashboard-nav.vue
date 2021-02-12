@@ -16,8 +16,7 @@
                 menuItem.color,
                 menuItem.class,
                 {
-                    'icon-active':
-                        nav.activeObj == menuItem.id,
+                    wobble: nav.activeObj == menuItem.id,
                 },
             ]"
             @mouseover.native="nav.activeObj = menuItem.id"
@@ -30,9 +29,9 @@
                 class="w-8 h-8 nav-img-style"
             />
             <span
-                class="text-oldLace text-base leading-none uppercase py-4 pl-4 title-style"
+                class="text-custom-white text-base leading-none uppercase py-4 pl-4 title-style"
                 :class="{
-                    'title-active':
+                    'text-stripes':
                         nav.activeObj == menuItem.id,
                 }"
                 v-text="
@@ -75,7 +74,7 @@ export default {
                     cnTitle: "優惠券",
                     link: "/dashboard/coupon",
                     class: "coupon-style",
-                    src: require("~/assets/images/bg/tongue.svg"),
+                    src: require("~/assets/images/bg/smile.svg"),
                     id: "coupon",
                 },
             ],
@@ -105,23 +104,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nav-style {
-    background-image: url("~assets/images/bg/bg.jpg");
-    background-size: 300px;
-}
-.product-list-style {
-    background-color: $about-us-color;
-}
-.order-list-style {
-    background-color: $shop-color;
-}
-.coupon-style {
-    background-color: $faq-color;
-}
-.icon-active {
-    @include icon-active;
-}
-.title-active {
-    @include title-active;
+.wobble {
+    @include wobble;
 }
 </style>
